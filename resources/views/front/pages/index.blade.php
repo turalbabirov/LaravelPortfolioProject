@@ -1,57 +1,68 @@
-{{-- Layouts: --}}
-@extends('front.layouts.layout')
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>John Doe - Personal CV Website Template</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="Free Website Template" name="keywords">
+        <meta content="Free Website Template" name="description">
+        <!-- Global style/script files-->
+        @include('front.assets.css.global')
+        @yield('headerCssJs')
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{{asset('front/css/style.css')}}" rel="stylesheet" />
+    </head>
 
-{{-- Spesific CSS/JS includes: --}}
-@section('headerCssJs')
-    {{--<link rel="stylesheet" href="{{ asset('css/index.css') }}">--}}
-@endsection
-
-{{-- Header Content: --}}
-@section('slider')
-    <header class="masthead" style="background-image: url('{{asset('img/sliders/' . $slider->image)}}');">
-        <div class="container position-relative px-4 px-lg-5">
-            <div class="row gx-4 gx-lg-5 justify-content-center">
-                <div class="col-md-10 col-lg-8 col-xl-7">
-                    <div class="site-heading">
-                        <h1>{{$slider->title}}</h1>
-                        <span class="subheading">{{$slider->content}}</span>
-                    </div>
-                </div>
+    <body data-spy="scroll" data-target=".navbar" data-offset="51">
+        <div class="wrapper">
+            <div class="sidebar">
+                <!-- Profile Start -->
+                @include('front.partials.profile')
+                <!-- Profile End -->
             </div>
-        </div>
-    </header>
-@endsection
 
-{{-- Main Content Section: --}}
-@section('mainContent')
-    <div class="container px-4 px-lg-5">
-        <div class="row gx-4 gx-lg-5 justify-content-center">
-            <div class="col-md-10 col-lg-8 col-xl-7">
-                @foreach($blogDatas as $blogData)
-                    <!-- Post preview-->
-                    <div class="post-preview">
-                        <a href="post.html">
-                            <h2 class="post-title">{{$blogData->title}}</h2>
-                            <h3 class="post-subtitle">{{$blogData->content}}</h3>
-                        </a>
-                        <p class="post-meta">
-                            Posted by
-                            <a href="#!">Start Bootstrap</a>
-                            on {{ $blogData->created_at->diffForHumans() }}
-                        </p>
-                    </div>
-                    <!-- Divider-->
-                    <hr class="my-4" />
-                @endforeach
-                <!-- Pager-->
-                <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Older Posts →</a></div>
+            <div class="content">
+                <!-- About Start -->
+                @include('front.partials.about')
+                <!-- About End -->
+
+                <!-- Skills Start -->
+                @include('front.partials.skills')
+                <!-- Skills End -->
+
+                <!-- Education Start -->
+                @include('front.partials.education')
+                <!-- Education End -->
+
+                <!-- Portfolio Start -->
+                @include('front.partials.portfolio')
+                <!-- Portfolio End -->
+
+                <!-- Courses Start -->
+                @include('front.partials.courses')
+                <!-- Courses End -->
+
+                <!-- Contact Start -->
+                @include('front.partials.contact')
+                <!-- Contact End -->
+
+                <!-- Footer Start -->
+                @include('front.partials.footer')
+                <!-- Footer End -->
             </div>
+            <!-- END CONTENT -->
         </div>
-    </div>
-@endsection
 
+        <!-- Back to Top -->
+        <a href="#" class="back-to-top"><i class="fa fa-angle-double-up"></i></a>
 
-{{-- Spesific Footer JS includes: --}}
-@section('footerJS')
-    {{--<script src="{{ asset('js/index.js') }}"></script>--}}
-@endsection
+        <!-- Common JS files -->
+        @include('front.assets.js.global')
+
+        <!-- Spesific Page Js files -->
+        @yield('footerJS')
+
+        <!-- Manual JS file-->
+        <script src="{{asset('front/js/main.js')}}"></script>
+    </body>
+</html>
