@@ -1,5 +1,5 @@
 <div class="sidebar-text d-flex flex-column h-100 justify-content-center text-center">
-    <img class="w-100 img-fluid mb-4" src="{{asset('front/img/profile.jpg')}}" alt="Image">
+    <img class="w-100 img-fluid mb-4" src="{{asset('front_files/img/profile.jpg')}}" alt="Image">
     <h1 class="mt-2">John Doe</h1>
     <div class="mb-4" style="height: 22px;">
         <h4 class="typed-text-output d-inline-block text-body"></h4>

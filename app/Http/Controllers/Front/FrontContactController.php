@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class ContactController extends Controller
+class FrontContactController extends Controller
 {
     public function store(Request $request)
     {
-        return view('front.pages.index');
+        return view('front_files.pages.index');
     }
 }

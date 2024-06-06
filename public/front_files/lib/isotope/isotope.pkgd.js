@@ -3347,7 +3347,7 @@ var trim = String.prototype.trim ?
     // keep track of sortBy History
     var sortBys = utils.makeArray( this.options.sortBy );
     if ( !this._getIsSameSortBy( sortBys ) ) {
-      // concat all sortBy and sortHistory, add to front, oldest goes in last
+      // concat all sortBy and sortHistory, add to front_files, oldest goes in last
       this.sortHistory = sortBys.concat( this.sortHistory );
     }
     // sort magic

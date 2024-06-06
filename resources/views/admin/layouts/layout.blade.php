@@ -6,12 +6,12 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Clean Blog - Start Bootstrap Theme</title>
-    <link rel="icon" type="image/x-icon" href="{{asset('front/assets/favicon.ico')}}" />
+    <link rel="icon" type="image/x-icon" href="{{asset('front_files/assets/favicon.ico')}}" />
     <!-- Global style/script files-->
     @include('front.assets.css.global')
     @yield('headerCssJs')
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="{{asset('front/css/styles.css')}}" rel="stylesheet" />
+    <link href="{{asset('front_files/css/styles.css')}}" rel="stylesheet" />
 </head>
 <body>
     <!-- Header section -->
@@ -30,6 +30,6 @@
     <!-- Spesific Page Js files -->
     @yield('footerJS')
     <!-- Manual JS file-->
-    <script src="{{asset('front/js/scripts.js')}}"></script>
+    <script src="{{asset('front_files/js/scripts.js')}}"></script>
 </body>
 </html>

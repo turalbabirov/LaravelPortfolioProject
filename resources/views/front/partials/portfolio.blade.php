@@ -16,9 +16,9 @@
             <div class="row portfolio-container">
                 <div class="col-md-6 mb-4 portfolio-item first">
                     <div class="position-relative overflow-hidden mb-2">
-                        <img class="img-fluid w-100" src="{{asset('front/img/portfolio-1.jpg')}}" alt="">
+                        <img class="img-fluid w-100" src="{{asset('front_files/img/portfolio-1.jpg')}}" alt="">
                         <div class="portfolio-btn d-flex align-items-center justify-content-center">
-                            <a href="{{asset('front/img/portfolio-1.jpg')}}" data-lightbox="portfolio">
+                            <a href="{{asset('front_files/img/portfolio-1.jpg')}}" data-lightbox="portfolio">
                                 <i class="fa fa-4x fa-plus text-white"></i>
                             </a>
                         </div>
@@ -26,9 +26,9 @@
                 </div>
                 <div class="col-md-6 mb-4 portfolio-item second">
                     <div class="position-relative overflow-hidden mb-2">
-                        <img class="img-fluid w-100" src="{{asset('front/img/portfolio-2.jpg')}}" alt="">
+                        <img class="img-fluid w-100" src="{{asset('front_files/img/portfolio-2.jpg')}}" alt="">
                         <div class="portfolio-btn d-flex align-items-center justify-content-center">
-                            <a href="{{asset('front/img/portfolio-2.jpg')}}" data-lightbox="portfolio">
+                            <a href="{{asset('front_files/img/portfolio-2.jpg')}}" data-lightbox="portfolio">
                                 <i class="fa fa-4x fa-plus text-white"></i>
                             </a>
                         </div>
@@ -36,9 +36,9 @@
                 </div>
                 <div class="col-md-6 mb-4 portfolio-item first">
                     <div class="position-relative overflow-hidden mb-2">
-                        <img class="img-fluid w-100" src="{{asset('front/img/portfolio-3.jpg')}}" alt="">
+                        <img class="img-fluid w-100" src="{{asset('front_files/img/portfolio-3.jpg')}}" alt="">
                         <div class="portfolio-btn d-flex align-items-center justify-content-center">
-                            <a href="{{asset('front/img/portfolio-3.jpg')}}" data-lightbox="portfolio">
+                            <a href="{{asset('front_files/img/portfolio-3.jpg')}}" data-lightbox="portfolio">
                                 <i class="fa fa-4x fa-plus text-white"></i>
                             </a>
                         </div>
@@ -46,9 +46,9 @@
                 </div>
                 <div class="col-md-6 mb-4 portfolio-item second">
                     <div class="position-relative overflow-hidden mb-2">
-                        <img class="img-fluid w-100" src="{{asset('front/img/portfolio-4.jpg')}}" alt="">
+                        <img class="img-fluid w-100" src="{{asset('front_files/img/portfolio-4.jpg')}}" alt="">
                         <div class="portfolio-btn d-flex align-items-center justify-content-center">
-                            <a href="{{asset('front/img/portfolio-4.jpg')}}" data-lightbox="portfolio">
+                            <a href="{{asset('front_files/img/portfolio-4.jpg')}}" data-lightbox="portfolio">
                                 <i class="fa fa-4x fa-plus text-white"></i>
                             </a>
                         </div>

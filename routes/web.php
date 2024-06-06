@@ -1,13 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Front\PageController;
-use App\Http\Controllers\Front\ContactController;
+use App\Http\Controllers\Front\FrontPageController;
+use App\Http\Controllers\Front\FrontContactController;
 
 
 
 //Front
 Route::group([], function () {
-    Route::get('/', [PageController::class, 'index'])->name('index');
-    Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+    Route::get('/', [FrontPageController::class, 'index'])->name('index');
+    Route::post('/contact', [FrontContactController::class, 'store'])->name('contact.store');
 });

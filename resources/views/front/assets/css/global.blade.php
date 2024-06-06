@@ -1,5 +1,5 @@
 <!-- Favicon -->
-<link href="{{asset('front/img/favicon.ico')}}" rel="icon">
+<link href="{{asset('front_files/img/favicon.ico')}}" rel="icon">
 
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -9,5 +9,5 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 
 <!-- Libraries Stylesheet -->
-<link href="{{asset('front/lib/owlcarousel/assets/owl.carousel.min.css')}}" rel="stylesheet">
-<link href="{{asset('front/lib/lightbox/css/lightbox.min.css')}}" rel="stylesheet">
+<link href="{{asset('front_files/lib/owlcarousel/assets/owl.carousel.min.css')}}" rel="stylesheet">
+<link href="{{asset('front_files/lib/lightbox/css/lightbox.min.css')}}" rel="stylesheet">

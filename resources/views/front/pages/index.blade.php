@@ -10,7 +10,7 @@
         @include('front.assets.css.global')
         @yield('headerCssJs')
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="{{asset('front/css/style.css')}}" rel="stylesheet" />
+        <link href="{{asset('front_files/css/style.css')}}" rel="stylesheet" />
     </head>
 
     <body data-spy="scroll" data-target=".navbar" data-offset="51">
@@ -63,6 +63,6 @@
         @yield('footerJS')
 
         <!-- Manual JS file-->
-        <script src="{{asset('front/js/main.js')}}"></script>
+        <script src="{{asset('front_files/js/main.js')}}"></script>
     </body>
 </html>

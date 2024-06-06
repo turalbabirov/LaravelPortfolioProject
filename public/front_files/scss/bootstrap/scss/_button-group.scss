@@ -11,7 +11,7 @@
     position: relative;
     flex: 1 1 auto;
 
-    // Bring the hover, focused, and "active" buttons to the front to overlay
+    // Bring the hover, focused, and "active" buttons to the front_files to overlay
     // the borders properly
     @include hover() {
       z-index: 1;
