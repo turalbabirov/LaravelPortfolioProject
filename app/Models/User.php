@@ -18,10 +18,9 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'name', 'surname', 'email', 'password'
     ];
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -41,4 +40,20 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Get the profile record associated with the user.
+     */
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
+
+    /**
+     * Get the social record associated with the user.
+     */
+    public function social()
+    {
+        return $this->hasOne(Social::class);
+    }
 }
