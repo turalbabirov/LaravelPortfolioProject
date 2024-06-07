@@ -1,35 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>Clean Blog - Start Bootstrap Theme</title>
-    <link rel="icon" type="image/x-icon" href="{{asset('front_files/assets/favicon.ico')}}" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="{{asset('admin_files/assets/images/favicon.svg')}}" type="image/x-icon" />
+    <title>PlainAdmin Demo | Bootstrap 5 Admin Template</title>
     <!-- Global style/script files-->
-    @include('front.assets.css.global')
+    @include('admin.assets.css.global')
     @yield('headerCssJs')
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="{{asset('front_files/css/styles.css')}}" rel="stylesheet" />
+    <link href="{{asset('admin_files/assets/css/main.css')}}" rel="stylesheet" />
 </head>
 <body>
-    <!-- Header section -->
-    @include('front.layouts.header')
+    <!-- ======== Preloader =========== -->
+    <div id="preloader">
+        <div class="spinner"></div>
+    </div>
+    <!-- ======== Preloader =========== -->
 
 
-    <!-- Main Content-->
-    @yield('mainContent')
+    <!-- ======== sidebar-nav start =========== -->
+    @include('admin.layouts.sidebar')
+    <!-- ======== sidebar-nav end =========== -->
 
+    <!-- ======== main-wrapper start =========== -->
+    <main class="main-wrapper">
+        <!-- ========== header start ========== -->
+        @include('admin.layouts.header')
+        <!-- ========== header end ========== -->
 
-    <!-- Footer section -->
-    @include('front.layouts.footer')
+        <!-- ========== section start ========== -->
+        @yield('mainContent')
+        <!-- ========== section end ========== -->
+
+        <!-- ========== footer start =========== -->
+        @include('admin.layouts.footer')
+        <!-- ========== footer end =========== -->
+    </main>
+    <!-- ======== main-wrapper end =========== -->
+
 
     <!-- Common JS files -->
-    @include('front.assets.js.global')
+    @include('admin.assets.js.global')
     <!-- Spesific Page Js files -->
     @yield('footerJS')
     <!-- Manual JS file-->
-    <script src="{{asset('front_files/js/scripts.js')}}"></script>
+    <script src="{{ asset('admin_files/assets/js/scripts.js') }}"></script>
 </body>
 </html>
