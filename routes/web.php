@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminIndexController;
 use App\Http\Controllers\Admin\AdminPartialsController;
+use App\Http\Controllers\Admin\Profile\AdminProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Front\FrontPageController;
 use App\Http\Controllers\Front\FrontContactController;
@@ -21,14 +22,14 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [AdminIndexController::class,'index'])->name('index');
 
 
-//    Route::prefix('category')->name('category.')->group(function () {
-//        Route::get('/', [AdminCategoryController::class,'index'])->name('index');
-//        Route::get('/create', [AdminCategoryController::class,'create'])->name('create');
-//        Route::post('/store', [AdminCategoryController::class,'store'])->name('store');
-//        Route::post('/delete', [AdminCategoryController::class,'delete'])->name('delete');
-//        Route::get('/edit/{id}', [AdminCategoryController::class,'edit'])->name('edit');
-//        Route::post('/update/{id}', [AdminCategoryController::class,'update'])->name('update');
-//    });
+    Route::prefix('profile')->name('profile.')->group(function () {
+        Route::get('/', [AdminProfileController::class,'index'])->name('index');
+        Route::get('/create', [AdminProfileController::class,'create'])->name('create');
+        Route::post('/store', [AdminProfileController::class,'store'])->name('store');
+        Route::post('/delete', [AdminProfileController::class,'delete'])->name('delete');
+        Route::get('/edit/{id}', [AdminProfileController::class,'edit'])->name('edit');
+        Route::post('/update/{id}', [AdminProfileController::class,'update'])->name('update');
+    });
 //
 //    Route::prefix('blog')->name('blog.')->group(function () {
 //        Route::get('/', [AdminBlogController::class, 'index'])->name('index');

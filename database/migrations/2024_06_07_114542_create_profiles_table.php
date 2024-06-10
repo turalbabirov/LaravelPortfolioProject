@@ -22,7 +22,6 @@ return new class extends Migration
             $table->date('birthday_date')->nullable();
             $table->text('experience')->nullable();
             $table->boolean('freelance')->default(false);
-            $table->string('photo')->nullable();
             $table->string('cv')->nullable();
             $table->text('about_user')->nullable();
             $table->timestamps();

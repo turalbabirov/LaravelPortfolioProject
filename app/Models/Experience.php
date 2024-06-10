@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Project extends Model
+class Experience extends Model
 {
     use HasFactory;
 
@@ -14,22 +14,13 @@ class Project extends Model
      *
      * @var array
      */
-    protected $fillable = ['title', 'url', 'img', 'category_id'];
+    protected $fillable = ['title', 'company_name', 'start_date', 'end_date'];
 
     /**
-     * Get the user that owns the project.
+     * Get the user that owns the experience.
      */
     public function user()
     {
         return $this->belongsTo(User::class);
-    }
-
-    /**
-     * Get the category that owns the project.
-     */
-
-    public function category()
-    {
-        return $this->belongsTo(ProjectCategory::class, 'category_id');
     }
 }
