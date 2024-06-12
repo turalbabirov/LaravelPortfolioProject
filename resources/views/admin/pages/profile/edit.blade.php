@@ -38,11 +38,11 @@
                         <div class="mt-5"></div>
 
                         <div class="profile-info">
-                            <form id="imageUploadForm" action="{{route('admin.profile.store')}}" method="post" enctype="multipart/form-data">
+                            <form id="imageUploadForm" action="{{ route('admin.profile.update', ['id' => $user->id]) }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="d-flex align-items-center mb-30">
                                     <div class="profile-image">
-                                        <img class="preview-image" src="{{asset('https://static.vecteezy.com/system/resources/previews/006/059/989/non_2x/crossed-camera-icon-avoid-taking-photos-image-is-not-available-illustration-free-vector.jpg')}}" alt="" />
+                                        <img src="{{ $user->picture ? asset('storage/pictures/' . $user->picture) : 'https://static.vecteezy.com/system/resources/previews/006/059/989/non_2x/crossed-camera-icon-avoid-taking-photos-image-is-not-available-illustration-free-vector.jpg' }}" alt="" />
                                         <div class="update-image">
                                             <input type="file" name="picture" id="picture" class="file-input picture" accept="image/*" />
                                             <label for="picture"><i class="lni lni-cloud-upload"></i></label>
@@ -55,7 +55,7 @@
                                 </div>
                                 <div class="input-style-1">
                                     <label>Name</label>
-                                    <input type="text" name="name" placeholder="Tural" value="{{old('name')}}" />
+                                    <input type="text" name="name" placeholder="Tural" value="{{$user->name}}" />
                                     @if ($errors->has('name'))
                                         <div>
                                             <span class="text-danger">{{ $errors->first('name') }}</span>
@@ -64,7 +64,7 @@
                                 </div>
                                 <div class="input-style-1">
                                     <label>Surname</label>
-                                    <input type="text" name="surname" placeholder="Babirov" value="{{old('surname')}}" />
+                                    <input type="text" name="surname" placeholder="Babirov" value="{{$user->surname}}" />
                                     @if ($errors->has('surname'))
                                         <div>
                                             <span class="text-danger">{{ $errors->first('surname') }}</span>
@@ -73,7 +73,7 @@
                                 </div>
                                 <div class="input-style-1">
                                     <label>Email</label>
-                                    <input type="email" name="email" placeholder="admin@example.com" value="{{old('email')}}" />
+                                    <input type="email" name="email" placeholder="admin@example.com" value="{{$user->email}}" />
                                     @if ($errors->has('email'))
                                         <div>
                                             <span class="text-danger">{{ $errors->first('email') }}</span>
@@ -82,7 +82,7 @@
                                 </div>
                                 <div class="input-style-1">
                                     <label>Password</label>
-                                    <input type="password" name="password" />
+                                    <input type="password" name="password" value="{{$user->password}}" />
                                     @if ($errors->has('password'))
                                         <div>
                                             <span class="text-danger">{{ $errors->first('password') }}</span>

@@ -26,7 +26,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/', [AdminProfileController::class,'index'])->name('index');
         Route::get('/create', [AdminProfileController::class,'create'])->name('create');
         Route::post('/store', [AdminProfileController::class,'store'])->name('store');
-        Route::post('/delete', [AdminProfileController::class,'delete'])->name('delete');
+        Route::get('/delete/{id}', [AdminProfileController::class,'delete'])->name('delete');
         Route::get('/edit/{id}', [AdminProfileController::class,'edit'])->name('edit');
         Route::post('/update/{id}', [AdminProfileController::class,'update'])->name('update');
     });

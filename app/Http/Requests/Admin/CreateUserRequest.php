@@ -26,7 +26,7 @@ class CreateUserRequest extends FormRequest
             'surname' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|string|min:6',
-            'picture' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Max dosya boyutu 2MB
+            'picture' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
     }
 

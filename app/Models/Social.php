@@ -9,14 +9,6 @@ class Social extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'facebook',
-        'twitter',
-        'linkedin',
-        'instagram',
-        'youtube',
-        /* diğer sosyal medya platformları */];
-
     public function user()
     {
         return $this->belongsTo(User::class);

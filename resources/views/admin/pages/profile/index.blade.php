@@ -72,34 +72,41 @@
                                     <!-- end table row-->
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td class="min-width">
-                                            <div class="lead">
-                                                <div class="lead-image">
-                                                    <img src="{{asset('admin_files/assets/images/lead/lead-1.png')}}" alt="" />
-                                                </div>
-                                                <div class="lead-text">
-                                                    <p>Courtney Henry</p>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="min-width">
-                                            <p><a href="#0">yourmail@gmail.com</a></p>
-                                        </td>
-                                        <td class="min-width">
-                                            <p>(303)555 3343523</p>
-                                        </td>
-                                        <td>
-                                            <div class="action">
-                                                <button class="text-danger">
-                                                    <i class="lni lni-trash-can"></i>
-                                                </button>
-                                                <button class="text-primary">
-                                                    <i class="lni lni-pencil-alt"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                        @foreach ($users as $user)
+                                            <tr>
+                                                <td class="min-width">
+                                                    <div class="lead">
+                                                        <div class="lead-image">
+{{--                                                            {{dd($user->picture)}}--}}
+                                                            <img src="{{ $user->picture ? asset('storage/pictures/' . $user->picture) : 'https://static.vecteezy.com/system/resources/previews/006/059/989/non_2x/crossed-camera-icon-avoid-taking-photos-image-is-not-available-illustration-free-vector.jpg' }}" alt="" />
+                                                        </div>
+                                                        <div class="lead-text">
+                                                            <p>{{$user->name}}</p>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="min-width">
+                                                    <p><a href="#0">{{$user->surname}}</a></p>
+                                                </td>
+                                                <td class="min-width">
+                                                    <p>{{$user->email}}</p>
+                                                </td>
+                                                <td>
+                                                    <div class="action">
+                                                        <button>
+                                                            <a href="{{ route('admin.profile.delete', ['id' => $user->id]) }}" class="text-danger">
+                                                                <i class="lni lni-trash-can"></i>
+                                                            </a>
+                                                        </button>
+                                                        <button>
+                                                            <a href="{{ route('admin.profile.edit', ['id' => $user->id]) }}" class="text-primary">
+                                                                <i class="lni lni-pencil-alt"></i>
+                                                            </a>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     <!-- end table row -->
                                     </tbody>
                                 </table>
