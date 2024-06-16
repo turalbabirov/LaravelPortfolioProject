@@ -114,25 +114,26 @@
                                     </div>
                                     <!-- end row -->
 
-                                    <!-- Phone, Birthday, Address, About -->
+                                    <!-- Address, Phone, Birthday, About -->
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="input-style-1">
                                                 <label>Address:</label>
                                                 <input type="text" name="address" />
-                                                @if ($errors->has('password'))
+                                                @if ($errors->has('address'))
                                                     <div>
-                                                        <span class="text-danger">{{ $errors->first('password') }}</span>
+                                                        <span class="text-danger">{{ $errors->first('address') }}</span>
                                                     </div>
                                                 @endif
                                             </div>
 
                                             <div class="input-style-1">
                                                 <label>Phone:</label>
-                                                <input type="tel" name="phone" />
-                                                @if ($errors->has('password'))
+                                                <input type="tel" name="phone" required>
+
+                                            @if ($errors->has('phone'))
                                                     <div>
-                                                        <span class="text-danger">{{ $errors->first('password') }}</span>
+                                                        <span class="text-danger">{{ $errors->first('phone') }}</span>
                                                     </div>
                                                 @endif
                                             </div>
@@ -140,9 +141,9 @@
                                             <div class="input-style-1">
                                                 <label>Birthday:</label>
                                                 <input type="date" name="birthday" />
-                                                @if ($errors->has('password'))
+                                                @if ($errors->has('birthday'))
                                                     <div>
-                                                        <span class="text-danger">{{ $errors->first('password') }}</span>
+                                                        <span class="text-danger">{{ $errors->first('birthday') }}</span>
                                                     </div>
                                                 @endif
                                             </div>
@@ -151,16 +152,16 @@
                                             <div class="input-style-1">
                                                 <label>About:</label>
                                                 <textarea name="about" id="about" cols="30" rows="11"></textarea>
-                                                @if ($errors->has('password'))
+                                                @if ($errors->has('about'))
                                                     <div>
-                                                        <span class="text-danger">{{ $errors->first('password') }}</span>
+                                                        <span class="text-danger">{{ $errors->first('about') }}</span>
                                                     </div>
                                                 @endif
                                             </div>
                                         </div>
                                     </div>
 
-                                    <!-- Freelance -->
+                                    <!-- Freelance, Degree, Experience -->
                                     <div class="row">
                                         <div class="col-4">
                                             <div class="mb-3">Freelance (yes or not):</div>
@@ -173,6 +174,11 @@
                                                     <input class="form-check-input" type="radio" id="radio-2" name="freelance" value="0" checked />
                                                     <label class="form-check-label" for="radio-2">not</label>
                                                 </div>
+                                                @if ($errors->has('freelance'))
+                                                    <div>
+                                                        <span class="text-danger">{{ $errors->first('freelance') }}</span>
+                                                    </div>
+                                                @endif
                                             </div>
                                         </div>
 
@@ -180,28 +186,50 @@
                                             <div class="mb-3">Degree:</div>
                                             <div class="select-style-2">
                                                 <div class="select-position">
-                                                    <select>
+                                                    <select name="degree">
                                                         <option value="">Select category</option>
-                                                        <option value="">Category one</option>
-                                                        <option value="">Category two</option>
-                                                        <option value="">Category three</option>
+                                                        <option>Associate</option>
+                                                        <option>Bachelor</option>
+                                                        <option>Master</option>
+                                                        <option>Master</option>
+                                                        <option>Doctorate</option>
+                                                        <option>Professional</option>
+                                                        <option>Postgraduate</option>
+                                                        <option>Honorary</option>
                                                     </select>
                                                 </div>
                                             </div>
+                                            @if ($errors->has('degree'))
+                                                <div>
+                                                    <span class="text-danger">{{ $errors->first('degree') }}</span>
+                                                </div>
+                                            @endif
                                         </div>
 
                                         <div class="col-4">
                                             <div class="mb-3">Experience:</div>
                                             <div class="select-style-2">
                                                 <div class="select-position">
-                                                    <select>
+                                                    <select name="experience">
                                                         <option value="">Select category</option>
-                                                        <option value="">Category one</option>
-                                                        <option value="">Category two</option>
-                                                        <option value="">Category three</option>
+                                                        <option>1 Year</option>
+                                                        <option>2 Years</option>
+                                                        <option>3 Years</option>
+                                                        <option>4 Years</option>
+                                                        <option>5 Years</option>
+                                                        <option>6 Years</option>
+                                                        <option>7 Years</option>
+                                                        <option>8 Years</option>
+                                                        <option>9 Years</option>
+                                                        <option>10 Years</option>
                                                     </select>
                                                 </div>
                                             </div>
+                                            @if ($errors->has('experience'))
+                                                <div>
+                                                    <span class="text-danger">{{ $errors->first('experience') }}</span>
+                                                </div>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -216,28 +244,36 @@
                                     </div>
 
                                     <div class="row">
-                                        <div id="checkboxContainer1" class="col d-flex flex-wrap">
-                                            <div class="form-check checkbox-style mb-20 me-5">
-                                                <input class="form-check-input" type="checkbox" value="" id="checkbox-1" />
-                                                <label class="form-check-label" for="checkbox-1">
-                                                    Front-End Developer</label>
-                                            </div>
-                                            <div class="form-check checkbox-style mb-20 me-5">
-                                                <input class="form-check-input" type="checkbox" value="" id="checkbox-2" />
-                                                <label class="form-check-label" for="checkbox-2">
-                                                    Apps Developer</label>
-                                            </div>
-                                            <div class="form-check checkbox-style mb-20 me-5">
-                                                <input class="form-check-input" type="checkbox" value="" id="checkbox-3" />
-                                                <label class="form-check-label" for="checkbox-3">
-                                                    Web Developer</label>
-                                            </div>
-                                            <div class="form-check checkbox-style mb-20 me-5">
-                                                <input class="form-check-input" type="checkbox" value="" id="checkbox-4" />
-                                                <label class="form-check-label" for="checkbox-4">
-                                                    Apps Designer</label>
+                                        <div  class="col">
+                                            <div class="card-style mb-30 d-flex flex-wrap" id="checkboxContainer1">
+                                                <div class="form-check checkbox-style mb-20 me-5">
+                                                    <input class="form-check-input" type="checkbox" name="expertise" value="Front-End Developer" id="checkbox-1" />
+                                                    <label class="form-check-label" for="checkbox-1">
+                                                        Front-End Developer</label>
+                                                </div>
+                                                <div class="form-check checkbox-style mb-20 me-5">
+                                                    <input class="form-check-input" type="checkbox" name="expertise" value="Apps Developer" id="checkbox-2" />
+                                                    <label class="form-check-label" for="checkbox-2">
+                                                        Apps Developer</label>
+                                                </div>
+                                                <div class="form-check checkbox-style mb-20 me-5">
+                                                    <input class="form-check-input" type="checkbox" name="expertise" value="Web Developer" id="checkbox-3" />
+                                                    <label class="form-check-label" for="checkbox-3">
+                                                        Web Developer</label>
+                                                </div>
+                                                <div class="form-check checkbox-style mb-20 me-5">
+                                                    <input class="form-check-input" type="checkbox" name="expertise" value="Apps Designer" id="checkbox-4" />
+                                                    <label class="form-check-label" for="checkbox-4">
+                                                        Apps Designer</label>
+                                                </div>
                                             </div>
                                         </div>
+                                        @if ($errors->has('expertise'))
+                                            <div>
+                                                <span class="text-danger">{{ $errors->first('expertise') }}</span>
+                                            </div>
+                                        @endif
+
                                         <div>
                                             <!-- Modal -->
                                             <div id="myModal1" class="modal modal1">
@@ -245,7 +281,7 @@
                                                 <div class="modal-content modal-content1 p-5 input-style-1" >
                                                     <span class="close close1" onclick="closeModal('myModal1')" style="position: absolute; right: 30px; top: 0">&times;</span>
                                                     <input type="text" id="skillInput1" placeholder="Skill name..">
-                                                    <button type="button" class="btn btn-light mt-3" onclick="addSkill(document.querySelector('#skillInput1').value, 'checkboxContainer1', 'modal1', 'modal-content1', 'close1')">Add skill</button>
+                                                    <button type="button" class="btn btn-light mt-3" onclick="addSkill('expertise', document.querySelector('#skillInput1').value, 'checkboxContainer1', 'modal1', 'modal-content1', 'close1')">Add skill</button>
                                                 </div>
                                             </div>
 
@@ -266,32 +302,35 @@
                                     </div>
 
                                     <div class="row">
-                                        <div id="checkboxContainer2" class="col d-flex flex-wrap">
-                                            <div class="form-check checkbox-style mb-20 me-5">
-                                                <input class="form-check-input" type="checkbox" value="" id="checkbox-1" />
-                                                <label class="form-check-label" for="checkbox-1">
-                                                    HTML</label>
+                                        <div class="col">
+                                            <div class="card-style mb-30 d-flex flex-wrap" id="checkboxContainer2" >
+                                                <div class="form-check checkbox-style mb-20 me-5">
+                                                    <input class="form-check-input" type="checkbox" value="" id="checkbox-1" />
+                                                    <label class="form-check-label" for="checkbox-1">
+                                                        HTML</label>
+                                                </div>
+                                                <div class="form-check checkbox-style mb-20 me-5">
+                                                    <input class="form-check-input" type="checkbox" value="" id="checkbox-2" />
+                                                    <label class="form-check-label" for="checkbox-2">
+                                                        CSS</label>
+                                                </div>
+                                                <div class="form-check checkbox-style mb-20 me-5">
+                                                    <input class="form-check-input" type="checkbox" value="" id="checkbox-3" />
+                                                    <label class="form-check-label" for="checkbox-3">
+                                                        PHP</label>
+                                                </div>
+                                                <div class="form-check checkbox-style mb-20 me-5">
+                                                    <input class="form-check-input" type="checkbox" value="" id="checkbox-4" />
+                                                    <label class="form-check-label" for="checkbox-4">
+                                                        Javascript</label>
+                                                </div>
+                                                <div class="form-check checkbox-style mb-20 me-5">
+                                                    <input class="form-check-input" type="checkbox" value="" id="checkbox-5" />
+                                                    <label class="form-check-label" for="checkbox-5">
+                                                        Angular Js</label>
+                                                </div>
                                             </div>
-                                            <div class="form-check checkbox-style mb-20 me-5">
-                                                <input class="form-check-input" type="checkbox" value="" id="checkbox-2" />
-                                                <label class="form-check-label" for="checkbox-2">
-                                                    CSS</label>
-                                            </div>
-                                            <div class="form-check checkbox-style mb-20 me-5">
-                                                <input class="form-check-input" type="checkbox" value="" id="checkbox-3" />
-                                                <label class="form-check-label" for="checkbox-3">
-                                                    PHP</label>
-                                            </div>
-                                            <div class="form-check checkbox-style mb-20 me-5">
-                                                <input class="form-check-input" type="checkbox" value="" id="checkbox-4" />
-                                                <label class="form-check-label" for="checkbox-4">
-                                                    Javascript</label>
-                                            </div>
-                                            <div class="form-check checkbox-style mb-20 me-5">
-                                                <input class="form-check-input" type="checkbox" value="" id="checkbox-5" />
-                                                <label class="form-check-label" for="checkbox-5">
-                                                    Angular Js</label>
-                                            </div>
+
                                         </div>
                                         <div>
                                             <!-- Modal -->
@@ -300,7 +339,7 @@
                                                 <div class="modal-content modal-content2 p-5 input-style-1" >
                                                     <span class="close close2" onclick="closeModal('myModal2')" style="position: absolute; right: 30px; top: 0">&times;</span>
                                                     <input type="text" id="skillInput2" placeholder="Skill name..">
-                                                    <button type="button" class="btn btn-light mt-3" onclick="addSkill(document.querySelector('#skillInput2').value, 'checkboxContainer2', 'modal2', 'modal-content2', 'close2')">Add skill</button>
+                                                    <button type="button" class="btn btn-light mt-3" onclick="addSkill('skill', document.querySelector('#skillInput2').value, 'checkboxContainer2', 'modal2', 'modal-content2', 'close2')">Add skill</button>
                                                 </div>
                                             </div>
 
@@ -326,14 +365,14 @@
                                                 <!-- input style start -->
                                                 <div class="input-style-1">
                                                     <label>Position:</label>
-                                                    <input type="text" placeholder="Add your position.." />
+                                                    <input type="text" name="position" placeholder="Add your position.." />
                                                 </div>
                                                 <!-- end input -->
 
                                                 <!-- input style start -->
                                                 <div class="input-style-1">
                                                     <label>Company:</label>
-                                                    <input type="text" placeholder="Add your company.." />
+                                                    <input type="text" name="company" placeholder="Add your company.." />
                                                 </div>
                                                 <!-- end input -->
 
@@ -344,7 +383,7 @@
                                                         <div class="d-flex">
                                                             <div class="mt-2">from</div>
                                                             <div class="input-style-2 ms-3">
-                                                                <input type="date" />
+                                                                <input type="date" name="fromdate" />
                                                                 <span class="icon"><i class="lni lni-chevron-down"></i></span>
                                                             </div>
                                                         </div>
@@ -352,7 +391,7 @@
                                                         <div class="d-flex">
                                                             <div class="mt-2">to</div>
                                                             <div class="input-style-2 ms-3">
-                                                                <input type="date" />
+                                                                <input type="date" name="enddate" />
                                                                 <span class="icon"><i class="lni lni-chevron-down"></i></span>
                                                             </div>
                                                         </div>
@@ -363,7 +402,7 @@
                                                 <!-- textarea style start -->
                                                 <div class="input-style-1">
                                                     <label>Description:</label>
-                                                    <textarea placeholder="Add your description.." rows="5"></textarea>
+                                                    <textarea name="experienceDescription" placeholder="Add your description.." rows="5"></textarea>
                                                 </div>
                                                 <!-- end textarea -->
                                             </div>
@@ -395,12 +434,12 @@
                                             <div class="card-style mb-30">
                                                 <div class="input-style-1">
                                                     <label>Title:</label>
-                                                    <input type="text" id="projectTitle" placeholder="Add project title here.." />
+                                                    <input type="text" id="projectTitle" name="projectTitle" placeholder="Add project title here.." />
                                                 </div>
 
                                                 <div class="input-style-1">
                                                     <label>URL:</label>
-                                                    <input type="text" id="projectUrl" placeholder="Add project url here.." />
+                                                    <input type="text" id="projectUrl" name="projectUrl" placeholder="Add project url here.." />
                                                 </div>
 
                                                 <div class="input-style-1 me-5">
@@ -422,11 +461,9 @@
                                                     <div class="d-flex select-style-1">
                                                         <label class="col-2 mt-3">Choose project category:</label>
                                                         <div class="col-10 select-position">
-                                                            <select id="projectCategory">
+                                                            <select id="projectCategory" name="projectCategory">
                                                                 <option value="">Select category</option>
                                                                 <option value="Category one">Category one</option>
-                                                                <option value="Category two">Category two</option>
-                                                                <option value="Category three">Category three</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -434,7 +471,7 @@
 
                                                 <div class="input-style-1">
                                                     <label>Description:</label>
-                                                    <textarea id="projectDescription" placeholder="Add portfolio description here.." rows="5"></textarea>
+                                                    <textarea id="projectDescription" name="projectDescription" placeholder="Add portfolio description here.." rows="5"></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -456,29 +493,29 @@
                                         <h6>Courses:</h6>
                                     </div>
 
-                                    <div class="row" id="portfolioContainer">
+                                    <div class="row" id="courseContainer">
                                         <div class="col">
                                             <div class="card-style mb-30">
                                                 <div class="input-style-1">
                                                     <label>Name:</label>
-                                                    <input type="text" id="projectTitle" placeholder="Add course name here.." />
+                                                    <input type="text" id="courseName" name="courseName" placeholder="Add course name here.." />
                                                 </div>
 
                                                 <div class="input-style-1">
                                                     <label>Learn:</label>
-                                                    <input type="text" id="projectUrl" placeholder="MERN Stack, FULL Stack, Backend, Frontent etc.." />
+                                                    <input type="text" id="learnCourse" name="learnCourse" placeholder="MERN Stack, FULL Stack, Backend, Frontent etc.." />
                                                 </div>
 
                                                 <div class="input-style-1 me-5">
                                                     <label>Course Logo:</label>
                                                     <div class="d-flex align-items-center">
                                                         <div class="col-2">
-                                                            <img id="projectImage" src="{{ asset('storage/pictures/' . $user->picture )}}" alt="Selected Image" style="height: 200px; width: 150px; object-fit: cover; object-position: center;" />
+                                                            <img id="courseImage" src="{{ asset('storage/pictures/' . $user->picture )}}" alt="Selected Image" style="height: 200px; width: 150px; object-fit: cover; object-position: center;" />
                                                         </div>
                                                         <div class="col">
                                                             <div class="input-style-1">
-                                                                <label for="projectPhoto" class="form-check-label">Select project photo:</label>
-                                                                <input type="file" name="projectPhoto" id="projectPhoto" class="form-control form-control-file" accept="image/*">
+                                                                <label for="courseImage" class="form-check-label">Select project photo:</label>
+                                                                <input type="file" name="courseImage" id="courseImage" class="form-control form-control-file" accept="image/*">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -486,10 +523,15 @@
 
                                                 <div class="input-style-1">
                                                     <label>Description:</label>
-                                                    <textarea id="projectDescription" placeholder="Write about what the course you took contributed to you..." rows="5"></textarea>
+                                                    <textarea id="courseDescription" name="courseDescription" placeholder="Write about what the course you took contributed to you..." rows="5"></textarea>
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
+
+                                    <div class="mt-4" id="buttonContainer">
+                                        <!-- Button -->
+                                        <button type="button" class="btn btn-secondary" onclick="addCourse()">Add more course</button>
                                     </div>
                                 </div>
                                 <!-- END OF SECTION -->
@@ -508,27 +550,27 @@
                                             <div class="card-style mb-30">
                                                 <div class="input-style-1">
                                                     <label>Twitter:</label>
-                                                    <input type="text" id="projectTitle" placeholder="Add twitter account link here.." />
+                                                    <input type="text" id="twitter" name="twitter" placeholder="Add twitter account link here.." />
                                                 </div>
 
                                                 <div class="input-style-1">
                                                     <label>Facebook:</label>
-                                                    <input type="text" id="projectTitle" placeholder="Add facebook account link here.." />
+                                                    <input type="text" id="facebook" name="facebook" placeholder="Add facebook account link here.." />
                                                 </div>
 
                                                 <div class="input-style-1">
                                                     <label>Linkedin:</label>
-                                                    <input type="text" id="projectTitle" placeholder="Add linkedin account link here.." />
+                                                    <input type="text" id="linkedin" name="linkedin" placeholder="Add linkedin account link here.." />
                                                 </div>
 
                                                 <div class="input-style-1">
                                                     <label>Instagram:</label>
-                                                    <input type="text" id="projectTitle" placeholder="Add instagram account link here.." />
+                                                    <input type="text" id="instagram" name="instagram" placeholder="Add instagram account link here.." />
                                                 </div>
 
                                                 <div class="input-style-1">
                                                     <label>Youtube:</label>
-                                                    <input type="text" id="projectTitle" placeholder="Add youtube account link here.." />
+                                                    <input type="text" id="youtube" name="youtube" placeholder="Add youtube account link here.." />
                                                 </div>
                                             </div>
                                         </div>
@@ -574,7 +616,7 @@
 
         // Skills section start: ###################################################
         var nextCheckboxId = 5;
-        function addSkill(skillName, containerId, modalClass, modalContentClass, closeButtonClass) {
+        function addSkill(type, skillName, containerId, modalClass, modalContentClass, closeButtonClass) {
             var skillInput = skillName.trim();
             if (skillInput === "") {
                 alert("Lütfen bir yetenek adı girin.");
@@ -593,6 +635,7 @@
             newCheckbox.type = "checkbox";
             newCheckbox.value = skillInput;
             newCheckbox.id = "checkbox-" + nextCheckboxId; // Yeni ID'yi ata
+            newCheckbox.name = (type === 'expertise') ? 'expertise' : 'skill'; // Name değerini belirle
             nextCheckboxId++; // Sonraki checkbox için ID değerini artır
 
             newDiv.appendChild(newCheckbox);
@@ -604,6 +647,18 @@
             newLabel.textContent = skillInput;
 
             newDiv.appendChild(newLabel);
+
+            // Silme butonunu oluştur
+            var deleteButton = document.createElement("button");
+            deleteButton.className = "btn btn-danger btn-sm ms-2";
+            deleteButton.textContent = "X";
+            deleteButton.style.marginLeft = "10px";
+            deleteButton.onclick = function() {
+                // Checkbox ve labeli sil
+                newDiv.parentNode.removeChild(newDiv);
+            };
+
+            newDiv.appendChild(deleteButton);
 
             // CheckboxContainer'a yeni div'i ve bir satır boşluk ekleyin
             checkBoxContainer.appendChild(newDiv);
@@ -869,7 +924,95 @@
         }
 
 
+        // Course section start: ###################################################
+        function addCourse() {
+            // Create new course div
+            var newCourseDiv = document.createElement('div');
+            newCourseDiv.classList.add('row', 'mt-4'); // Added 'row' class to make sure it behaves as expected with Bootstrap
 
-        // X section start: ###################################################
+            var colDiv = document.createElement('div');
+            colDiv.classList.add('col');
+
+            var cardStyleDiv = document.createElement('div');
+            cardStyleDiv.classList.add('card-style', 'mb-30');
+
+            var inputStyle1Name = createInputStyle1('Name:', 'Add course name here..');
+            var inputStyle1Learn = createInputStyle1('Learn:', 'MERN Stack, FULL Stack, Backend, Frontend etc..');
+            var inputStyle1CourseLogo = createInputStyle1('Course Logo:', '', 'file');
+            var inputStyle1Description = createInputStyle1('Description:', 'Write about what the course you took contributed to you...', 'textarea');
+
+            cardStyleDiv.appendChild(inputStyle1Name);
+            cardStyleDiv.appendChild(inputStyle1Learn);
+
+            // Course Logo section
+            var courseLogoDiv = document.createElement('div');
+            courseLogoDiv.classList.add('input-style-1', 'me-5');
+
+            var courseLogoLabel = document.createElement('label');
+            courseLogoLabel.textContent = 'Course Logo:';
+            courseLogoDiv.appendChild(courseLogoLabel);
+
+            var courseLogoFlexDiv = document.createElement('div');
+            courseLogoFlexDiv.classList.add('d-flex', 'align-items-center');
+
+            var courseLogoCol1 = document.createElement('div');
+            courseLogoCol1.classList.add('col-2');
+
+            var courseLogoImg = document.createElement('img');
+            courseLogoImg.setAttribute('src', defaultImageSrc);
+            courseLogoImg.setAttribute('alt', '');
+            courseLogoImg.style.height = '200px';
+            courseLogoCol1.appendChild(courseLogoImg);
+
+            var courseLogoCol2 = document.createElement('div');
+            courseLogoCol2.classList.add('col');
+
+            var courseImageInputDiv = document.createElement('div');
+            courseImageInputDiv.classList.add('input-style-1');
+
+            var courseImageInputLabel = document.createElement('label');
+            courseImageInputLabel.setAttribute('for', 'courseImage');
+            courseImageInputLabel.classList.add('form-check-label');
+            courseImageInputLabel.textContent = 'Select course logo:';
+
+            var courseImageInput = document.createElement('input');
+            courseImageInput.setAttribute('type', 'file');
+            courseImageInput.setAttribute('name', 'courseImage');
+            courseImageInput.setAttribute('id', 'courseImage');
+            courseImageInput.classList.add('form-control', 'form-control-file');
+            courseImageInput.setAttribute('accept', 'image/*');
+
+            courseImageInput.addEventListener('change', function() {
+                var file = this.files[0];
+                if (file) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        courseLogoImg.src = e.target.result;
+                    }
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            courseImageInputDiv.appendChild(courseImageInputLabel);
+            courseImageInputDiv.appendChild(courseImageInput);
+
+            courseLogoCol2.appendChild(courseImageInputDiv);
+
+            courseLogoFlexDiv.appendChild(courseLogoCol1);
+            courseLogoFlexDiv.appendChild(courseLogoCol2);
+
+            courseLogoDiv.appendChild(courseLogoFlexDiv);
+            cardStyleDiv.appendChild(courseLogoDiv);
+
+            cardStyleDiv.appendChild(inputStyle1Description);
+
+            colDiv.appendChild(cardStyleDiv);
+            newCourseDiv.appendChild(colDiv);
+
+            // Insert new course div after courseContainer
+            var courseContainer = document.getElementById('courseContainer');
+            courseContainer.insertAdjacentElement('afterend', newCourseDiv);
+        }
+
     </script>
 @endsection

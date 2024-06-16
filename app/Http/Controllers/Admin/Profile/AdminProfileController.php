@@ -17,4 +17,8 @@ class AdminProfileController extends Controller
 
         return view('admin.pages.profile.create', compact('user'));
     }
+
+    public function store(Request $request) {
+        dd($request->all());
+    }
 }
