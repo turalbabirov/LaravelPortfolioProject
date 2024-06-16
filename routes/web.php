@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminIndexController;
 use App\Http\Controllers\Admin\AdminPartialsController;
 use App\Http\Controllers\Admin\Profile\AdminProfileController;
+use App\Http\Controllers\Admin\User\AdminUserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Front\FrontPageController;
 use App\Http\Controllers\Front\FrontContactController;
@@ -22,24 +23,24 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [AdminIndexController::class,'index'])->name('index');
 
 
+    Route::prefix('user')->name('user.')->group(function () {
+        Route::get('/', [AdminUserController::class,'index'])->name('index');
+        Route::get('/create', [AdminUserController::class,'create'])->name('create');
+        Route::post('/store', [AdminUserController::class,'store'])->name('store');
+        Route::get('/delete/{id}', [AdminUserController::class,'delete'])->name('delete');
+        Route::get('/edit/{id}', [AdminUserController::class,'edit'])->name('edit');
+        Route::post('/update/{id}', [AdminUserController::class,'update'])->name('update');
+    });
+
     Route::prefix('profile')->name('profile.')->group(function () {
         Route::get('/', [AdminProfileController::class,'index'])->name('index');
-        Route::get('/create', [AdminProfileController::class,'create'])->name('create');
-        Route::post('/store', [AdminProfileController::class,'store'])->name('store');
-        Route::get('/delete/{id}', [AdminProfileController::class,'delete'])->name('delete');
-        Route::get('/edit/{id}', [AdminProfileController::class,'edit'])->name('edit');
-        Route::post('/update/{id}', [AdminProfileController::class,'update'])->name('update');
+        Route::post('/create/{id}', [AdminProfileController::class, 'create'])->name('create');
+        Route::post('/store', [AdminProfileController::class, 'store'])->name('store');
+        Route::post('/delete', [AdminProfileController::class, 'delete'])->name('delete');
+        Route::get('/edit/{id}', [AdminProfileController::class, 'edit'])->name('edit');
+        Route::post('/update/{id}', [AdminProfileController::class, 'update'])->name('update');
     });
-//
-//    Route::prefix('blog')->name('blog.')->group(function () {
-//        Route::get('/', [AdminBlogController::class, 'index'])->name('index');
-//        Route::get('/create', [AdminBlogController::class, 'create'])->name('create');
-//        Route::post('/store', [AdminBlogController::class, 'store'])->name('store');
-//        Route::post('/delete', [AdminBlogController::class, 'delete'])->name('delete');
-//        Route::get('/edit/{id}', [AdminBlogController::class, 'edit'])->name('edit');
-//        Route::post('/update/{id}', [AdminBlogController::class, 'update'])->name('update');
-//    });
-//
+
 //    Route::prefix('slider')->name('slider.')->group(function () {
 //        Route::get('/', [AdminSliderController::class, 'index'])->name('index');
 //        Route::get('/create', [AdminSliderController::class, 'create'])->name('create');

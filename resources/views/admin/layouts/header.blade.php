@@ -130,7 +130,7 @@
                         </ul>
                     </div>
                     <!-- message end -->
-                    <!-- profile start -->
+                    <!-- user start -->
                     <div class="profile-box ml-15">
                         <button class="dropdown-toggle bg-transparent border-0" type="button" id="profile"
                                 data-bs-toggle="dropdown" aria-expanded="false">
@@ -181,7 +181,7 @@
                             </li>
                         </ul>
                     </div>
-                    <!-- profile end -->
+                    <!-- user end -->
                 </div>
             </div>
         </div>

@@ -42,7 +42,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * Get the profile record associated with the user.
+     * Get the user record associated with the user.
      */
     public function profile()
     {

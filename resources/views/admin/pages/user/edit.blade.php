@@ -38,7 +38,7 @@
                         <div class="mt-5"></div>
 
                         <div class="profile-info">
-                            <form id="imageUploadForm" action="{{ route('admin.profile.update', ['id' => $user->id]) }}" method="post" enctype="multipart/form-data">
+                            <form id="imageUploadForm" action="{{ route('admin.user.update', ['id' => $user->id]) }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="d-flex align-items-center mb-30">
                                     <div class="profile-image">
@@ -90,7 +90,7 @@
                                     @endif
                                 </div>
                                 <div>
-                                    <input type="submit" class="btn btn-success" value="Add Profile" />
+                                    <input type="submit" class="btn btn-success" value="Update Profile" />
                                 </div>
                             </form>
                         </div>
