@@ -247,23 +247,23 @@
                                         <div  class="col">
                                             <div class="card-style mb-30 d-flex flex-wrap" id="checkboxContainer1">
                                                 <div class="form-check checkbox-style mb-20 me-5">
-                                                    <input class="form-check-input" type="checkbox" name="expertise" value="Front-End Developer" id="checkbox-1" />
-                                                    <label class="form-check-label" for="checkbox-1">
+                                                    <input class="form-check-input" type="checkbox" name="expertise[]" value="Front-End Developer" id="Front-End Developer" />
+                                                    <label class="form-check-label" for="Front-End Developer">
                                                         Front-End Developer</label>
                                                 </div>
                                                 <div class="form-check checkbox-style mb-20 me-5">
-                                                    <input class="form-check-input" type="checkbox" name="expertise" value="Apps Developer" id="checkbox-2" />
-                                                    <label class="form-check-label" for="checkbox-2">
+                                                    <input class="form-check-input" type="checkbox" name="expertise[]" value="Apps Developer" id="Apps Developer" />
+                                                    <label class="form-check-label" for="Apps Developer">
                                                         Apps Developer</label>
                                                 </div>
                                                 <div class="form-check checkbox-style mb-20 me-5">
-                                                    <input class="form-check-input" type="checkbox" name="expertise" value="Web Developer" id="checkbox-3" />
-                                                    <label class="form-check-label" for="checkbox-3">
+                                                    <input class="form-check-input" type="checkbox" name="expertise[]" value="Web Developer" id="Web Developer" />
+                                                    <label class="form-check-label" for="Web Developer">
                                                         Web Developer</label>
                                                 </div>
                                                 <div class="form-check checkbox-style mb-20 me-5">
-                                                    <input class="form-check-input" type="checkbox" name="expertise" value="Apps Designer" id="checkbox-4" />
-                                                    <label class="form-check-label" for="checkbox-4">
+                                                    <input class="form-check-input" type="checkbox" name="expertise[]" value="Apps Designer" id="Apps Designer" />
+                                                    <label class="form-check-label" for="Apps Designer">
                                                         Apps Designer</label>
                                                 </div>
                                             </div>
@@ -305,28 +305,28 @@
                                         <div class="col">
                                             <div class="card-style mb-30 d-flex flex-wrap" id="checkboxContainer2" >
                                                 <div class="form-check checkbox-style mb-20 me-5">
-                                                    <input class="form-check-input" type="checkbox" value="" id="checkbox-1" />
-                                                    <label class="form-check-label" for="checkbox-1">
+                                                    <input class="form-check-input" type="checkbox" value="HTML" id="HTML" name="skill[]" />
+                                                    <label class="form-check-label" for="HTML">
                                                         HTML</label>
                                                 </div>
                                                 <div class="form-check checkbox-style mb-20 me-5">
-                                                    <input class="form-check-input" type="checkbox" value="" id="checkbox-2" />
-                                                    <label class="form-check-label" for="checkbox-2">
+                                                    <input class="form-check-input" type="checkbox" value="CSS" id="CSS" name="skill[]" />
+                                                    <label class="form-check-label" for="CSS">
                                                         CSS</label>
                                                 </div>
                                                 <div class="form-check checkbox-style mb-20 me-5">
-                                                    <input class="form-check-input" type="checkbox" value="" id="checkbox-3" />
-                                                    <label class="form-check-label" for="checkbox-3">
+                                                    <input class="form-check-input" type="checkbox" value="PHP" id="PHP" name="skill[]" />
+                                                    <label class="form-check-label" for="PHP">
                                                         PHP</label>
                                                 </div>
                                                 <div class="form-check checkbox-style mb-20 me-5">
-                                                    <input class="form-check-input" type="checkbox" value="" id="checkbox-4" />
-                                                    <label class="form-check-label" for="checkbox-4">
+                                                    <input class="form-check-input" type="checkbox" value="Javascript" id="Javascript" name="skill[]" />
+                                                    <label class="form-check-label" for="Javascript">
                                                         Javascript</label>
                                                 </div>
                                                 <div class="form-check checkbox-style mb-20 me-5">
-                                                    <input class="form-check-input" type="checkbox" value="" id="checkbox-5" />
-                                                    <label class="form-check-label" for="checkbox-5">
+                                                    <input class="form-check-input" type="checkbox" value="Angular Js" id="Angular Js" name="skill[]" />
+                                                    <label class="form-check-label" for="Angular Js">
                                                         Angular Js</label>
                                                 </div>
                                             </div>
@@ -510,7 +510,7 @@
                                                     <label>Course Logo:</label>
                                                     <div class="d-flex align-items-center">
                                                         <div class="col-2">
-                                                            <img id="courseImage" src="{{ asset('storage/pictures/' . $user->picture )}}" alt="Selected Image" style="height: 200px; width: 150px; object-fit: cover; object-position: center;" />
+                                                            <img id="coursePicture" src="{{ asset('storage/pictures/' . $user->picture )}}" alt="Selected Image" style="height: 200px; width: 150px; object-fit: cover; object-position: center;" />
                                                         </div>
                                                         <div class="col">
                                                             <div class="input-style-1">
@@ -614,7 +614,7 @@
             document.getElementById(modalId).style.display = "none";
         }
 
-        // Skills section start: ###################################################
+        // Expertise/Skill section start: ###################################################
         var nextCheckboxId = 5;
         function addSkill(type, skillName, containerId, modalClass, modalContentClass, closeButtonClass) {
             var skillInput = skillName.trim();
@@ -634,17 +634,17 @@
             newCheckbox.className = "form-check-input";
             newCheckbox.type = "checkbox";
             newCheckbox.value = skillInput;
-            newCheckbox.id = "checkbox-" + nextCheckboxId; // Yeni ID'yi ata
-            newCheckbox.name = (type === 'expertise') ? 'expertise' : 'skill'; // Name değerini belirle
+            newCheckbox.id = skillInput.toLowerCase() + "-" + nextCheckboxId; // skillInput'e göre ID'yi ata
+            newCheckbox.name = (type === 'expertise') ? 'expertise[]' : 'skill[]'; // Name değerini belirle
             nextCheckboxId++; // Sonraki checkbox için ID değerini artır
 
             newDiv.appendChild(newCheckbox);
 
-            // Label elementini oluştur ve içeriğini ekleyerek div içine ekle
+            // Label elementini oluştur ve içeriğini, 'for' özelliğini ve checkbox ID'sini ekleyerek div içine ekle
             var newLabel = document.createElement("label");
             newLabel.className = "form-check-label";
             newLabel.setAttribute("for", newCheckbox.id);
-            newLabel.textContent = skillInput;
+            newLabel.textContent = skillInput; // Label içeriği olarak skillInput değerini ekledim
 
             newDiv.appendChild(newLabel);
 
@@ -925,10 +925,64 @@
 
 
         // Course section start: ###################################################
+        // Course section start: ###################################################
+
+        // Function to handle course logo file input change
+        const courseImageInput = document.getElementById('courseImage');
+        courseImageInput.addEventListener('change', function() {
+            const file = this.files[0]; // Get the selected file
+
+            if (file) {
+                const reader = new FileReader(); // Create a new FileReader instance
+
+                // Define a function to handle FileReader onLoad event
+                reader.onload = function(e) {
+                    const courseImagePreview = document.getElementById('coursePicture');
+                    courseImagePreview.src = e.target.result; // Set the src attribute of the image to the result of FileReader
+                };
+
+                // Read the file as Data URL (base64 encoded string)
+                reader.readAsDataURL(file);
+            } else {
+                const courseImagePreview = document.getElementById('coursePicture');
+                courseImagePreview.src = defaultCourseImageSrc; // If no file selected, set default image
+            }
+        });
+
+        // Default course image source
+        var defaultCourseImageSrc = <?php echo json_encode(asset('storage/pictures/' . $user->picture)); ?>;
+
+        function createCourseInput(labelText, placeholderText, type, id) {
+            var inputDiv = document.createElement('div');
+            inputDiv.classList.add('input-style-1');
+
+            var label = document.createElement('label');
+            label.textContent = labelText;
+
+            var input;
+            if (type === 'textarea') {
+                input = document.createElement('textarea');
+                input.setAttribute('placeholder', placeholderText);
+                input.setAttribute('rows', '5');
+            } else {
+                input = document.createElement('input');
+                input.setAttribute('type', type);
+                input.setAttribute('placeholder', placeholderText);
+            }
+            input.setAttribute('id', id);
+            input.setAttribute('name', id);
+            input.classList.add('form-control');
+
+            inputDiv.appendChild(label);
+            inputDiv.appendChild(input);
+
+            return inputDiv;
+        }
+
         function addCourse() {
             // Create new course div
             var newCourseDiv = document.createElement('div');
-            newCourseDiv.classList.add('row', 'mt-4'); // Added 'row' class to make sure it behaves as expected with Bootstrap
+            newCourseDiv.classList.add('row', 'mt-4');
 
             var colDiv = document.createElement('div');
             colDiv.classList.add('col');
@@ -936,82 +990,85 @@
             var cardStyleDiv = document.createElement('div');
             cardStyleDiv.classList.add('card-style', 'mb-30');
 
-            var inputStyle1Name = createInputStyle1('Name:', 'Add course name here..');
-            var inputStyle1Learn = createInputStyle1('Learn:', 'MERN Stack, FULL Stack, Backend, Frontend etc..');
-            var inputStyle1CourseLogo = createInputStyle1('Course Logo:', '', 'file');
-            var inputStyle1Description = createInputStyle1('Description:', 'Write about what the course you took contributed to you...', 'textarea');
+            var inputName = createCourseInput('Name:', 'Add course name here..', 'text', 'courseName');
+            var inputLearn = createCourseInput('Learn:', 'MERN Stack, FULL Stack, Backend, Frontend etc..', 'text', 'learnCourse');
 
-            cardStyleDiv.appendChild(inputStyle1Name);
-            cardStyleDiv.appendChild(inputStyle1Learn);
+            // Logo section
+            var logoDiv = document.createElement('div');
+            logoDiv.classList.add('input-style-1', 'me-5');
 
-            // Course Logo section
-            var courseLogoDiv = document.createElement('div');
-            courseLogoDiv.classList.add('input-style-1', 'me-5');
+            var logoLabel = document.createElement('label');
+            logoLabel.textContent = 'Course Logo:';
+            logoDiv.appendChild(logoLabel);
 
-            var courseLogoLabel = document.createElement('label');
-            courseLogoLabel.textContent = 'Course Logo:';
-            courseLogoDiv.appendChild(courseLogoLabel);
+            var logoFlexDiv = document.createElement('div');
+            logoFlexDiv.classList.add('d-flex', 'align-items-center');
 
-            var courseLogoFlexDiv = document.createElement('div');
-            courseLogoFlexDiv.classList.add('d-flex', 'align-items-center');
+            var logoCol1 = document.createElement('div');
+            logoCol1.classList.add('col-2');
 
-            var courseLogoCol1 = document.createElement('div');
-            courseLogoCol1.classList.add('col-2');
+            var courseImagePreview = document.createElement('img');
+            courseImagePreview.setAttribute('src', defaultCourseImageSrc);
+            courseImagePreview.setAttribute('alt', 'Selected Image');
+            courseImagePreview.style.height = '200px';
+            courseImagePreview.style.width = '150px';
+            courseImagePreview.style.objectFit = 'cover';
+            courseImagePreview.style.objectPosition = 'center';
+            courseImagePreview.setAttribute('id', 'coursePicture');
+            logoCol1.appendChild(courseImagePreview);
 
-            var courseLogoImg = document.createElement('img');
-            courseLogoImg.setAttribute('src', defaultImageSrc);
-            courseLogoImg.setAttribute('alt', '');
-            courseLogoImg.style.height = '200px';
-            courseLogoCol1.appendChild(courseLogoImg);
+            var logoCol2 = document.createElement('div');
+            logoCol2.classList.add('col');
 
-            var courseLogoCol2 = document.createElement('div');
-            courseLogoCol2.classList.add('col');
+            var fileInputDiv = document.createElement('div');
+            fileInputDiv.classList.add('input-style-1');
 
-            var courseImageInputDiv = document.createElement('div');
-            courseImageInputDiv.classList.add('input-style-1');
+            var fileInputLabel = document.createElement('label');
+            fileInputLabel.setAttribute('for', 'courseImage');
+            fileInputLabel.classList.add('form-check-label');
+            fileInputLabel.textContent = 'Select course logo:';
 
-            var courseImageInputLabel = document.createElement('label');
-            courseImageInputLabel.setAttribute('for', 'courseImage');
-            courseImageInputLabel.classList.add('form-check-label');
-            courseImageInputLabel.textContent = 'Select course logo:';
+            var fileInput = document.createElement('input');
+            fileInput.setAttribute('type', 'file');
+            fileInput.setAttribute('name', 'courseImage');
+            fileInput.setAttribute('id', 'courseImage');
+            fileInput.classList.add('form-control', 'form-control-file');
+            fileInput.setAttribute('accept', 'image/*');
 
-            var courseImageInput = document.createElement('input');
-            courseImageInput.setAttribute('type', 'file');
-            courseImageInput.setAttribute('name', 'courseImage');
-            courseImageInput.setAttribute('id', 'courseImage');
-            courseImageInput.classList.add('form-control', 'form-control-file');
-            courseImageInput.setAttribute('accept', 'image/*');
-
-            courseImageInput.addEventListener('change', function() {
+            fileInput.addEventListener('change', function() {
                 var file = this.files[0];
                 if (file) {
                     var reader = new FileReader();
                     reader.onload = function(e) {
-                        courseLogoImg.src = e.target.result;
+                        courseImagePreview.src = e.target.result;
                     }
                     reader.readAsDataURL(file);
                 }
             });
 
-            courseImageInputDiv.appendChild(courseImageInputLabel);
-            courseImageInputDiv.appendChild(courseImageInput);
+            fileInputDiv.appendChild(fileInputLabel);
+            fileInputDiv.appendChild(fileInput);
 
-            courseLogoCol2.appendChild(courseImageInputDiv);
+            logoCol2.appendChild(fileInputDiv);
 
-            courseLogoFlexDiv.appendChild(courseLogoCol1);
-            courseLogoFlexDiv.appendChild(courseLogoCol2);
+            logoFlexDiv.appendChild(logoCol1);
+            logoFlexDiv.appendChild(logoCol2);
 
-            courseLogoDiv.appendChild(courseLogoFlexDiv);
-            cardStyleDiv.appendChild(courseLogoDiv);
+            logoDiv.appendChild(logoFlexDiv);
 
-            cardStyleDiv.appendChild(inputStyle1Description);
+            var inputDescription = createCourseInput('Description:', 'Write about what the course you took contributed to you...', 'textarea', 'courseDescription');
+
+            cardStyleDiv.appendChild(inputName);
+            cardStyleDiv.appendChild(inputLearn);
+            cardStyleDiv.appendChild(logoDiv);
+            cardStyleDiv.appendChild(inputDescription);
 
             colDiv.appendChild(cardStyleDiv);
             newCourseDiv.appendChild(colDiv);
 
             // Insert new course div after courseContainer
             var courseContainer = document.getElementById('courseContainer');
-            courseContainer.insertAdjacentElement('afterend', newCourseDiv);
+            courseContainer.insertAdjacentElement('beforeend', newCourseDiv);
         }
 
     </script>
