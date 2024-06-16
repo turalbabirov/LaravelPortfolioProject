@@ -78,9 +78,9 @@
                         <div class="profile-info">
                             <form id="imageUploadForm" action="{{ route('admin.profile.store', ['id' => $user->id]) }}" method="post" enctype="multipart/form-data">
                                 @csrf
-
+                                <!-- ABOUT SECTION: -->
                                 <div>
-                                    <!-- ========= card-style-5 start ========= -->
+                                    <!-- User picture, fullname, email -->
                                     <div class="row">
                                         <div class="col-xl-12 col-lg-12">
                                             <div class="card-style-5 mb-30">
@@ -89,7 +89,7 @@
                                                 </div>
                                                 <div class="col">
                                                     <div class="input-style-1">
-                                                        <label>Name</label>
+                                                        <label>Name:</label>
                                                         <input type="text" name="name" placeholder="Tural" value="{{$user->name}}" disabled class="bg-light-subtle" />
                                                         @if ($errors->has('name'))
                                                             <div>
@@ -99,7 +99,7 @@
                                                     </div>
 
                                                     <div class="input-style-1">
-                                                        <label>Email</label>
+                                                        <label>Email:</label>
                                                         <input type="email" name="email" placeholder="admin@example.com" value="{{$user->email}}" disabled class="bg-light-subtle" />
                                                         @if ($errors->has('email'))
                                                             <div>
@@ -113,12 +113,22 @@
                                         <!-- end col -->
                                     </div>
                                     <!-- end row -->
-                                    <!-- ========= card-style-5 end ========= -->
 
+                                    <!-- Phone, Birthday, Address, About -->
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="input-style-1">
-                                                <label>Phone</label>
+                                                <label>Address:</label>
+                                                <input type="text" name="address" />
+                                                @if ($errors->has('password'))
+                                                    <div>
+                                                        <span class="text-danger">{{ $errors->first('password') }}</span>
+                                                    </div>
+                                                @endif
+                                            </div>
+
+                                            <div class="input-style-1">
+                                                <label>Phone:</label>
                                                 <input type="tel" name="phone" />
                                                 @if ($errors->has('password'))
                                                     <div>
@@ -126,8 +136,9 @@
                                                     </div>
                                                 @endif
                                             </div>
+
                                             <div class="input-style-1">
-                                                <label>Birthday</label>
+                                                <label>Birthday:</label>
                                                 <input type="date" name="birthday" />
                                                 @if ($errors->has('password'))
                                                     <div>
@@ -138,8 +149,8 @@
                                         </div>
                                         <div class="col-6">
                                             <div class="input-style-1">
-                                                <label>Address</label>
-                                                <textarea name="address" id="address" cols="30" rows="6"></textarea>
+                                                <label>About:</label>
+                                                <textarea name="about" id="about" cols="30" rows="11"></textarea>
                                                 @if ($errors->has('password'))
                                                     <div>
                                                         <span class="text-danger">{{ $errors->first('password') }}</span>
@@ -149,7 +160,7 @@
                                         </div>
                                     </div>
 
-                                    <!-- Send button -->
+                                    <!-- Freelance -->
                                     <div class="row">
                                         <div class="col-4">
                                             <div class="mb-3">Freelance (yes or not):</div>
@@ -194,11 +205,11 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- END OF SECTION -->
                                 <!-- Divider Start -->
                                 <div class="divider mb-5 mt-5"><hr /></div>
                                 <!-- Divider End ####################################################### -->
 
+                                <!-- EXPERTISE SECTION: -->
                                 <div style="position: relative; min-height: 400px">
                                     <div class="title mb-30 d-flex justify-content-between align-items-center">
                                         <h6>Expertise:</h6>
@@ -210,6 +221,21 @@
                                                 <input class="form-check-input" type="checkbox" value="" id="checkbox-1" />
                                                 <label class="form-check-label" for="checkbox-1">
                                                     Front-End Developer</label>
+                                            </div>
+                                            <div class="form-check checkbox-style mb-20 me-5">
+                                                <input class="form-check-input" type="checkbox" value="" id="checkbox-2" />
+                                                <label class="form-check-label" for="checkbox-2">
+                                                    Apps Developer</label>
+                                            </div>
+                                            <div class="form-check checkbox-style mb-20 me-5">
+                                                <input class="form-check-input" type="checkbox" value="" id="checkbox-3" />
+                                                <label class="form-check-label" for="checkbox-3">
+                                                    Web Developer</label>
+                                            </div>
+                                            <div class="form-check checkbox-style mb-20 me-5">
+                                                <input class="form-check-input" type="checkbox" value="" id="checkbox-4" />
+                                                <label class="form-check-label" for="checkbox-4">
+                                                    Apps Designer</label>
                                             </div>
                                         </div>
                                         <div>
@@ -233,6 +259,7 @@
                                 <div class="divider mb-5 mt-5"><hr /></div>
                                 <!-- Divider End ####################################################### -->
 
+                                <!-- SKILLS SECTION: -->
                                 <div style="position: relative; min-height: 400px">
                                     <div class="title mb-30 d-flex justify-content-between align-items-center">
                                         <h6>Skills:</h6>
@@ -244,6 +271,26 @@
                                                 <input class="form-check-input" type="checkbox" value="" id="checkbox-1" />
                                                 <label class="form-check-label" for="checkbox-1">
                                                     HTML</label>
+                                            </div>
+                                            <div class="form-check checkbox-style mb-20 me-5">
+                                                <input class="form-check-input" type="checkbox" value="" id="checkbox-2" />
+                                                <label class="form-check-label" for="checkbox-2">
+                                                    CSS</label>
+                                            </div>
+                                            <div class="form-check checkbox-style mb-20 me-5">
+                                                <input class="form-check-input" type="checkbox" value="" id="checkbox-3" />
+                                                <label class="form-check-label" for="checkbox-3">
+                                                    PHP</label>
+                                            </div>
+                                            <div class="form-check checkbox-style mb-20 me-5">
+                                                <input class="form-check-input" type="checkbox" value="" id="checkbox-4" />
+                                                <label class="form-check-label" for="checkbox-4">
+                                                    Javascript</label>
+                                            </div>
+                                            <div class="form-check checkbox-style mb-20 me-5">
+                                                <input class="form-check-input" type="checkbox" value="" id="checkbox-5" />
+                                                <label class="form-check-label" for="checkbox-5">
+                                                    Angular Js</label>
                                             </div>
                                         </div>
                                         <div>
@@ -267,6 +314,7 @@
                                 <div class="divider mb-5 mt-5"><hr /></div>
                                 <!-- Divider End ####################################################### -->
 
+                                <!-- EXPERIENCE SECTION: -->
                                 <div>
                                     <div class="title mb-30 d-flex justify-content-between align-items-center">
                                         <h6>Experience:</h6>
@@ -332,73 +380,62 @@
                                 <div class="divider mb-5 mt-5"><hr /></div>
                                 <!-- Divider End ####################################################### -->
 
+                                <!-- PORTFOLIO SECTION: -->
                                 <div>
                                     <div class="title mb-30 d-flex justify-content-between align-items-center">
                                         <h6>Portfolio:</h6>
                                         <div class="mt-4" id="buttonContainer">
                                             <!-- Button -->
-                                            <a href="#" type="button" class="btn btn-secondary">Add project category</a>
+                                            <a href="#" type="button" class="btn btn-outline-secondary">Add project category</a>
                                         </div>
                                     </div>
 
                                     <div class="row" id="portfolioContainer">
                                         <div class="col">
                                             <div class="card-style mb-30">
-                                                <!-- input style start -->
                                                 <div class="input-style-1">
                                                     <label>Title:</label>
-                                                    <input type="text" placeholder="Add project title here.." />
+                                                    <input type="text" id="projectTitle" placeholder="Add project title here.." />
                                                 </div>
-                                                <!-- end input -->
 
-                                                <!-- input style start -->
                                                 <div class="input-style-1">
                                                     <label>URL:</label>
-                                                    <input type="text" placeholder="Add project url here.." />
+                                                    <input type="text" id="projectUrl" placeholder="Add project url here.." />
                                                 </div>
-                                                <!-- end input -->
 
-                                                <!-- input style start -->
                                                 <div class="input-style-1 me-5">
                                                     <label>Photo:</label>
                                                     <div class="d-flex align-items-center">
                                                         <div class="col-2">
-                                                            <img src="{{ asset('storage/pictures/' . $user->picture )}}" alt="" style="height: 200px; "/>
+                                                            <img id="projectImage" src="{{ asset('storage/pictures/' . $user->picture )}}" alt="Selected Image" style="height: 200px; width: 150px; object-fit: cover; object-position: center;" />
                                                         </div>
                                                         <div class="col">
-                                                            <!-- textarea style start -->
                                                             <div class="input-style-1">
-                                                                <label for="projecturl" class="form-check-label">Select project photo:</label>
-                                                                <input type="file" name="projecturl" id="projecturl" class="form-control form-control-file" accept="image/*" value="salam">
+                                                                <label for="projectPhoto" class="form-check-label">Select project photo:</label>
+                                                                <input type="file" name="projectPhoto" id="projectPhoto" class="form-control form-control-file" accept="image/*">
                                                             </div>
-                                                            <!-- end textarea -->
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!-- end input -->
 
-                                                <!-- input style start -->
                                                 <div class="input-style-1">
                                                     <div class="d-flex select-style-1">
                                                         <label class="col-2 mt-3">Choose project category:</label>
                                                         <div class="col-10 select-position">
-                                                            <select>
+                                                            <select id="projectCategory">
                                                                 <option value="">Select category</option>
-                                                                <option value="">Category one</option>
-                                                                <option value="">Category two</option>
-                                                                <option value="">Category three</option>
+                                                                <option value="Category one">Category one</option>
+                                                                <option value="Category two">Category two</option>
+                                                                <option value="Category three">Category three</option>
                                                             </select>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!-- end input -->
 
-                                                <!-- textarea style start -->
                                                 <div class="input-style-1">
                                                     <label>Description:</label>
-                                                    <textarea placeholder="Add portfolio description here.." rows="5"></textarea>
+                                                    <textarea id="projectDescription" placeholder="Add portfolio description here.." rows="5"></textarea>
                                                 </div>
-                                                <!-- end textarea -->
                                             </div>
                                         </div>
                                     </div>
@@ -413,13 +450,99 @@
                                 <div class="divider mb-5 mt-5"><hr /></div>
                                 <!-- Divider End ####################################################### -->
 
+                                <!-- COURSES SECTION: -->
+                                <div>
+                                    <div class="title mb-30 d-flex justify-content-between align-items-center">
+                                        <h6>Courses:</h6>
+                                    </div>
 
-                                <!-- #### Send button #### -->
-                                <div class="row mt-5">
+                                    <div class="row" id="portfolioContainer">
+                                        <div class="col">
+                                            <div class="card-style mb-30">
+                                                <div class="input-style-1">
+                                                    <label>Name:</label>
+                                                    <input type="text" id="projectTitle" placeholder="Add course name here.." />
+                                                </div>
+
+                                                <div class="input-style-1">
+                                                    <label>Learn:</label>
+                                                    <input type="text" id="projectUrl" placeholder="MERN Stack, FULL Stack, Backend, Frontent etc.." />
+                                                </div>
+
+                                                <div class="input-style-1 me-5">
+                                                    <label>Course Logo:</label>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="col-2">
+                                                            <img id="projectImage" src="{{ asset('storage/pictures/' . $user->picture )}}" alt="Selected Image" style="height: 200px; width: 150px; object-fit: cover; object-position: center;" />
+                                                        </div>
+                                                        <div class="col">
+                                                            <div class="input-style-1">
+                                                                <label for="projectPhoto" class="form-check-label">Select project photo:</label>
+                                                                <input type="file" name="projectPhoto" id="projectPhoto" class="form-control form-control-file" accept="image/*">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="input-style-1">
+                                                    <label>Description:</label>
+                                                    <textarea id="projectDescription" placeholder="Write about what the course you took contributed to you..." rows="5"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- END OF SECTION -->
+                                <!-- Divider Start -->
+                                <div class="divider mb-5 mt-5"><hr /></div>
+                                <!-- Divider End ####################################################### -->
+
+                                <!-- SOCIAL MEDIA SECTION: -->
+                                <div>
+                                    <div class="title mb-30 d-flex justify-content-between align-items-center">
+                                        <h6>Social media links:</h6>
+                                    </div>
+
+                                    <div class="row" id="portfolioContainer">
+                                        <div class="col">
+                                            <div class="card-style mb-30">
+                                                <div class="input-style-1">
+                                                    <label>Twitter:</label>
+                                                    <input type="text" id="projectTitle" placeholder="Add twitter account link here.." />
+                                                </div>
+
+                                                <div class="input-style-1">
+                                                    <label>Facebook:</label>
+                                                    <input type="text" id="projectTitle" placeholder="Add facebook account link here.." />
+                                                </div>
+
+                                                <div class="input-style-1">
+                                                    <label>Linkedin:</label>
+                                                    <input type="text" id="projectTitle" placeholder="Add linkedin account link here.." />
+                                                </div>
+
+                                                <div class="input-style-1">
+                                                    <label>Instagram:</label>
+                                                    <input type="text" id="projectTitle" placeholder="Add instagram account link here.." />
+                                                </div>
+
+                                                <div class="input-style-1">
+                                                    <label>Youtube:</label>
+                                                    <input type="text" id="projectTitle" placeholder="Add youtube account link here.." />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- END OF SECTION -->
+
+
+                                <!-- #### Create button #### -->
+                                <div class="row mt-3">
                                     <div class="col">
                                         <!-- Send button -->
                                         <div>
-                                            <input type="submit" class="btn btn-success" value="Add Profile" />
+                                            <input type="submit" class="btn btn-success btn-lg" value="Create Profile" />
                                         </div>
                                     </div>
                                 </div>
@@ -449,8 +572,8 @@
             document.getElementById(modalId).style.display = "none";
         }
 
-        // Skills section start:
-        var nextCheckboxId = 2;
+        // Skills section start: ###################################################
+        var nextCheckboxId = 5;
         function addSkill(skillName, containerId, modalClass, modalContentClass, closeButtonClass) {
             var skillInput = skillName.trim();
             if (skillInput === "") {
@@ -504,7 +627,7 @@
             document.querySelector('#skillInput2').value = '';
         }
 
-        // Experience section start:
+        // Experience section start: ###################################################
         function addExperience() {
             // Create new experience div
             var newExperienceDiv = document.createElement('div');
@@ -516,10 +639,10 @@
             var cardStyleDiv = document.createElement('div');
             cardStyleDiv.classList.add('card-style', 'mb-30');
 
-            var inputStyle1Position = createInputStyle1('Position', 'Add your position..');
-            var inputStyle1Company = createInputStyle1('Company', 'Add your company..');
-            var inputStyle1Years = createInputStyle1('Years', '');
-            var inputStyle1Description = createInputStyle1('Description', 'Add your description..', 'textarea');
+            var inputStyle1Position = createInputStyleX('Position', 'Add your position..');
+            var inputStyle1Company = createInputStyleX('Company', 'Add your company..');
+            var inputStyle1Years = createInputStyleX('Years', '');
+            var inputStyle1Description = createInputStyleX('Description', 'Add your description..', 'textarea');
 
             cardStyleDiv.appendChild(inputStyle1Position);
             cardStyleDiv.appendChild(inputStyle1Company);
@@ -535,7 +658,7 @@
         }
 
         // Helper function: Create Input or Textarea
-        function createInputStyle1(labelText, placeholderText, elementType = 'input') {
+        function createInputStyleX(labelText, placeholderText, elementType = 'input') {
             var inputDiv = document.createElement('div');
             inputDiv.classList.add('input-style-1');
 
@@ -559,9 +682,29 @@
             return inputDiv;
         }
 
-        // Portfolio section start:
+        // Portfolio section start: ###################################################
+        const projectImage = document.getElementById('projectImage');
+        // Event listener for file input change
+        const projectPhotoInput = document.getElementById('projectPhoto');
+        projectPhotoInput.addEventListener('change', function() {
+            const file = this.files[0]; // Get the selected file
 
+            if (file) {
+                const reader = new FileReader(); // Create a new FileReader instance
 
+                // Define a function to handle FileReader onLoad event
+                reader.onload = function(e) {
+                    projectImage.src = e.target.result; // Set the src attribute of the image to the result of FileReader
+                };
+
+                // Read the file as Data URL (base64 encoded string)
+                reader.readAsDataURL(file);
+            } else {
+                projectImage.src = ""; // If no file selected, clear the image src
+            }
+        });
+
+        var defaultImageSrc = <?php echo json_encode(asset('storage/pictures/' . $user->picture)); ?>;
         function addProject() {
             // Create new project div
             var newProjectDiv = document.createElement('div');
@@ -597,7 +740,7 @@
             photoCol1.classList.add('col-2');
 
             var photoImg = document.createElement('img');
-            photoImg.setAttribute('src', '');
+            photoImg.setAttribute('src', defaultImageSrc);
             photoImg.setAttribute('alt', '');
             photoImg.style.height = '200px';
             photoCol1.appendChild(photoImg);
@@ -727,6 +870,6 @@
 
 
 
-        // X section start:
+        // X section start: ###################################################
     </script>
 @endsection
