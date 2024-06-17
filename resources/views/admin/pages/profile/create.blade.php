@@ -365,14 +365,14 @@
                                                 <!-- input style start -->
                                                 <div class="input-style-1">
                                                     <label>Position:</label>
-                                                    <input type="text" name="position" placeholder="Add your position.." />
+                                                    <input type="text" name="experiences[0][position]" placeholder="Add your position.." />
                                                 </div>
                                                 <!-- end input -->
 
                                                 <!-- input style start -->
                                                 <div class="input-style-1">
                                                     <label>Company:</label>
-                                                    <input type="text" name="company" placeholder="Add your company.." />
+                                                    <input type="text" name="experiences[0][company]" placeholder="Add your company.." />
                                                 </div>
                                                 <!-- end input -->
 
@@ -383,15 +383,15 @@
                                                         <div class="d-flex">
                                                             <div class="mt-2">from</div>
                                                             <div class="input-style-2 ms-3">
-                                                                <input type="date" name="fromdate" />
+                                                                <input type="date" name="experiences[0][fromdate]" />
                                                                 <span class="icon"><i class="lni lni-chevron-down"></i></span>
                                                             </div>
                                                         </div>
-                                                        <div class="ms-5"> </div>
+                                                        <div class="ms-5"></div>
                                                         <div class="d-flex">
                                                             <div class="mt-2">to</div>
                                                             <div class="input-style-2 ms-3">
-                                                                <input type="date" name="enddate" />
+                                                                <input type="date" name="experiences[0][enddate]" />
                                                                 <span class="icon"><i class="lni lni-chevron-down"></i></span>
                                                             </div>
                                                         </div>
@@ -402,7 +402,7 @@
                                                 <!-- textarea style start -->
                                                 <div class="input-style-1">
                                                     <label>Description:</label>
-                                                    <textarea name="experienceDescription" placeholder="Add your description.." rows="5"></textarea>
+                                                    <textarea name="experiences[0][experienceDescription]" placeholder="Add your description.." rows="5"></textarea>
                                                 </div>
                                                 <!-- end textarea -->
                                             </div>
@@ -434,24 +434,24 @@
                                             <div class="card-style mb-30">
                                                 <div class="input-style-1">
                                                     <label>Title:</label>
-                                                    <input type="text" id="projectTitle" name="projectTitle" placeholder="Add project title here.." />
+                                                    <input type="text" id="projectTitle" name="projects[0][projectTitle]" placeholder="Add project title here.." />
                                                 </div>
 
                                                 <div class="input-style-1">
                                                     <label>URL:</label>
-                                                    <input type="text" id="projectUrl" name="projectUrl" placeholder="Add project url here.." />
+                                                    <input type="text" id="projectUrl" name="projects[0][projectUrl]" placeholder="Add project url here.." />
                                                 </div>
 
                                                 <div class="input-style-1 me-5">
                                                     <label>Photo:</label>
                                                     <div class="d-flex align-items-center">
                                                         <div class="col-2">
-                                                            <img id="projectImage" src="{{ asset('storage/pictures/' . $user->picture )}}" alt="Selected Image" style="height: 200px; width: 150px; object-fit: cover; object-position: center;" />
+                                                            <img id="projectImage" src="<?php echo asset('storage/pictures/' . $user->picture); ?>" alt="Selected Image" style="height: 200px; width: 150px; object-fit: cover; object-position: center;" />
                                                         </div>
                                                         <div class="col">
                                                             <div class="input-style-1">
                                                                 <label for="projectPhoto" class="form-check-label">Select project photo:</label>
-                                                                <input type="file" name="projectPhoto" id="projectPhoto" class="form-control form-control-file" accept="image/*">
+                                                                <input type="file" name="projects[0][projectPhoto]" id="projectPhoto" class="form-control form-control-file" accept="image/*">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -461,9 +461,11 @@
                                                     <div class="d-flex select-style-1">
                                                         <label class="col-2 mt-3">Choose project category:</label>
                                                         <div class="col-10 select-position">
-                                                            <select id="projectCategory" name="projectCategory">
+                                                            <select id="projectCategory" name="projects[0][projectCategory]">
                                                                 <option value="">Select category</option>
                                                                 <option value="Category one">Category one</option>
+                                                                <option value="Category two">Category two</option>
+                                                                <option value="Category three">Category three</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -471,7 +473,7 @@
 
                                                 <div class="input-style-1">
                                                     <label>Description:</label>
-                                                    <textarea id="projectDescription" name="projectDescription" placeholder="Add portfolio description here.." rows="5"></textarea>
+                                                    <textarea id="projectDescription" name="projects[0][projectDescription]" placeholder="Add portfolio description here.." rows="5"></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -493,37 +495,39 @@
                                         <h6>Courses:</h6>
                                     </div>
 
-                                    <div class="row" id="courseContainer">
-                                        <div class="col">
-                                            <div class="card-style mb-30">
-                                                <div class="input-style-1">
-                                                    <label>Name:</label>
-                                                    <input type="text" id="courseName" name="courseName" placeholder="Add course name here.." />
-                                                </div>
+                                    <div id="courseContainer">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="card-style mb-30">
+                                                    <div class="input-style-1">
+                                                        <label>Name:</label>
+                                                        <input type="text" name="courses[0][courseName]" placeholder="Add course name here.." />
+                                                    </div>
 
-                                                <div class="input-style-1">
-                                                    <label>Learn:</label>
-                                                    <input type="text" id="learnCourse" name="learnCourse" placeholder="MERN Stack, FULL Stack, Backend, Frontent etc.." />
-                                                </div>
+                                                    <div class="input-style-1">
+                                                        <label>Learn:</label>
+                                                        <input type="text" name="courses[0][learnCourse]" placeholder="MERN Stack, FULL Stack, Backend, Frontend etc.." />
+                                                    </div>
 
-                                                <div class="input-style-1 me-5">
-                                                    <label>Course Logo:</label>
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="col-2">
-                                                            <img id="coursePicture" src="{{ asset('storage/pictures/' . $user->picture )}}" alt="Selected Image" style="height: 200px; width: 150px; object-fit: cover; object-position: center;" />
-                                                        </div>
-                                                        <div class="col">
-                                                            <div class="input-style-1">
-                                                                <label for="courseImage" class="form-check-label">Select project photo:</label>
-                                                                <input type="file" name="courseImage" id="courseImage" class="form-control form-control-file" accept="image/*">
+                                                    <div class="input-style-1 me-5">
+                                                        <label>Course Logo:</label>
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="col-2">
+                                                                <img src="{{ asset('storage/pictures/' . $user->picture) }}" alt="Selected Image" style="height: 200px; width: 150px; object-fit: cover; object-position: center;" id="coursePicture">
+                                                            </div>
+                                                            <div class="col">
+                                                                <div class="input-style-1">
+                                                                    <label for="courseImage" class="form-check-label">Select project photo:</label>
+                                                                    <input type="file" name="courses[0][courseImage]" class="form-control form-control-file" accept="image/*" id="courseImage">
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
 
-                                                <div class="input-style-1">
-                                                    <label>Description:</label>
-                                                    <textarea id="courseDescription" name="courseDescription" placeholder="Write about what the course you took contributed to you..." rows="5"></textarea>
+                                                    <div class="input-style-1">
+                                                        <label>Description:</label>
+                                                        <textarea name="courses[0][courseDescription]" placeholder="Write about what the course you took contributed to you..." rows="5" id="courseDescription"></textarea>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -683,10 +687,14 @@
         }
 
         // Experience section start: ###################################################
+        var experienceCounter = 0;
+
         function addExperience() {
+            experienceCounter++;
+
             // Create new experience div
             var newExperienceDiv = document.createElement('div');
-            newExperienceDiv.classList.add('row', 'mt-4'); // Added 'row' class to make sure it behaves as expected with Bootstrap
+            newExperienceDiv.classList.add('row', 'mt-4');
 
             var colDiv = document.createElement('div');
             colDiv.classList.add('col');
@@ -694,10 +702,10 @@
             var cardStyleDiv = document.createElement('div');
             cardStyleDiv.classList.add('card-style', 'mb-30');
 
-            var inputStyle1Position = createInputStyleX('Position', 'Add your position..');
-            var inputStyle1Company = createInputStyleX('Company', 'Add your company..');
-            var inputStyle1Years = createInputStyleX('Years', '');
-            var inputStyle1Description = createInputStyleX('Description', 'Add your description..', 'textarea');
+            var inputStyle1Position = createInputStyleX('Position', 'Add your position..', 'experiences[' + experienceCounter + '][position]');
+            var inputStyle1Company = createInputStyleX('Company', 'Add your company..', 'experiences[' + experienceCounter + '][company]');
+            var inputStyle1Years = createInputStyleX('Years', '', 'experiences[' + experienceCounter + '][fromdate]', 'date', 'experiences[' + experienceCounter + '][enddate]');
+            var inputStyle1Description = createInputStyleX('Description', 'Add your description..', 'experiences[' + experienceCounter + '][experienceDescription]', 'textarea');
 
             cardStyleDiv.appendChild(inputStyle1Position);
             cardStyleDiv.appendChild(inputStyle1Company);
@@ -709,11 +717,11 @@
 
             // Insert new experience div after experienceContainer
             var experienceContainer = document.getElementById('experienceContainer');
-            experienceContainer.insertAdjacentElement('afterend', newExperienceDiv);
+            experienceContainer.appendChild(newExperienceDiv);
         }
 
         // Helper function: Create Input or Textarea
-        function createInputStyleX(labelText, placeholderText, elementType = 'input') {
+        function createInputStyleX(labelText, placeholderText, name, elementType = 'input', dateName1 = '', dateName2 = '') {
             var inputDiv = document.createElement('div');
             inputDiv.classList.add('input-style-1');
 
@@ -725,11 +733,20 @@
                 input = document.createElement('textarea');
                 input.setAttribute('placeholder', placeholderText);
                 input.setAttribute('rows', '5');
+            } else if (elementType === 'date') {
+                input = document.createElement('input');
+                input.setAttribute('type', 'date');
+                if (dateName1 !== '') {
+                    input.setAttribute('name', dateName1);
+                }
             } else {
                 input = document.createElement('input');
                 input.setAttribute('type', 'text');
                 input.setAttribute('placeholder', placeholderText);
             }
+
+            // Set the 'name' attribute for inputs
+            input.setAttribute('name', name);
 
             inputDiv.appendChild(label);
             inputDiv.appendChild(input);
@@ -737,30 +754,18 @@
             return inputDiv;
         }
 
+
+
+
+
         // Portfolio section start: ###################################################
-        const projectImage = document.getElementById('projectImage');
-        // Event listener for file input change
-        const projectPhotoInput = document.getElementById('projectPhoto');
-        projectPhotoInput.addEventListener('change', function() {
-            const file = this.files[0]; // Get the selected file
+        const defaultImageSrc = <?php echo json_encode(asset('storage/pictures/' . $user->picture)); ?>;
+        // Bu değişken global olarak tanımlanabilir veya başka bir şekilde erişilebilir olmalıdır.
+        let projectIndex = 0;
 
-            if (file) {
-                const reader = new FileReader(); // Create a new FileReader instance
-
-                // Define a function to handle FileReader onLoad event
-                reader.onload = function(e) {
-                    projectImage.src = e.target.result; // Set the src attribute of the image to the result of FileReader
-                };
-
-                // Read the file as Data URL (base64 encoded string)
-                reader.readAsDataURL(file);
-            } else {
-                projectImage.src = ""; // If no file selected, clear the image src
-            }
-        });
-
-        var defaultImageSrc = <?php echo json_encode(asset('storage/pictures/' . $user->picture)); ?>;
         function addProject() {
+            projectIndex++; // Her çağrıldığında proje indeksini artır
+
             // Create new project div
             var newProjectDiv = document.createElement('div');
             newProjectDiv.classList.add('row', 'mt-4'); // Added 'row' class to make sure it behaves as expected with Bootstrap
@@ -771,11 +776,11 @@
             var cardStyleDiv = document.createElement('div');
             cardStyleDiv.classList.add('card-style', 'mb-30');
 
-            var inputStyle1Title = createInputStyle1('Title:', 'Add project title here..');
-            var inputStyle1URL = createInputStyle1('URL:', 'Add project url here..');
-            var inputStyle1Photo = createInputStyle1('Photo:', '', 'file');
-            var inputStyle1Category = createSelectStyle1('Choose project category:', ['Category one', 'Category two', 'Category three']);
-            var inputStyle1Description = createInputStyle1('Description:', 'Add portfolio description here..', 'textarea');
+            var inputStyle1Title = createInputStyle1('Title:', 'Add project title here..', 'text', `projects[${projectIndex}][projectTitle]`);
+            var inputStyle1URL = createInputStyle1('URL:', 'Add project url here..', 'text', `projects[${projectIndex}][projectUrl]`);
+            var inputStyle1Photo = createInputStyle1('Photo:', '', 'file', `projects[${projectIndex}][projectPhoto]`);
+            var inputStyle1Category = createSelectStyle1('Choose project category:', ['Category one', 'Category two', 'Category three'], `projects[${projectIndex}][projectCategory]`);
+            var inputStyle1Description = createInputStyle1('Description:', 'Add portfolio description here..', 'textarea', `projects[${projectIndex}][projectDescription]`);
 
             cardStyleDiv.appendChild(inputStyle1Title);
             cardStyleDiv.appendChild(inputStyle1URL);
@@ -807,14 +812,14 @@
             fileInputDiv.classList.add('input-style-1');
 
             var fileInputLabel = document.createElement('label');
-            fileInputLabel.setAttribute('for', 'projecturl');
+            fileInputLabel.setAttribute('for', `projectPhoto-${projectIndex}`);
             fileInputLabel.classList.add('form-check-label');
             fileInputLabel.textContent = 'Select project photo:';
 
             var fileInput = document.createElement('input');
             fileInput.setAttribute('type', 'file');
-            fileInput.setAttribute('name', 'projecturl');
-            fileInput.setAttribute('id', 'projecturl');
+            fileInput.setAttribute('name', `projects[${projectIndex}][projectPhoto]`);
+            fileInput.setAttribute('id', `projectPhoto-${projectIndex}`);
             fileInput.classList.add('form-control', 'form-control-file');
             fileInput.setAttribute('accept', 'image/*');
 
@@ -848,11 +853,11 @@
 
             // Insert new project div after portfolioContainer
             var portfolioContainer = document.getElementById('portfolioContainer');
-            portfolioContainer.insertAdjacentElement('afterend', newProjectDiv);
+            portfolioContainer.insertAdjacentElement('beforeend', newProjectDiv);
         }
 
         // Helper function: Create Input, File Input, or Textarea
-        function createInputStyle1(labelText, placeholderText, elementType = 'input') {
+        function createInputStyle1(labelText, placeholderText, type = 'text', name = '') {
             var inputDiv = document.createElement('div');
             inputDiv.classList.add('input-style-1');
 
@@ -860,18 +865,20 @@
             label.textContent = labelText;
 
             var input;
-            if (elementType === 'textarea') {
+            if (type === 'textarea') {
                 input = document.createElement('textarea');
                 input.setAttribute('placeholder', placeholderText);
                 input.setAttribute('rows', '5');
-            } else if (elementType === 'file') {
+                input.setAttribute('name', name); // Name özelliği eklendi
+            } else if (type === 'file') {
                 input = document.createElement('input');
                 input.setAttribute('type', 'file');
-                input.setAttribute('placeholder', placeholderText);
-                input.setAttribute('name', 'projecturl');
-                input.setAttribute('id', 'projecturl');
+                input.setAttribute('name', name);
+                input.setAttribute('id', name);
                 input.classList.add('form-control', 'form-control-file');
                 input.setAttribute('accept', 'image/*');
+
+                // Add event listener for file input change
                 input.addEventListener('change', function() {
                     var file = this.files[0];
                     if (file) {
@@ -884,8 +891,9 @@
                 });
             } else {
                 input = document.createElement('input');
-                input.setAttribute('type', 'text');
+                input.setAttribute('type', type);
                 input.setAttribute('placeholder', placeholderText);
+                input.setAttribute('name', name); // Name özelliği eklendi
             }
 
             inputDiv.appendChild(label);
@@ -895,7 +903,7 @@
         }
 
         // Helper function: Create Select
-        function createSelectStyle1(labelText, options) {
+        function createSelectStyle1(labelText, options, name = '') {
             var selectDiv = document.createElement('div');
             selectDiv.classList.add('input-style-1');
 
@@ -904,6 +912,8 @@
 
             var select = document.createElement('select');
             select.classList.add('form-select');
+            select.setAttribute('id', name);
+            select.setAttribute('name', name); // Name özelliği eklendi
 
             var defaultOption = document.createElement('option');
             defaultOption.value = '';
@@ -924,11 +934,13 @@
         }
 
 
+
+
+
         // Course section start: ###################################################
-        // Course section start: ###################################################
+        const courseImageInput = document.getElementById('courseImage');
 
         // Function to handle course logo file input change
-        const courseImageInput = document.getElementById('courseImage');
         courseImageInput.addEventListener('change', function() {
             const file = this.files[0]; // Get the selected file
 
@@ -952,7 +964,7 @@
         // Default course image source
         var defaultCourseImageSrc = <?php echo json_encode(asset('storage/pictures/' . $user->picture)); ?>;
 
-        function createCourseInput(labelText, placeholderText, type, id) {
+        function createCourseInput(labelText, placeholderText, type, id, index) {
             var inputDiv = document.createElement('div');
             inputDiv.classList.add('input-style-1');
 
@@ -969,8 +981,8 @@
                 input.setAttribute('type', type);
                 input.setAttribute('placeholder', placeholderText);
             }
-            input.setAttribute('id', id);
-            input.setAttribute('name', id);
+            input.setAttribute('id', id + '_' + index);
+            input.setAttribute('name', 'courses[' + index + '][' + id + ']');
             input.classList.add('form-control');
 
             inputDiv.appendChild(label);
@@ -979,8 +991,9 @@
             return inputDiv;
         }
 
+        var courseIndex = 1; // Initial course index
+
         function addCourse() {
-            // Create new course div
             var newCourseDiv = document.createElement('div');
             newCourseDiv.classList.add('row', 'mt-4');
 
@@ -990,8 +1003,8 @@
             var cardStyleDiv = document.createElement('div');
             cardStyleDiv.classList.add('card-style', 'mb-30');
 
-            var inputName = createCourseInput('Name:', 'Add course name here..', 'text', 'courseName');
-            var inputLearn = createCourseInput('Learn:', 'MERN Stack, FULL Stack, Backend, Frontend etc..', 'text', 'learnCourse');
+            var inputName = createCourseInput('Name:', 'Add course name here..', 'text', 'courseName', courseIndex);
+            var inputLearn = createCourseInput('Learn:', 'MERN Stack, FULL Stack, Backend, Frontend etc..', 'text', 'learnCourse', courseIndex);
 
             // Logo section
             var logoDiv = document.createElement('div');
@@ -1014,7 +1027,7 @@
             courseImagePreview.style.width = '150px';
             courseImagePreview.style.objectFit = 'cover';
             courseImagePreview.style.objectPosition = 'center';
-            courseImagePreview.setAttribute('id', 'coursePicture');
+            courseImagePreview.setAttribute('id', 'coursePicture_' + courseIndex);
             logoCol1.appendChild(courseImagePreview);
 
             var logoCol2 = document.createElement('div');
@@ -1024,14 +1037,14 @@
             fileInputDiv.classList.add('input-style-1');
 
             var fileInputLabel = document.createElement('label');
-            fileInputLabel.setAttribute('for', 'courseImage');
+            fileInputLabel.setAttribute('for', 'courseImage_' + courseIndex);
             fileInputLabel.classList.add('form-check-label');
             fileInputLabel.textContent = 'Select course logo:';
 
             var fileInput = document.createElement('input');
             fileInput.setAttribute('type', 'file');
-            fileInput.setAttribute('name', 'courseImage');
-            fileInput.setAttribute('id', 'courseImage');
+            fileInput.setAttribute('name', 'courses[' + courseIndex + '][courseImage]');
+            fileInput.setAttribute('id', 'courseImage_' + courseIndex);
             fileInput.classList.add('form-control', 'form-control-file');
             fileInput.setAttribute('accept', 'image/*');
 
@@ -1056,7 +1069,7 @@
 
             logoDiv.appendChild(logoFlexDiv);
 
-            var inputDescription = createCourseInput('Description:', 'Write about what the course you took contributed to you...', 'textarea', 'courseDescription');
+            var inputDescription = createCourseInput('Description:', 'Write about what the course you took contributed to you...', 'textarea', 'courseDescription', courseIndex);
 
             cardStyleDiv.appendChild(inputName);
             cardStyleDiv.appendChild(inputLearn);
@@ -1066,9 +1079,10 @@
             colDiv.appendChild(cardStyleDiv);
             newCourseDiv.appendChild(colDiv);
 
-            // Insert new course div after courseContainer
             var courseContainer = document.getElementById('courseContainer');
             courseContainer.insertAdjacentElement('beforeend', newCourseDiv);
+
+            courseIndex++; // Increment course index for next course
         }
 
     </script>
