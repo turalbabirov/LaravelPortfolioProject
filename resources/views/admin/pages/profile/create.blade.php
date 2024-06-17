@@ -608,17 +608,16 @@
 {{-- Spesific Footer JS includes: --}}
 @section('footerJS')
     <script>
+        // Expertise/Skill section start: ###################################################
+
         // Open modal:
         function openModal(modalId) {
             document.getElementById(modalId).style.display = "block";
         }
-
         // Close modal:
         function closeModal(modalId) {
             document.getElementById(modalId).style.display = "none";
         }
-
-        // Expertise/Skill section start: ###################################################
         var nextCheckboxId = 5;
         function addSkill(type, skillName, containerId, modalClass, modalContentClass, closeButtonClass) {
             var skillInput = skillName.trim();
@@ -686,9 +685,11 @@
             document.querySelector('#skillInput2').value = '';
         }
 
+
+
+
         // Experience section start: ###################################################
         var experienceCounter = 0;
-
         function addExperience() {
             experienceCounter++;
 
@@ -704,12 +705,81 @@
 
             var inputStyle1Position = createInputStyleX('Position', 'Add your position..', 'experiences[' + experienceCounter + '][position]');
             var inputStyle1Company = createInputStyleX('Company', 'Add your company..', 'experiences[' + experienceCounter + '][company]');
-            var inputStyle1Years = createInputStyleX('Years', '', 'experiences[' + experienceCounter + '][fromdate]', 'date', 'experiences[' + experienceCounter + '][enddate]');
-            var inputStyle1Description = createInputStyleX('Description', 'Add your description..', 'experiences[' + experienceCounter + '][experienceDescription]', 'textarea');
 
             cardStyleDiv.appendChild(inputStyle1Position);
             cardStyleDiv.appendChild(inputStyle1Company);
-            cardStyleDiv.appendChild(inputStyle1Years);
+
+            // Years input container
+            var yearsContainer = document.createElement('div');
+            yearsContainer.classList.add('input-style-1', 'me-5');
+
+            var yearsLabel = document.createElement('label');
+            yearsLabel.textContent = 'Years:';
+
+            var flexContainer = document.createElement('div');
+            flexContainer.classList.add('d-flex', 'align-items-center');
+
+            var fromDiv = document.createElement('div');
+            fromDiv.classList.add('d-flex');
+
+            var fromLabel = document.createElement('div');
+            fromLabel.classList.add('mt-2');
+            fromLabel.textContent = 'from';
+
+            var fromInputContainer = document.createElement('div');
+            fromInputContainer.classList.add('input-style-2', 'ms-3');
+
+            var fromInput = document.createElement('input');
+            fromInput.setAttribute('type', 'date');
+            fromInput.setAttribute('name', 'experiences[' + experienceCounter + '][fromdate]');
+
+            var fromIcon = document.createElement('span');
+            fromIcon.classList.add('icon');
+            fromIcon.innerHTML = '<i class="lni lni-chevron-down"></i>';
+
+            fromInputContainer.appendChild(fromInput);
+            fromInputContainer.appendChild(fromIcon);
+
+            fromDiv.appendChild(fromLabel);
+            fromDiv.appendChild(fromInputContainer);
+
+            var spacer = document.createElement('div');
+            spacer.classList.add('ms-5');
+
+            var toDiv = document.createElement('div');
+            toDiv.classList.add('d-flex');
+
+            var toLabel = document.createElement('div');
+            toLabel.classList.add('mt-2');
+            toLabel.textContent = 'to';
+
+            var toInputContainer = document.createElement('div');
+            toInputContainer.classList.add('input-style-2', 'ms-3');
+
+            var toInput = document.createElement('input');
+            toInput.setAttribute('type', 'date');
+            toInput.setAttribute('name', 'experiences[' + experienceCounter + '][enddate]');
+
+            var toIcon = document.createElement('span');
+            toIcon.classList.add('icon');
+            toIcon.innerHTML = '<i class="lni lni-chevron-down"></i>';
+
+            toInputContainer.appendChild(toInput);
+            toInputContainer.appendChild(toIcon);
+
+            toDiv.appendChild(toLabel);
+            toDiv.appendChild(toInputContainer);
+
+            flexContainer.appendChild(fromDiv);
+            flexContainer.appendChild(spacer);
+            flexContainer.appendChild(toDiv);
+
+            yearsContainer.appendChild(yearsLabel);
+            yearsContainer.appendChild(flexContainer);
+
+            cardStyleDiv.appendChild(yearsContainer);
+
+            var inputStyle1Description = createInputStyleX('Description', 'Add your description..', 'experiences[' + experienceCounter + '][experienceDescription]', 'textarea');
             cardStyleDiv.appendChild(inputStyle1Description);
 
             colDiv.appendChild(cardStyleDiv);
@@ -719,9 +789,8 @@
             var experienceContainer = document.getElementById('experienceContainer');
             experienceContainer.appendChild(newExperienceDiv);
         }
-
         // Helper function: Create Input or Textarea
-        function createInputStyleX(labelText, placeholderText, name, elementType = 'input', dateName1 = '', dateName2 = '') {
+        function createInputStyleX(labelText, placeholderText, name, elementType = 'input') {
             var inputDiv = document.createElement('div');
             inputDiv.classList.add('input-style-1');
 
@@ -733,19 +802,12 @@
                 input = document.createElement('textarea');
                 input.setAttribute('placeholder', placeholderText);
                 input.setAttribute('rows', '5');
-            } else if (elementType === 'date') {
-                input = document.createElement('input');
-                input.setAttribute('type', 'date');
-                if (dateName1 !== '') {
-                    input.setAttribute('name', dateName1);
-                }
             } else {
                 input = document.createElement('input');
-                input.setAttribute('type', 'text');
+                input.setAttribute('type', elementType);
                 input.setAttribute('placeholder', placeholderText);
             }
 
-            // Set the 'name' attribute for inputs
             input.setAttribute('name', name);
 
             inputDiv.appendChild(label);
@@ -753,6 +815,7 @@
 
             return inputDiv;
         }
+
 
 
 
