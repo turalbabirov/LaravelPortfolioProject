@@ -1014,28 +1014,39 @@
             var label = document.createElement('label');
             label.textContent = labelText;
 
-            var select = document.createElement('select');
-            select.classList.add('form-select');
-            select.setAttribute('id', name);
-            select.setAttribute('name', name); // Name özelliği eklendi
+            if (labelText === 'Description:') {
+                var textarea = document.createElement('textarea');
+                textarea.setAttribute('id', name);
+                textarea.setAttribute('name', name);
+                textarea.setAttribute('placeholder', 'Add project description here..');
+                textarea.setAttribute('rows', '5');
 
-            var defaultOption = document.createElement('option');
-            defaultOption.value = '';
-            defaultOption.textContent = 'Select category';
-            select.appendChild(defaultOption);
+                selectDiv.appendChild(label);
+                selectDiv.appendChild(textarea);
+            } else {
+                var select = document.createElement('select');
+                select.classList.add('form-select');
+                select.setAttribute('id', name);
+                select.setAttribute('name', name); // Name özelliği eklendi
 
-            // Eğer projectCategories bir dizi ise forEach ile işlem yap
-            if (Array.isArray(projectCategories)) {
-                projectCategories.forEach(function(category) {
-                    var option = document.createElement('option');
-                    option.value = category.id; // Burada category.id'yi kullanarak seçenek değerini belirliyoruz
-                    option.textContent = category.title; // Burada category.title'ı kullanarak seçenek metnini belirliyoruz
-                    select.appendChild(option);
-                });
+                var defaultOption = document.createElement('option');
+                defaultOption.value = '';
+                defaultOption.textContent = 'Select category';
+                select.appendChild(defaultOption);
+
+                // Eğer projectCategories bir dizi ise forEach ile işlem yap
+                if (Array.isArray(projectCategories)) {
+                    projectCategories.forEach(function(category) {
+                        var option = document.createElement('option');
+                        option.value = category.id; // Burada category.id'yi kullanarak seçenek değerini belirliyoruz
+                        option.textContent = category.title; // Burada category.title'ı kullanarak seçenek metnini belirliyoruz
+                        select.appendChild(option);
+                    });
+                }
+
+                selectDiv.appendChild(label);
+                selectDiv.appendChild(select);
             }
-
-            selectDiv.appendChild(label);
-            selectDiv.appendChild(select);
 
             return selectDiv;
         }
