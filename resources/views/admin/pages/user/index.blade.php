@@ -55,7 +55,7 @@
                                 <table class="table">
                                     <thead>
                                     <tr>
-
+                                        <th></th>
                                         <th class="lead-name">
                                             <h6>Fullname</h6>
                                         </th>
@@ -77,6 +77,9 @@
                                     <tbody>
                                         @foreach ($users as $user)
                                             <tr>
+                                                <td>
+                                                    <h6 class="text-sm">#{{ $user->id }}</h6>
+                                                </td>
                                                 <td class="min-width">
                                                     <div class="lead">
                                                         <div class="lead-image">
@@ -84,7 +87,7 @@
                                                             <img src="{{ $user->picture ? asset('storage/pictures/' . $user->picture) : 'https://static.vecteezy.com/system/resources/previews/006/059/989/non_2x/crossed-camera-icon-avoid-taking-photos-image-is-not-available-illustration-free-vector.jpg' }}" alt="" />
                                                         </div>
                                                         <div class="lead-text">
-                                                            <p><a href="#">{{$user->name}} {{$user->surname}}</a></p>
+                                                            <p><a href="#">{{$user->fullname}}</a></p>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -97,7 +100,7 @@
                                                             @csrf
                                                             <button class="btn btn-outline-primary me-4">Add Profile</button>
                                                         </form>
-                                                        <a href="#" class="btn-link link-primary">View Projects</a>
+                                                        <a href="{{ route('admin.profile.index') }}" class="btn-link link-primary">View Projects</a>
                                                     </p>
                                                 </td>
                                                 <td class="min-width">

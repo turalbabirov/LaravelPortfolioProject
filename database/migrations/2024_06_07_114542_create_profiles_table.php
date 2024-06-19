@@ -13,17 +13,22 @@ return new class extends Migration
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
-            $table->string('fullname');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('degree')->nullable();
-            $table->string('position')->nullable();
-            $table->string('phone')->nullable();
             $table->string('address')->nullable();
+            $table->string('phone')->nullable();
             $table->date('birthday_date')->nullable();
-            $table->text('experience')->nullable();
-            $table->boolean('freelance')->default(false);
-            $table->string('cv')->nullable();
             $table->text('about_user')->nullable();
+            $table->boolean('freelance')->default(false);
+            $table->string('degree')->nullable();
+            $table->text('experience')->nullable();
+            $table->string('position')->nullable();
+            //Arrays:
+            $table->string('expertises')->nullable();
+            $table->string('skills')->nullable();
+            $table->string('experiences')->nullable();
+            $table->string('projects')->nullable();
+            $table->string('courses')->nullable();
+            $table->string('socials')->nullable();
             $table->timestamps();
         });
     }

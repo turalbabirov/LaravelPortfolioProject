@@ -19,14 +19,11 @@ class Project extends Model
     /**
      * Get the user that owns the project.
      */
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
 
-    /**
-     * Get the category that owns the project.
-     */
+    public function profile()
+    {
+        return $this->belongsTo(Profile::class);
+    }
 
     public function category()
     {

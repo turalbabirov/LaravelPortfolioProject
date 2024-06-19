@@ -42,7 +42,7 @@
                                 @csrf
                                 <div class="d-flex align-items-center mb-30">
                                     <div class="profile-image">
-                                        <img src="{{ $user->picture ? asset('storage/pictures/' . $user->picture) : 'https://static.vecteezy.com/system/resources/previews/006/059/989/non_2x/crossed-camera-icon-avoid-taking-photos-image-is-not-available-illustration-free-vector.jpg' }}" alt="" />
+                                        <img class="preview-image" src="{{ $user->picture ? asset('storage/pictures/' . $user->picture) : 'https://static.vecteezy.com/system/resources/previews/006/059/989/non_2x/crossed-camera-icon-avoid-taking-photos-image-is-not-available-illustration-free-vector.jpg' }}" alt="" />
                                         <div class="update-image">
                                             <input type="file" name="picture" id="picture" class="file-input picture" accept="image/*" />
                                             <label for="picture"><i class="lni lni-cloud-upload"></i></label>

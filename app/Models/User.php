@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -18,7 +17,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name', 'surname', 'email', 'password', 'picture'
+        'name', 'surname', 'fullname', 'email', 'password', 'picture'
     ];
 
 
@@ -31,6 +30,16 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        // Model oluşturulurken veya güncellenirken fullname sütununu güncelle
+        static::saving(function ($user) {
+            $user->fullname = $user->name . ' ' . $user->surname;
+        });
+    }
 
     /**
      * The attributes that should be cast.
@@ -49,9 +58,11 @@ class User extends Authenticatable
         return $this->hasOne(Profile::class);
     }
 
-    /**
-     * Get the social record associated with the user.
-     */
+    public function projectCategories()
+    {
+        return $this->hasMany(ProjectCategory::class);
+    }
+
     public function social()
     {
         return $this->hasOne(Social::class);

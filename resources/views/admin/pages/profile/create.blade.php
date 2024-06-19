@@ -50,9 +50,11 @@
     <!-- ========== section start ========== -->
     <section class="table-components">
         <div class="container-fluid">
-
-            <div class="row mt-5">
+            <div class="row mt-4">
                 <div class="col-lg-12">
+                    <div class="mt-4 d-flex justify-content-end mb-4">
+                        <a href="{{ url()->previous() }}" class="btn btn-secondary">Go to back</a>
+                    </div>
                     <!-- start card -->
                     <div class="card-style settings-card-1 mb-30">
                         <div class="title mb-30 d-flex justify-content-between align-items-center">
@@ -89,8 +91,8 @@
                                                 </div>
                                                 <div class="col">
                                                     <div class="input-style-1">
-                                                        <label>Name:</label>
-                                                        <input type="text" name="name" placeholder="Tural" value="{{$user->name}}" disabled class="bg-light-subtle" />
+                                                        <label>Fullname:</label>
+                                                        <input type="text" name="name" placeholder="Tural" value="{{$user->fullname}}" disabled class="bg-light-subtle" />
                                                         @if ($errors->has('name'))
                                                             <div>
                                                                 <span class="text-danger">{{ $errors->first('name') }}</span>
@@ -425,7 +427,7 @@
                                         <h6>Portfolio:</h6>
                                         <div class="mt-4" id="buttonContainer">
                                             <!-- Button -->
-                                            <a href="#" type="button" class="btn btn-outline-secondary">Add project category</a>
+                                            <a href="{{ route('admin.profile.projectcategory.index', ['id' => $user->id]) }}" type="button" class="btn btn-outline-secondary">Add project category</a>
                                         </div>
                                     </div>
 
@@ -463,9 +465,9 @@
                                                         <div class="col-10 select-position">
                                                             <select id="projectCategory" name="projects[0][projectCategory]">
                                                                 <option value="">Select category</option>
-                                                                <option value="Category one">Category one</option>
-                                                                <option value="Category two">Category two</option>
-                                                                <option value="Category three">Category three</option>
+                                                                @foreach($projectCategories as $projectCategory)
+                                                                    <option value="{{ $projectCategory->id }}">{{ $projectCategory->title }}</option>
+                                                                @endforeach
                                                             </select>
                                                         </div>
                                                     </div>
@@ -473,7 +475,7 @@
 
                                                 <div class="input-style-1">
                                                     <label>Description:</label>
-                                                    <textarea id="projectDescription" name="projects[0][projectDescription]" placeholder="Add portfolio description here.." rows="5"></textarea>
+                                                    <textarea id="projectDescription" name="projects[0][projectDescription]" placeholder="Add project description here.." rows="5"></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -554,27 +556,27 @@
                                             <div class="card-style mb-30">
                                                 <div class="input-style-1">
                                                     <label>Twitter:</label>
-                                                    <input type="text" id="twitter" name="twitter" placeholder="Add twitter account link here.." />
+                                                    <input type="text" id="twitter" name="socials[twitter]" placeholder="Add twitter account link here.." />
                                                 </div>
 
                                                 <div class="input-style-1">
                                                     <label>Facebook:</label>
-                                                    <input type="text" id="facebook" name="facebook" placeholder="Add facebook account link here.." />
+                                                    <input type="text" id="facebook" name="socials[facebook]" placeholder="Add facebook account link here.." />
                                                 </div>
 
                                                 <div class="input-style-1">
                                                     <label>Linkedin:</label>
-                                                    <input type="text" id="linkedin" name="linkedin" placeholder="Add linkedin account link here.." />
+                                                    <input type="text" id="linkedin" name="socials[linkedin]" placeholder="Add linkedin account link here.." />
                                                 </div>
 
                                                 <div class="input-style-1">
                                                     <label>Instagram:</label>
-                                                    <input type="text" id="instagram" name="instagram" placeholder="Add instagram account link here.." />
+                                                    <input type="text" id="instagram" name="socials[instagram]" placeholder="Add instagram account link here.." />
                                                 </div>
 
                                                 <div class="input-style-1">
                                                     <label>Youtube:</label>
-                                                    <input type="text" id="youtube" name="youtube" placeholder="Add youtube account link here.." />
+                                                    <input type="text" id="youtube" name="socials[youtube]" placeholder="Add youtube account link here.." />
                                                 </div>
                                             </div>
                                         </div>
@@ -820,18 +822,50 @@
 
 
 
-
         // Portfolio section start: ###################################################
+        document.addEventListener('DOMContentLoaded', function() {
+            // Input elementini seçiyoruz
+            const input = document.getElementById('projectPhoto');
+            // Image elementini seçiyoruz
+            const image = document.getElementById('projectImage');
+
+            // Input elementine change event listener ekliyoruz
+            input.addEventListener('change', function() {
+                // Seçilen dosya
+                const file = input.files[0];
+                // FileReader objesi oluşturuyoruz
+                const reader = new FileReader();
+
+                // FileReader onload event listener
+                reader.onload = function(e) {
+                    // Okunan veriyi image elementinin src özelliğine atıyoruz
+                    image.src = e.target.result;
+                };
+
+                // Dosyayı okuyoruz
+                reader.readAsDataURL(file);
+            });
+        });
+
         const defaultImageSrc = <?php echo json_encode(asset('storage/pictures/' . $user->picture)); ?>;
-        // Bu değişken global olarak tanımlanabilir veya başka bir şekilde erişilebilir olmalıdır.
+
+        // Sayfa yüklendiğinde varsayılan resmi göster
+        document.addEventListener('DOMContentLoaded', function() {
+            var defaultImgElement = document.getElementById('projectImage');
+            defaultImgElement.src = defaultImageSrc;
+        });
+
+        // Proje indeksi
         let projectIndex = 0;
 
+        // Yeni proje eklemek için fonksiyon
         function addProject() {
             projectIndex++; // Her çağrıldığında proje indeksini artır
+            var projectCategories = @json($projectCategories);
 
-            // Create new project div
+            // Yeni proje div'i oluştur
             var newProjectDiv = document.createElement('div');
-            newProjectDiv.classList.add('row', 'mt-4'); // Added 'row' class to make sure it behaves as expected with Bootstrap
+            newProjectDiv.classList.add('row', 'mt-4'); // Bootstrap uyumlu 'row' sınıfı eklendi
 
             var colDiv = document.createElement('div');
             colDiv.classList.add('col');
@@ -839,16 +873,18 @@
             var cardStyleDiv = document.createElement('div');
             cardStyleDiv.classList.add('card-style', 'mb-30');
 
-            var inputStyle1Title = createInputStyle1('Title:', 'Add project title here..', 'text', `projects[${projectIndex}][projectTitle]`);
-            var inputStyle1URL = createInputStyle1('URL:', 'Add project url here..', 'text', `projects[${projectIndex}][projectUrl]`);
-            var inputStyle1Photo = createInputStyle1('Photo:', '', 'file', `projects[${projectIndex}][projectPhoto]`);
-            var inputStyle1Category = createSelectStyle1('Choose project category:', ['Category one', 'Category two', 'Category three'], `projects[${projectIndex}][projectCategory]`);
-            var inputStyle1Description = createInputStyle1('Description:', 'Add portfolio description here..', 'textarea', `projects[${projectIndex}][projectDescription]`);
+            // Giriş alanları oluşturma fonksiyonları kullanılarak inputlar oluşturuldu
+            var inputStyle1Title = createInputStyleY('Title:', 'Add project title here..', 'text', `projects[${projectIndex}][projectTitle]`);
+            var inputStyle1URL = createInputStyleY('URL:', 'Add project url here..', 'text', `projects[${projectIndex}][projectUrl]`);
+            var inputStyle1Photo = createInputStyleY('Photo:', '', 'file', `projects[${projectIndex}][projectPhoto]`);
+            var inputStyle1Category = createSelectStyleY('Choose project category:', projectCategories, `projects[${projectIndex}][projectCategory]`);
+            var inputStyle1Description = createSelectStyleY('Description:', 'Add project description here..', 'textarea', `projects[${projectIndex}][projectDescription]`);
 
+            // Inputları kart içerisine ekleme
             cardStyleDiv.appendChild(inputStyle1Title);
             cardStyleDiv.appendChild(inputStyle1URL);
 
-            // Photo section
+            // Fotoğraf bölümü
             var photoDiv = document.createElement('div');
             photoDiv.classList.add('input-style-1', 'me-5');
 
@@ -864,8 +900,11 @@
 
             var photoImg = document.createElement('img');
             photoImg.setAttribute('src', defaultImageSrc);
-            photoImg.setAttribute('alt', '');
-            photoImg.style.height = '200px';
+            photoImg.setAttribute('alt', 'Selected Image');
+            photoImg.style.height = '200px'; // Özel boyutlandırma stil eklenmiştir
+            photoImg.style.width = '150px'; // Özel boyutlandırma stil eklenmiştir
+            photoImg.style.objectFit = 'cover'; // Özel boyutlandırma stil eklenmiştir
+            photoImg.style.objectPosition = 'center'; // Özel boyutlandırma stil eklenmiştir
             photoCol1.appendChild(photoImg);
 
             var photoCol2 = document.createElement('div');
@@ -886,13 +925,14 @@
             fileInput.classList.add('form-control', 'form-control-file');
             fileInput.setAttribute('accept', 'image/*');
 
+            // Dosya seçildiğinde fotoğrafı değiştirme
             fileInput.addEventListener('change', function() {
                 var file = this.files[0];
                 if (file) {
                     var reader = new FileReader();
                     reader.onload = function(e) {
                         photoImg.src = e.target.result;
-                    }
+                    };
                     reader.readAsDataURL(file);
                 }
             });
@@ -914,13 +954,13 @@
             colDiv.appendChild(cardStyleDiv);
             newProjectDiv.appendChild(colDiv);
 
-            // Insert new project div after portfolioContainer
+            // portfolioContainer içine yeni proje div'ini ekleme
             var portfolioContainer = document.getElementById('portfolioContainer');
             portfolioContainer.insertAdjacentElement('beforeend', newProjectDiv);
         }
 
-        // Helper function: Create Input, File Input, or Textarea
-        function createInputStyle1(labelText, placeholderText, type = 'text', name = '') {
+        // Input, File Input veya Textarea oluşturma yardımcı fonksiyonu
+        function createInputStyleY(labelText, placeholderText, type = 'text', name = '') {
             var inputDiv = document.createElement('div');
             inputDiv.classList.add('input-style-1');
 
@@ -941,14 +981,15 @@
                 input.classList.add('form-control', 'form-control-file');
                 input.setAttribute('accept', 'image/*');
 
-                // Add event listener for file input change
+                // Dosya seçildiğinde fotoğrafı değiştirme
                 input.addEventListener('change', function() {
                     var file = this.files[0];
                     if (file) {
                         var reader = new FileReader();
                         reader.onload = function(e) {
+                            var photoImg = document.getElementById('projectImage');
                             photoImg.src = e.target.result;
-                        }
+                        };
                         reader.readAsDataURL(file);
                     }
                 });
@@ -965,8 +1006,8 @@
             return inputDiv;
         }
 
-        // Helper function: Create Select
-        function createSelectStyle1(labelText, options, name = '') {
+        // Select oluşturma yardımcı fonksiyonu
+        function createSelectStyleY(labelText, projectCategories, name = '') {
             var selectDiv = document.createElement('div');
             selectDiv.classList.add('input-style-1');
 
@@ -983,18 +1024,22 @@
             defaultOption.textContent = 'Select category';
             select.appendChild(defaultOption);
 
-            options.forEach(function(optionText) {
-                var option = document.createElement('option');
-                option.value = optionText;
-                option.textContent = optionText;
-                select.appendChild(option);
-            });
+            // Eğer projectCategories bir dizi ise forEach ile işlem yap
+            if (Array.isArray(projectCategories)) {
+                projectCategories.forEach(function(category) {
+                    var option = document.createElement('option');
+                    option.value = category.id; // Burada category.id'yi kullanarak seçenek değerini belirliyoruz
+                    option.textContent = category.title; // Burada category.title'ı kullanarak seçenek metnini belirliyoruz
+                    select.appendChild(option);
+                });
+            }
 
             selectDiv.appendChild(label);
             selectDiv.appendChild(select);
 
             return selectDiv;
         }
+
 
 
 

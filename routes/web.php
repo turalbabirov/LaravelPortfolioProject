@@ -3,11 +3,11 @@
 use App\Http\Controllers\Admin\AdminIndexController;
 use App\Http\Controllers\Admin\AdminPartialsController;
 use App\Http\Controllers\Admin\Profile\AdminProfileController;
+use App\Http\Controllers\Admin\ProjectCategory\AdminProjectCategoryController;
 use App\Http\Controllers\Admin\User\AdminUserController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Front\FrontPageController;
 use App\Http\Controllers\Front\FrontContactController;
-
+use App\Http\Controllers\Front\FrontPageController;
+use Illuminate\Support\Facades\Route;
 
 
 //Front ------------------------------------------
@@ -22,7 +22,6 @@ Route::group([], function () {
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [AdminIndexController::class,'index'])->name('index');
 
-
     Route::prefix('user')->name('user.')->group(function () {
         Route::get('/', [AdminUserController::class,'index'])->name('index');
         Route::get('/create', [AdminUserController::class,'create'])->name('create');
@@ -34,11 +33,19 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::prefix('profile')->name('profile.')->group(function () {
         Route::get('/', [AdminProfileController::class,'index'])->name('index');
-        Route::post('/create/{id}', [AdminProfileController::class, 'create'])->name('create');
+        Route::match(['post'], '/create/{id}', [AdminProfileController::class, 'create'])->name('create');
         Route::post('/store', [AdminProfileController::class, 'store'])->name('store');
         Route::post('/delete', [AdminProfileController::class, 'delete'])->name('delete');
         Route::get('/edit/{id}', [AdminProfileController::class, 'edit'])->name('edit');
         Route::post('/update/{id}', [AdminProfileController::class, 'update'])->name('update');
+
+        Route::prefix('projectcategory')->name('projectcategory.')->group(function () {
+            Route::get('/{id}', [AdminProjectCategoryController::class,'index'])->name('index');
+            Route::post('/store', [AdminProjectCategoryController::class, 'store'])->name('store');
+            Route::get('/delete/{id}', [AdminProjectCategoryController::class, 'delete'])->name('delete');
+            Route::post('/edit/{id}', [AdminProjectCategoryController::class, 'edit'])->name('edit');
+            Route::post('/update/{id}', [AdminProjectCategoryController::class, 'update'])->name('update');
+        });
     });
 
 //    Route::prefix('slider')->name('slider.')->group(function () {
