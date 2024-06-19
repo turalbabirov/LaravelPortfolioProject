@@ -895,7 +895,7 @@
             var inputStyle1Title = createInputStyleY('Title:', 'Add project title here..', 'text', `projects[${projectIndex}][projectTitle]`);
             var inputStyle1URL = createInputStyleY('URL:', 'Add project url here..', 'text', `projects[${projectIndex}][projectUrl]`);
             var inputStyle1Photo = createInputStyleY('Photo:', '', 'file', `projects[${projectIndex}][projectPhoto]`);
-            var inputStyle1Category = createSelectStyleY('Choose project category:', projectCategories, `projects[${projectIndex}][projectCategory]`);
+            var inputStyle1Category = createSelectStyleY('Choose project category:', projectCategories, '', `projects[${projectIndex}][projectCategory]`);
             var inputStyle1Description = createSelectStyleY('Description:', 'Add project description here..', 'textarea', `projects[${projectIndex}][projectDescription]`);
 
             // Inputları kart içerisine ekleme
@@ -1039,7 +1039,7 @@
         }
 
         // Select oluşturma yardımcı fonksiyonu
-        function createSelectStyleY(labelText, projectCategories, name = '') {
+        function createSelectStyleY(labelText, projectCategories, text = '', name = '') {
             var selectDiv = document.createElement('div');
             selectDiv.classList.add('input-style-1');
 
@@ -1056,6 +1056,7 @@
                 selectDiv.appendChild(label);
                 selectDiv.appendChild(textarea);
             } else {
+                console.log(name);
                 var select = document.createElement('select');
                 select.classList.add('form-select');
                 select.setAttribute('id', name);
