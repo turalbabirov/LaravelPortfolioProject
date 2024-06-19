@@ -448,7 +448,7 @@
                                                     <label>Photo:</label>
                                                     <div class="d-flex align-items-center">
                                                         <div class="col-2">
-                                                            <img id="projectImage" src="<?php echo asset('storage/pictures/' . $user->picture); ?>" alt="Selected Image" style="height: 200px; width: 150px; object-fit: cover; object-position: center;" />
+                                                            <img id="projectImage" src="/admin_files/assets/images/notimage.png" alt="Selected Image" style="height: 200px; width: 150px; object-fit: cover; object-position: center;" />
                                                         </div>
                                                         <div class="col">
                                                             <div class="input-style-1">
@@ -515,7 +515,7 @@
                                                         <label>Course Logo:</label>
                                                         <div class="d-flex align-items-center">
                                                             <div class="col-2">
-                                                                <img src="{{ asset('storage/pictures/' . $user->picture) }}" alt="Selected Image" style="height: 200px; width: 150px; object-fit: cover; object-position: center;" id="coursePicture">
+                                                                <img src="/admin_files/assets/images/notimage.png" alt="Selected Image" style="height: 200px; width: 150px; object-fit: cover; object-position: center;" id="coursePicture">
                                                             </div>
                                                             <div class="col">
                                                                 <div class="input-style-1">
@@ -865,7 +865,7 @@
             });
         });
 
-        const defaultImageSrc = <?php echo json_encode(asset('storage/pictures/' . $user->picture)); ?>;
+        const defaultImageSrc = "/admin_files/assets/images/notimage.png";
 
         // Sayfa yüklendiğinde varsayılan resmi göster
         document.addEventListener('DOMContentLoaded', function() {
@@ -1258,7 +1258,7 @@
         });
 
         // Default course image source
-        var defaultCourseImageSrc = <?php echo json_encode(asset('storage/pictures/' . $user->picture)); ?>;
+        var defaultCourseImageSrc = "/admin_files/assets/images/notimage.png";
 
 
     </script>
