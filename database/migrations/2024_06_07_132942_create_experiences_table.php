@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('experiences', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('title');
-            $table->string('company_name');
+            $table->string('position');
+            $table->string('company');
             $table->date('start_date');
-            $table->date('end_date')->nullable();
+            $table->date('end_date');
+            $table->text('description');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

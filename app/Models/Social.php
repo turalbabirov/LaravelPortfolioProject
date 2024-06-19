@@ -9,7 +9,9 @@ class Social extends Model
 {
     use HasFactory;
 
-    public function user()
+    protected $fillable = ['platform'];
+
+    public function profile()
     {
         return $this->belongsTo(User::class);
     }

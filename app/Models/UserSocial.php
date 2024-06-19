@@ -28,6 +28,6 @@ class UserSocial extends Model
 
     public function getSocialNameAttribute()
     {
-        return ucfirst(strtolower($this->social->name));
+        return ucfirst(strtolower($this->social->title));
     }
 }

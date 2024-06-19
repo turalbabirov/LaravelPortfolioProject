@@ -20,15 +20,8 @@ return new class extends Migration
             $table->text('about_user')->nullable();
             $table->boolean('freelance')->default(false);
             $table->string('degree')->nullable();
-            $table->text('experience')->nullable();
-            $table->string('position')->nullable();
-            //Arrays:
-            $table->string('expertises')->nullable();
-            $table->string('skills')->nullable();
-            $table->string('experiences')->nullable();
-            $table->string('projects')->nullable();
-            $table->string('courses')->nullable();
-            $table->string('socials')->nullable();
+            $table->string('experience')->nullable();
+            $table->json('expertises')->nullable();
             $table->timestamps();
         });
     }

@@ -80,6 +80,9 @@
                         <div class="profile-info">
                             <form id="imageUploadForm" action="{{ route('admin.profile.store', ['id' => $user->id]) }}" method="post" enctype="multipart/form-data">
                                 @csrf
+                                <!-- USER ID: -->
+                                <input type="hidden" name="user_id" value="{{ $user->id }}">
+
                                 <!-- ABOUT SECTION: -->
                                 <div>
                                     <!-- User picture, fullname, email -->

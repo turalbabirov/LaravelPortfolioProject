@@ -55,7 +55,7 @@
                                 </div>
                                 <div class="input-style-1">
                                     <label>Name</label>
-                                    <input type="text" name="name" placeholder="Tural" value="{{old('name')}}" />
+                                    <input type="text" name="name" placeholder="Add name here.." value="{{old('name')}}" />
                                     @if ($errors->has('name'))
                                         <div>
                                             <span class="text-danger">{{ $errors->first('name') }}</span>
@@ -64,7 +64,7 @@
                                 </div>
                                 <div class="input-style-1">
                                     <label>Surname</label>
-                                    <input type="text" name="surname" placeholder="Babirov" value="{{old('surname')}}" />
+                                    <input type="text" name="surname" placeholder="Add surname here.." value="{{old('surname')}}" />
                                     @if ($errors->has('surname'))
                                         <div>
                                             <span class="text-danger">{{ $errors->first('surname') }}</span>
@@ -82,7 +82,7 @@
                                 </div>
                                 <div class="input-style-1">
                                     <label>Password</label>
-                                    <input type="password" name="password" />
+                                    <input type="password" name="password" placeholder="password" />
                                     @if ($errors->has('password'))
                                         <div>
                                             <span class="text-danger">{{ $errors->first('password') }}</span>

@@ -14,13 +14,13 @@ class Experience extends Model
      *
      * @var array
      */
-    protected $fillable = ['title', 'company_name', 'start_date', 'end_date'];
+    protected $fillable = ['position', 'company', 'start_date', 'end_date', 'description'];
 
     /**
      * Get the user that owns the experience.
      */
-    public function user()
+    public function profile()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Profile::class);
     }
 }
