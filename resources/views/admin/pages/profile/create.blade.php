@@ -692,6 +692,7 @@
 
         // Experience section start: ###################################################
         var experienceCounter = 0;
+
         function addExperience() {
             experienceCounter++;
 
@@ -784,6 +785,20 @@
             var inputStyle1Description = createInputStyleX('Description', 'Add your description..', 'experiences[' + experienceCounter + '][experienceDescription]', 'textarea');
             cardStyleDiv.appendChild(inputStyle1Description);
 
+            // Silme butonu
+            var deleteButtonContainer = document.createElement('div');
+            deleteButtonContainer.classList.add('mt-3');
+
+            var deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete Experience';
+            deleteButton.classList.add('btn', 'btn-danger');
+            deleteButton.addEventListener('click', function() {
+                newExperienceDiv.remove(); // Deneyim div'ini kaldır
+            });
+
+            deleteButtonContainer.appendChild(deleteButton);
+            cardStyleDiv.appendChild(deleteButtonContainer);
+
             colDiv.appendChild(cardStyleDiv);
             newExperienceDiv.appendChild(colDiv);
 
@@ -791,6 +806,7 @@
             var experienceContainer = document.getElementById('experienceContainer');
             experienceContainer.appendChild(newExperienceDiv);
         }
+
         // Helper function: Create Input or Textarea
         function createInputStyleX(labelText, placeholderText, name, elementType = 'input') {
             var inputDiv = document.createElement('div');
@@ -817,6 +833,8 @@
 
             return inputDiv;
         }
+
+
 
 
 
@@ -951,6 +969,20 @@
             cardStyleDiv.appendChild(inputStyle1Category);
             cardStyleDiv.appendChild(inputStyle1Description);
 
+            // Silme butonu
+            var deleteButtonContainer = document.createElement('div');
+            deleteButtonContainer.classList.add('mt-3');
+
+            var deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete Project';
+            deleteButton.classList.add('btn', 'btn-danger');
+            deleteButton.addEventListener('click', function() {
+                newProjectDiv.remove(); // Proje div'ini kaldır
+            });
+
+            deleteButtonContainer.appendChild(deleteButton);
+            cardStyleDiv.appendChild(deleteButtonContainer);
+
             colDiv.appendChild(cardStyleDiv);
             newProjectDiv.appendChild(colDiv);
 
@@ -1056,63 +1088,17 @@
 
 
 
+
         // Course section start: ###################################################
-        const courseImageInput = document.getElementById('courseImage');
 
-        // Function to handle course logo file input change
-        courseImageInput.addEventListener('change', function() {
-            const file = this.files[0]; // Get the selected file
+        // Course index
+        let courseIndex = 0;
 
-            if (file) {
-                const reader = new FileReader(); // Create a new FileReader instance
-
-                // Define a function to handle FileReader onLoad event
-                reader.onload = function(e) {
-                    const courseImagePreview = document.getElementById('coursePicture');
-                    courseImagePreview.src = e.target.result; // Set the src attribute of the image to the result of FileReader
-                };
-
-                // Read the file as Data URL (base64 encoded string)
-                reader.readAsDataURL(file);
-            } else {
-                const courseImagePreview = document.getElementById('coursePicture');
-                courseImagePreview.src = defaultCourseImageSrc; // If no file selected, set default image
-            }
-        });
-
-        // Default course image source
-        var defaultCourseImageSrc = <?php echo json_encode(asset('storage/pictures/' . $user->picture)); ?>;
-
-        function createCourseInput(labelText, placeholderText, type, id, index) {
-            var inputDiv = document.createElement('div');
-            inputDiv.classList.add('input-style-1');
-
-            var label = document.createElement('label');
-            label.textContent = labelText;
-
-            var input;
-            if (type === 'textarea') {
-                input = document.createElement('textarea');
-                input.setAttribute('placeholder', placeholderText);
-                input.setAttribute('rows', '5');
-            } else {
-                input = document.createElement('input');
-                input.setAttribute('type', type);
-                input.setAttribute('placeholder', placeholderText);
-            }
-            input.setAttribute('id', id + '_' + index);
-            input.setAttribute('name', 'courses[' + index + '][' + id + ']');
-            input.classList.add('form-control');
-
-            inputDiv.appendChild(label);
-            inputDiv.appendChild(input);
-
-            return inputDiv;
-        }
-
-        var courseIndex = 1; // Initial course index
-
+        // Function to add a new course
         function addCourse() {
+            courseIndex++; // Increment course index
+
+            // Create new course div
             var newCourseDiv = document.createElement('div');
             newCourseDiv.classList.add('row', 'mt-4');
 
@@ -1122,16 +1108,19 @@
             var cardStyleDiv = document.createElement('div');
             cardStyleDiv.classList.add('card-style', 'mb-30');
 
-            var inputName = createCourseInput('Name:', 'Add course name here..', 'text', 'courseName', courseIndex);
-            var inputLearn = createCourseInput('Learn:', 'MERN Stack, FULL Stack, Backend, Frontend etc..', 'text', 'learnCourse', courseIndex);
+            // Name input container
+            var nameContainer = createCourseInput('Name:', 'Add course name here..', 'text', 'courseName', courseIndex);
 
-            // Logo section
-            var logoDiv = document.createElement('div');
-            logoDiv.classList.add('input-style-1', 'me-5');
+            // Learn input container
+            var learnContainer = createCourseInput('Learn:', 'MERN Stack, FULL Stack, Backend, Frontend etc..', 'text', 'learnCourse', courseIndex);
+
+            // Logo input container
+            var logoContainer = document.createElement('div');
+            logoContainer.classList.add('input-style-1', 'me-5');
 
             var logoLabel = document.createElement('label');
             logoLabel.textContent = 'Course Logo:';
-            logoDiv.appendChild(logoLabel);
+            logoContainer.appendChild(logoLabel);
 
             var logoFlexDiv = document.createElement('div');
             logoFlexDiv.classList.add('d-flex', 'align-items-center');
@@ -1162,7 +1151,7 @@
 
             var fileInput = document.createElement('input');
             fileInput.setAttribute('type', 'file');
-            fileInput.setAttribute('name', 'courses[' + courseIndex + '][courseImage]');
+            fileInput.setAttribute('name', `courses[${courseIndex}][courseLogo]`);
             fileInput.setAttribute('id', 'courseImage_' + courseIndex);
             fileInput.classList.add('form-control', 'form-control-file');
             fileInput.setAttribute('accept', 'image/*');
@@ -1186,23 +1175,91 @@
             logoFlexDiv.appendChild(logoCol1);
             logoFlexDiv.appendChild(logoCol2);
 
-            logoDiv.appendChild(logoFlexDiv);
+            logoContainer.appendChild(logoFlexDiv);
 
-            var inputDescription = createCourseInput('Description:', 'Write about what the course you took contributed to you...', 'textarea', 'courseDescription', courseIndex);
+            // Description input container
+            var descriptionContainer = createCourseInput('Description:', 'Write about what the course you took contributed to you...', 'textarea', 'courseDescription', courseIndex);
 
-            cardStyleDiv.appendChild(inputName);
-            cardStyleDiv.appendChild(inputLearn);
-            cardStyleDiv.appendChild(logoDiv);
-            cardStyleDiv.appendChild(inputDescription);
+            // Delete button container
+            var deleteButtonContainer = document.createElement('div');
+            deleteButtonContainer.classList.add('mt-3');
+
+            var deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete Course';
+            deleteButton.classList.add('btn', 'btn-danger');
+            deleteButton.addEventListener('click', function() {
+                newCourseDiv.remove(); // Remove the course div when delete button is clicked
+            });
+
+            deleteButtonContainer.appendChild(deleteButton);
+
+            // Append all input containers to cardStyleDiv
+            cardStyleDiv.appendChild(nameContainer);
+            cardStyleDiv.appendChild(learnContainer);
+            cardStyleDiv.appendChild(logoContainer);
+            cardStyleDiv.appendChild(descriptionContainer);
+            cardStyleDiv.appendChild(deleteButtonContainer);
 
             colDiv.appendChild(cardStyleDiv);
             newCourseDiv.appendChild(colDiv);
 
+            // Insert new course div after courseContainer
             var courseContainer = document.getElementById('courseContainer');
-            courseContainer.insertAdjacentElement('beforeend', newCourseDiv);
-
-            courseIndex++; // Increment course index for next course
+            courseContainer.appendChild(newCourseDiv);
         }
+
+        // Function to create input elements for courses
+        function createCourseInput(labelText, placeholderText, type, id, index) {
+            var inputDiv = document.createElement('div');
+            inputDiv.classList.add('input-style-1');
+
+            var label = document.createElement('label');
+            label.textContent = labelText;
+
+            var input;
+            if (type === 'textarea') {
+                input = document.createElement('textarea');
+                input.setAttribute('placeholder', placeholderText);
+                input.setAttribute('rows', '5');
+            } else {
+                input = document.createElement('input');
+                input.setAttribute('type', type);
+                input.setAttribute('placeholder', placeholderText);
+            }
+            input.setAttribute('id', id + '_' + index);
+            input.setAttribute('name', `courses[${index}][${id}]`);
+            input.classList.add('form-control');
+
+            inputDiv.appendChild(label);
+            inputDiv.appendChild(input);
+
+            return inputDiv;
+        }
+
+        // Handle course image input change
+        const courseImageInput = document.getElementById('courseImage');
+
+        courseImageInput.addEventListener('change', function() {
+            const file = this.files[0]; // Get the selected file
+
+            if (file) {
+                const reader = new FileReader(); // Create a new FileReader instance
+
+                reader.onload = function(e) {
+                    const courseImagePreview = document.getElementById('coursePicture');
+                    courseImagePreview.src = e.target.result; // Set the src attribute of the image to the result of FileReader
+                };
+
+                reader.readAsDataURL(file); // Read the file as Data URL (base64 encoded string)
+            } else {
+                const courseImagePreview = document.getElementById('coursePicture');
+                courseImagePreview.src = defaultCourseImageSrc; // If no file selected, set default image
+            }
+        });
+
+        // Default course image source
+        var defaultCourseImageSrc = <?php echo json_encode(asset('storage/pictures/' . $user->picture)); ?>;
+
 
     </script>
 @endsection
