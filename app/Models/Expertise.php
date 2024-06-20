@@ -12,7 +12,6 @@ class Expertise extends Model
     protected $fillable = [
         'job_title',
         'user_id'
-        // Diğer fillable sütunlar eklenebilir
     ];
 
     public function user()

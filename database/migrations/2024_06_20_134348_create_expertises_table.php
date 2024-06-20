@@ -14,11 +14,8 @@ return new class extends Migration
         Schema::create('expertises', function (Blueprint $table) {
             $table->id();
             $table->string('job_title');
-            $table->unsignedBigInteger('profil_id');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
-
-            // Foreign key constraint
-            $table->foreign('user_id')->references('id')->on('user')->onDelete('cascade');
         });
     }
 
