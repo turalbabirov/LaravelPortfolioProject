@@ -11,12 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_socials', function (Blueprint $table) {
+        //Model yaradilmayib. yaradarsan!!
+
+        Schema::create('contacts', function (Blueprint $table) {
             $table->id();
-            $table->string('url');
-            $table->foreignId('social_id')->constrained()->onDelete('cascade');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->string('name');
+            $table->string('email');
+            $table->string('subject');
+            $table->text('message');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -25,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user_socials');
+        Schema::dropIfExists('contacts');
     }
 };

@@ -5,18 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Social extends Model
+class Expertise extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'platform',
-        'url',
+        'job_title',
         'user_id'
+        // Diğer fillable sütunlar eklenebilir
     ];
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 }

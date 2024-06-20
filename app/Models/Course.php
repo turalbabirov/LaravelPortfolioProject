@@ -12,8 +12,8 @@ class Course extends Model
     protected $fillable = ['name', 'learn', 'logo', 'describe', 'user_id'];
 
     // User modeline belongsTo ilişkisi tanımlama
-    public function profile()
+    public function user()
     {
-        return $this->belongsTo(Profile::class);
+        return $this->belongsTo(User::class);
     }
 }

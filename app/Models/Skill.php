@@ -19,8 +19,8 @@ class Skill extends Model
     /**
      * Get the user that owns the skill.
      */
-    public function profile()
+    public function user()
     {
-        return $this->belongsTo(Profile::class);
+        return $this->belongsTo(User::class);
     }
 }

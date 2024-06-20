@@ -20,9 +20,9 @@ class Project extends Model
      * Get the user that owns the project.
      */
 
-    public function profile()
+    public function user()
     {
-        return $this->belongsTo(Profile::class);
+        return $this->belongsTo(User::class);
     }
 
     public function category()

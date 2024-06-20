@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('img')->nullable();
             $table->text('description');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('profile_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

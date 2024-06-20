@@ -15,12 +15,9 @@ class AdminProfileController extends Controller
     }
 
     public function create($id) {
+        //$userfind = User::find($id);
         $user = User::find($id);
         $projectCategories = $user->projectCategories()->get();
-
-//        $user = User::with('profile')->find($id);
-//        $userfind = User::find($id);
-
 
         return view('admin.pages.profile.create', compact('user', 'projectCategories'));
     }
@@ -28,20 +25,29 @@ class AdminProfileController extends Controller
     public function store(Request $request)
     {
         $formData = $request->all();
-        $user = User::with('profile')->find($formData['user_id']);
+
+        $user = User::find($formData['user_id']);
 
         // Profil yoksa yeni profil oluştur
         $profile = new Profile();
-        $profile->user_id = $user->id;
-
         $profile->address = $formData['address'];
         $profile->phone = $formData['phone'];
-        $profile->birthday_date = $formData['birthday'];
-        $profile->about_user = $formData['about'];
+        $profile->birthday = $formData['birthday'];
+        $profile->about = $formData['about'];
         $profile->freelance = isset($formData['freelance']) ? true : false;
         $profile->degree = $formData['degree'];
         $profile->experience = $formData['experience'];
-        $profile->save();
+        $profile->expertises = $formData['expertise'];
+        $profile->user_id = $user->id;
+
+        // Expertise kaydetme
+        foreach ($formData['expertise'] ?? [] as $expertiseTitle) {
+            // Her bir job title için Expertise modelini kullanarak kayıt oluşturuyoruz
+            Expertise::create([
+                'job_title' => $expertiseTitle,
+                'user_id' => $user->id
+            ]);
+        }
 
         // Skills kaydetme
         foreach ($formData['skill'] ?? [] as $skillName) {
@@ -72,6 +78,8 @@ class AdminProfileController extends Controller
             $social = new Social($socialData);
             $profile->socials()->save($social);
         }
+
+        $profile->save();
 
         return response()->json(['message' => 'Profil ve ilişkili veriler başarıyla kaydedildi']);
     }
