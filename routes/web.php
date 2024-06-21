@@ -32,8 +32,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
     });
 
     Route::prefix('profile')->name('profile.')->group(function () {
-        Route::get('/', [AdminProfileController::class,'index'])->name('index');
-        Route::match(['post'], '/create/{id}', [AdminProfileController::class, 'create'])->name('create');
+        Route::get('/{id}', [AdminProfileController::class,'index'])->name('index');
+        Route::get('/create/{id}', [AdminProfileController::class, 'create'])->name('create');
+//        Route::match(['get', 'post'], '/create/{id}', [AdminProfileController::class, 'create'])->name('create');
         Route::post('/store', [AdminProfileController::class, 'store'])->name('store');
         Route::post('/delete', [AdminProfileController::class, 'delete'])->name('delete');
         Route::get('/edit/{id}', [AdminProfileController::class, 'edit'])->name('edit');

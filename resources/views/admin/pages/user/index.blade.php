@@ -96,19 +96,24 @@
                                                 </td>
                                                 <td class="min-width">
                                                     <p>
-                                                        <form action="{{ route('admin.profile.create', ['id' => $user->id]) }}" method="post" class="d-inline">
+                                                        <form action="{{ route('admin.profile.create', ['id' => $user->id]) }}" method="get" class="d-inline">
                                                             @csrf
                                                             <button class="btn btn-outline-primary me-4">Add Profile</button>
                                                         </form>
-                                                        <a href="{{ route('admin.profile.index') }}" class="btn-link link-primary">View Projects</a>
+                                                        <a href="{{ route('admin.profile.index', ['id' => $user->id]) }}" class="btn-link link-primary">View Projects</a>
                                                     </p>
                                                 </td>
-                                                <td class="min-width">
-                                                    <span class="status-btn success-btn">Active</span>
-                                                </td>
-{{--                                                <td>--}}
-{{--                                                    <span class="status-btn close-btn">Close</span>--}}
-{{--                                                </td>--}}
+
+                                                @if($user->activestatus != 0)
+                                                    <td class="min-width">
+                                                        <span class="status-btn success-btn">Active</span>
+                                                    </td>
+                                                @else
+                                                    <td>
+                                                        <span class="status-btn close-btn">Deactive</span>
+                                                    </td>
+                                                @endif
+
                                                 <td>
                                                     <div class="action">
                                                         <button>

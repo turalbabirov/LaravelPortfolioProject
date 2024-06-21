@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Profile;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Profile\ProfileCreateRequest;
 use App\Http\Requests\Admin\Profile\ProfileUpdateRequest;
 use App\Models\Course;
 use App\Models\Experience;
@@ -19,19 +20,29 @@ use Illuminate\Support\Facades\Validator;
 
 class AdminProfileController extends Controller
 {
-    public function index() {
-        return view('admin.pages.profile.index');
+    public function index($userId) {
+        $user = User::with('projects', 'projectCategories')->find($userId);
+        $projects = $user->projects;
+        $categories = $user->projectCategories;
+        $categoryData = $categories->mapWithKeys(function ($category) {
+            return [
+                $category->id => $category->title,
+            ];
+        });
+
+        return view('admin.pages.profile.index', compact('user', 'projects', 'categoryData'));
     }
 
     public function create($id) {
-        //$userfind = User::find($id);
         $user = User::find($id);
         $projectCategories = $user->projectCategories()->get();
 
         return view('admin.pages.profile.create', compact('user', 'projectCategories'));
     }
 
-    public function store(Request $request)
+
+    //ProfileCreateRequest
+    public function store(ProfileCreateRequest $request)
     {
         $formData = $request->all();
 
@@ -44,10 +55,11 @@ class AdminProfileController extends Controller
         $profile->phone = $formData['phone'];
         $profile->birthday = $formData['birthday'];
         $profile->about = $formData['about'];
-        $profile->freelance = isset($formData['freelance']) ? true : false;
+        $profile->freelance = $formData['freelance'];
         $profile->degree = $formData['degree'];
         $profile->experience = $formData['experience'];
         $profile->user_id = $user->id;
+        $profile->save();
 
         // Expertise kaydetme
         foreach ($formData['expertise'] ?? [] as $expertiseTitle) {
@@ -79,39 +91,23 @@ class AdminProfileController extends Controller
 
         // Projects kaydetme
         foreach ($formData['projects'] as $projectData) {
-            // Dosya yükleme işlemleri için validasyon
-            $validator = Validator::make($projectData, [
-                'projectPhoto' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Örnek validasyon kuralları
-            ]);
 
-            if ($validator->fails()) {
-                // Validasyon hatası varsa işlemi durdurabilir veya hata mesajlarını işleyebiliriz
-                return redirect()->back()->withErrors($validator)->withInput();
-            }
-
-            // Fotoğrafı yükleme ve kayıt işlemleri
             if (isset($projectData['projectPhoto']) && $projectData['projectPhoto']->isValid()) {
                 $newImage = $projectData['projectPhoto'];
                 $extension = $newImage->getClientOriginalExtension();
-
-                // Dosya ismini oluşturma
                 $uniqueName = time() . '-' . uniqid('', true);
                 $newFileName = $uniqueName . '.' . $extension;
-
-                // Dosyayı public/storage/$userId klasörüne kaydetme
                 $newImagePath = $newImage->storeAs('public/project/' . $userId, $newFileName);
 
-                // Proje kaydı oluşturma
                 Project::create([
                     'user_id' => $userId,
                     'title' => $projectData['projectTitle'],
                     'url' => $projectData['projectUrl'],
                     'category_id' => $projectData['projectCategory'],
-                    'img' => $newFileName, // Dosya adını veritabanına kaydediyoruz
+                    'img' => $newFileName,
                     'description' => $projectData['projectDescription'],
                 ]);
             } else {
-                // Dosya yüklenmediyse veya geçerli değilse işlem yapılabilir
                 Project::create([
                     'user_id' => $userId,
                     'title' => $projectData['projectTitle'],
@@ -124,38 +120,22 @@ class AdminProfileController extends Controller
 
         // Courses kaydetme
         foreach ($formData['courses'] as $courseData) {
-            // Dosya yükleme işlemleri için validasyon
-            $validator = Validator::make($courseData, [
-                'courseImage' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Örnek validasyon kuralları
-            ]);
 
-            if ($validator->fails()) {
-                // Validasyon hatası varsa işlemi durdurabilir veya hata mesajlarını işleyebiliriz
-                return redirect()->back()->withErrors($validator)->withInput();
-            }
-
-            // Fotoğrafı yükleme ve kayıt işlemleri
             if (isset($courseData['courseImage']) && $courseData['courseImage']->isValid()) {
                 $newImage = $courseData['courseImage'];
                 $extension = $newImage->getClientOriginalExtension();
-
-                // Dosya ismini oluşturma
                 $uniqueName = time() . '-' . uniqid('', true);
                 $newFileName = $uniqueName . '.' . $extension;
-
-                // Dosyayı public/storage/project/$userId klasörüne kaydetme
                 $newImagePath = $newImage->storeAs('public/course/' . $userId, $newFileName);
 
-                // Kurs kaydı oluşturma
                 Course::create([
                     'user_id' => $userId,
                     'name' => $courseData['courseName'],
                     'learn' => $courseData['learnCourse'],
-                    'logo' => $newFileName, // Dosya adını veritabanına kaydediyoruz
+                    'logo' => $newFileName,
                     'describe' => $courseData['courseDescription'],
                 ]);
             } else {
-                // Dosya yüklenmediyse veya geçerli değilse işlem yapılabilir
                 Course::create([
                     'user_id' => $userId,
                     'name' => $courseData['courseName'],
@@ -171,10 +151,8 @@ class AdminProfileController extends Controller
                 continue;
             }
 
-            // Aynı URL'nin daha önce eklenip eklenmediğini kontrol et
             $existingSocial = Social::where('url', $link)->first();
             if ($existingSocial) {
-                // Eğer aynı URL ile kayıt zaten varsa hata mesajı göster
                 return redirect()->back()->withErrors(['socials' => 'Bu URL ile daha önce bir sosyal medya hesabı eklenmiş.'])->withInput();
             }
 
@@ -186,15 +164,23 @@ class AdminProfileController extends Controller
         }
 
 
-        $profile->save();
-
-        return Redirect::route('admin.user.index');
+        return redirect()->route('admin.user.index')->with('success', 'Kullanıcı başarıyla oluşturuldu.');
     }
+
 
     //Asagidaki kodlara baxarsan: #########################################################################################
     #######################################################################################################################
+
     public function destroy($id)
     {
+        $validator = Validator::make(['id' => $id], [
+            'id' => 'required|exists:users,id',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
         $user = User::findOrFail($id);
 
         // Kullanıcının sahip olduğu profili sil
@@ -236,6 +222,14 @@ class AdminProfileController extends Controller
 
     public function edit($id)
     {
+        $validator = Validator::make(['id' => $id], [
+            'id' => 'required|exists:users,id',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->route('admin.user.index')->withErrors(['error' => 'Kullanıcı bulunamadı.'])->withInput();
+        }
+
         $user = User::findOrFail($id);
 
         // Kullanıcıya ait profili getiriyoruz. Eğer profil yoksa boş bir profil oluşturabilirsiniz.
@@ -265,17 +259,21 @@ class AdminProfileController extends Controller
     public function update(ProfileUpdateRequest $request, $id)
     {
         $formData = $request->validated();
+
+        $validator = Validator::make(['id' => $id], [
+            'id' => 'required|exists:users,id',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
         $user = User::findOrFail($id);
 
         // Profil güncelleme
         $profile = $user->profile;
-        $profile->address = $formData['address'];
-        $profile->phone = $formData['phone'];
-        $profile->birthday = $formData['birthday'];
-        $profile->about = $formData['about'];
+        $profile->fill($formData);
         $profile->freelance = isset($formData['freelance']) ? true : false;
-        $profile->degree = $formData['degree'];
-        $profile->experience = $formData['experience'];
         $profile->save();
 
         // Uzmanlıkları güncelleme

@@ -95,7 +95,7 @@
                                                 <div class="col">
                                                     <div class="input-style-1">
                                                         <label>Fullname:</label>
-                                                        <input type="text" name="name" placeholder="Tural" value="{{$user->fullname}}" disabled class="bg-light-subtle" />
+                                                        <input type="text" name="name" value="{{$user->fullname}}" disabled class="bg-light-subtle" />
                                                         @if ($errors->has('name'))
                                                             <div>
                                                                 <span class="text-danger">{{ $errors->first('name') }}</span>
@@ -105,7 +105,7 @@
 
                                                     <div class="input-style-1">
                                                         <label>Email:</label>
-                                                        <input type="email" name="email" placeholder="admin@example.com" value="{{$user->email}}" disabled class="bg-light-subtle" />
+                                                        <input type="email" name="email" value="{{$user->email}}" disabled class="bg-light-subtle" />
                                                         @if ($errors->has('email'))
                                                             <div>
                                                                 <span class="text-danger">{{ $errors->first('email') }}</span>
@@ -136,7 +136,7 @@
                                                 <label>Phone:</label>
                                                 <input type="tel" name="phone" required>
 
-                                            @if ($errors->has('phone'))
+                                                @if ($errors->has('phone'))
                                                     <div>
                                                         <span class="text-danger">{{ $errors->first('phone') }}</span>
                                                     </div>
@@ -176,15 +176,15 @@
                                                     <label class="form-check-label" for="radio-1">yes</label>
                                                 </div>
                                                 <div class="form-check radio-style mt-10">
-                                                    <input class="form-check-input" type="radio" id="radio-2" name="freelance" value="0" checked />
+                                                    <input class="form-check-input" type="radio" id="radio-2" name="freelance" value="0" />
                                                     <label class="form-check-label" for="radio-2">not</label>
                                                 </div>
-                                                @if ($errors->has('freelance'))
-                                                    <div>
-                                                        <span class="text-danger">{{ $errors->first('freelance') }}</span>
-                                                    </div>
-                                                @endif
                                             </div>
+                                            @if ($errors->has('freelance'))
+                                                <div class="mt-5">
+                                                    <span class="text-danger">{{ $errors->first('freelance') }}</span>
+                                                </div>
+                                            @endif
                                         </div>
 
                                         <div class="col-4">
@@ -272,12 +272,12 @@
                                                         Apps Designer</label>
                                                 </div>
                                             </div>
+                                            @if ($errors->has('expertise'))
+                                                <div>
+                                                    <span class="text-danger">{{ $errors->first('expertise') }}</span>
+                                                </div>
+                                            @endif
                                         </div>
-                                        @if ($errors->has('expertise'))
-                                            <div>
-                                                <span class="text-danger">{{ $errors->first('expertise') }}</span>
-                                            </div>
-                                        @endif
 
                                         <div>
                                             <!-- Modal -->
@@ -335,7 +335,11 @@
                                                         Angular Js</label>
                                                 </div>
                                             </div>
-
+                                            @if ($errors->has('skill'))
+                                                <div>
+                                                    <span class="text-danger">{{ $errors->first('skill') }}</span>
+                                                </div>
+                                            @endif
                                         </div>
                                         <div>
                                             <!-- Modal -->
@@ -358,10 +362,10 @@
                                 <div class="divider mb-5 mt-5"><hr /></div>
                                 <!-- Divider End ####################################################### -->
 
-                                <!-- EXPERIENCE SECTION: -->
+                                <!-- EXPERIENCES SECTION: -->
                                 <div>
                                     <div class="title mb-30 d-flex justify-content-between align-items-center">
-                                        <h6>Experience:</h6>
+                                        <h6>Experiences:</h6>
                                     </div>
 
                                     <div class="row" id="experienceContainer">
@@ -410,6 +414,11 @@
                                                     <textarea name="experiences[0][experienceDescription]" placeholder="Add your description.." rows="5"></textarea>
                                                 </div>
                                                 <!-- end textarea -->
+                                                @if ($errors->has('experiences'))
+                                                    <div>
+                                                        <span class="text-danger">{{ $errors->first('experiences') }}</span>
+                                                    </div>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
