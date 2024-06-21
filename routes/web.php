@@ -18,7 +18,6 @@ Route::group([], function () {
 });
 
 
-
 //Admin ------------------------------------------
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [AdminIndexController::class,'index'])->name('index');

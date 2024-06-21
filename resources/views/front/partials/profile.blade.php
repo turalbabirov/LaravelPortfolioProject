@@ -1,6 +1,6 @@
 <div class="sidebar-text d-flex flex-column h-100 justify-content-center text-center">
-    <img class="w-100 img-fluid mb-4" src="{{asset('front_files/img/profile.jpg')}}" alt="Image">
-    <h1 class="mt-2">John Doe</h1>
+    <img class="w-100 img-fluid mb-4" src="{{ asset('storage/users/' . $users->picture) }}" alt="Image">
+    <h1 class="mt-2">{{ $users->name }}</h1>
     <div class="mb-4" style="height: 22px;">
         <h4 class="typed-text-output d-inline-block text-body"></h4>
         <div class="typed-text d-none">Web Designer, Web Developer, Front End Developer, Apps Designer, Apps Developer</div>

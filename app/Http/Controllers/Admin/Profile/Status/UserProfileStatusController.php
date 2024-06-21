@@ -12,6 +12,9 @@ class UserProfileStatusController extends Controller
     {
         $activeStatus = $request->input('active_status');
 
+        // Tüm kullanıcıların aktivasyon durumunu 0 yap
+        User::query()->update(['activestatus' => 0]);
+
         // Kullanıcıyı bul
         $user = User::find($userId);
 
