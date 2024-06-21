@@ -17,7 +17,13 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name', 'surname', 'fullname', 'email', 'password', 'picture'
+        'name',
+        'surname',
+        'fullname',
+        'email',
+        'password',
+        'picture',
+        'activestatus',
     ];
 
 
@@ -51,20 +57,66 @@ class User extends Authenticatable
     ];
 
     /**
-     * Get the user record associated with the user.
+     * Get the profile record associated with the user.
      */
     public function profile()
     {
         return $this->hasOne(Profile::class);
     }
 
+    /**
+     * Get the social record associated with the user.
+     */
+    public function social()
+    {
+        return $this->hasOne(Social::class);
+    }
+
+    /**
+     * Get the skills associated with the user.
+     */
+    public function skills()
+    {
+        return $this->hasMany(Skill::class);
+    }
+
+    /**
+     * Get the project categories associated with the user.
+     */
     public function projectCategories()
     {
         return $this->hasMany(ProjectCategory::class);
     }
 
-    public function social()
+    /**
+     * Get the projects associated with the user.
+     */
+    public function projects()
     {
-        return $this->hasOne(Social::class);
+        return $this->hasMany(Project::class);
+    }
+
+    /**
+     * Get the expertise associated with the user.
+     */
+    public function expertise()
+    {
+        return $this->hasMany(Expertise::class);
+    }
+
+    /**
+     * Get the experiences associated with the user.
+     */
+    public function experiences()
+    {
+        return $this->hasMany(Experience::class);
+    }
+
+    /**
+     * Get the courses associated with the user.
+     */
+    public function courses()
+    {
+        return $this->hasMany(Course::class);
     }
 }

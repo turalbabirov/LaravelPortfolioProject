@@ -14,7 +14,10 @@ class Skill extends Model
      *
      * @var array
      */
-    protected $fillable = ['title'];
+    protected $fillable = [
+        'title',
+        'user_id'
+    ];
 
     /**
      * Get the user that owns the skill.

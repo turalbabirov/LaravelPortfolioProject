@@ -90,7 +90,7 @@
                                         <div class="col-xl-12 col-lg-12">
                                             <div class="card-style-5 mb-30">
                                                 <div class="card-image col-2">
-                                                    <img src="{{ asset('storage/pictures/' . $user->picture )}}" alt=""/>
+                                                    <img src="{{ asset('storage/users/' . $user->picture )}}" alt=""/>
                                                 </div>
                                                 <div class="col">
                                                     <div class="input-style-1">

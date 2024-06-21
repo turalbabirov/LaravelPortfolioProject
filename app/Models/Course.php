@@ -9,7 +9,13 @@ class Course extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'learn', 'logo', 'describe', 'user_id'];
+    protected $fillable = [
+        'name',
+        'learn',
+        'logo',
+        'describe',
+        'user_id'
+    ];
 
     // User modeline belongsTo ilişkisi tanımlama
     public function user()

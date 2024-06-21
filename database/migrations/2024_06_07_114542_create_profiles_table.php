@@ -20,7 +20,6 @@ return new class extends Migration
             $table->boolean('freelance')->default(false);
             $table->string('degree')->nullable();
             $table->string('experience')->nullable();
-            $table->json('expertises')->nullable(); //position
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });

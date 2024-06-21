@@ -84,7 +84,7 @@
                                                     <div class="lead">
                                                         <div class="lead-image">
 {{--                                                            {{dd($user->picture)}}--}}
-                                                            <img src="{{ $user->picture ? asset('storage/pictures/' . $user->picture) : 'https://static.vecteezy.com/system/resources/previews/006/059/989/non_2x/crossed-camera-icon-avoid-taking-photos-image-is-not-available-illustration-free-vector.jpg' }}" alt="" />
+                                                            <img src="{{ $user->picture ? asset('storage/users/' . $user->picture) : 'https://static.vecteezy.com/system/resources/previews/006/059/989/non_2x/crossed-camera-icon-avoid-taking-photos-image-is-not-available-illustration-free-vector.jpg' }}" alt="" />
                                                         </div>
                                                         <div class="lead-text">
                                                             <p><a href="#">{{$user->fullname}}</a></p>

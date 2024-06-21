@@ -32,7 +32,7 @@ class AdminUserController extends Controller
             $newImage = $request->file('picture');
             $uniqueName = (int) str_replace('.', '', microtime())[0] . '' . explode(' ', microtime())[1];
             $newFileName = $uniqueName . '.' . $newImage->getClientOriginalExtension();
-            $newImagePath = $newImage->storeAs('public/pictures', $newFileName);
+            $newImagePath = $newImage->storeAs('public/users', $newFileName);
         } else {
             $newFileName = null;
             $newImagePath = null;
@@ -114,14 +114,14 @@ class AdminUserController extends Controller
             $newFileName = (int) str_replace('.', '', microtime())[0] . '' . explode(' ', microtime())[1] . '.' . $newImage->getClientOriginalExtension();
 
             // Resmi sakla
-            $newImagePath = $newImage->storeAs('public/pictures', $newFileName);
+            $newImagePath = $newImage->storeAs('public/users', $newFileName);
 
             // Kullanıcı modelinde resim alanını güncelle
             $user->picture = $newFileName;
 
             // Eski resim dosyasını sil (varsa)
             if ($oldFileName) {
-                Storage::delete('public/pictures/' . $oldFileName);
+                Storage::delete('public/users/' . $oldFileName);
             }
         }
 

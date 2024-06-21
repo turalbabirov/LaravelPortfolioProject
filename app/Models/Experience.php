@@ -14,7 +14,14 @@ class Experience extends Model
      *
      * @var array
      */
-    protected $fillable = ['position', 'company', 'start_date', 'end_date', 'description'];
+    protected $fillable = [
+        'position',
+        'company',
+        'start_date',
+        'end_date',
+        'description',
+        'user_id'
+    ];
 
     /**
      * Get the user that owns the experience.
