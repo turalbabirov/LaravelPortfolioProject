@@ -25,7 +25,7 @@
                             <div class="d-flex gap-2">
                                 <!-- Toggle profile -->
                                 <div class="form-check form-switch toggle-switch me-5">
-                                    <input class="form-check-input" type="checkbox" id="toggleSwitch2" checked />
+                                    <input class="form-check-input" type="checkbox" id="toggleSwitch2" {{ $user->activestatus ? 'checked' : '' }} />
                                     <label class="form-check-label" for="toggleSwitch2">Active {{ $user->name }}'s profile on front</label>
                                 </div>
                                 <!-- Bura heqiqi data yollayarsan -->
@@ -108,5 +108,29 @@
 
 {{-- Spesific Footer JS includes: --}}
 @section('footerJS')
-    {{--<script src="{{asset('admin_files/')}}{{ asset('js/index.js') }}"></script>--}}
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#toggleSwitch2').change(function() {
+                var activeStatus = this.checked ? 1 : 0; // Checkbox durumuna göre aktivasyon durumu belirle
+                var userId = {{ $user->id }}; // Kullanıcı ID'si, dinamik olarak PHP tarafından verilmiş bir değişken
+
+                $.ajax({
+                    url: "{{ route('admin.profile.update-activation-status', ['userId' => $user->id]) }}",
+                    type: 'POST',
+                    data: {
+                        active_status: activeStatus,
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        console.log(response.success); // Başarı durumunu konsola yazdır
+                    },
+                    error: function(response) {
+                        console.log(response.error); // Hata durumunu konsola yazdır
+                    }
+                });
+            });
+        });
+    </script>
 @endsection

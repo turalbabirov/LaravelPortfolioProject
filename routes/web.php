@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminIndexController;
 use App\Http\Controllers\Admin\AdminPartialsController;
 use App\Http\Controllers\Admin\Profile\AdminProfileController;
+use App\Http\Controllers\Admin\Profile\Status\UserProfileStatusController;
 use App\Http\Controllers\Admin\ProjectCategory\AdminProjectCategoryController;
 use App\Http\Controllers\Admin\User\AdminUserController;
 use App\Http\Controllers\Front\FrontContactController;
@@ -33,6 +34,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::prefix('profile')->name('profile.')->group(function () {
         Route::get('/{id}', [AdminProfileController::class,'index'])->name('index');
+        Route::post('/{userId}/update-activation-status', [UserProfileStatusController::class, 'updateActivationStatus'])->name('update-activation-status');
         Route::get('/create/{id}', [AdminProfileController::class, 'create'])->name('create');
 //        Route::match(['get', 'post'], '/create/{id}', [AdminProfileController::class, 'create'])->name('create');
         Route::post('/store', [AdminProfileController::class, 'store'])->name('store');
