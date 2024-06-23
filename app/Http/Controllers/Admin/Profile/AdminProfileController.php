@@ -22,15 +22,21 @@ class AdminProfileController extends Controller
 {
     public function index($userId) {
         $user = User::with('projects', 'projectCategories')->find($userId);
-        $projects = $user->projects;
-        $categories = $user->projectCategories;
-        $categoryData = $categories->mapWithKeys(function ($category) {
-            return [
+
+        if($user) {
+            $projects = $user->projects;
+            $categories = $user->projectCategories;
+            $categoryData = $categories->mapWithKeys(function ($category) {
+                return [
                 $category->id => $category->title,
             ];
         });
 
-        return view('admin.pages.profile.index', compact('user', 'projects', 'categoryData'));
+            return view('admin.pages.profile.index', compact('user', 'projects', 'categoryData'));
+
+        }
+
+        return view('admin.pages.profile.index', compact('user' ));
     }
 
     public function create($id) {
@@ -146,7 +152,7 @@ class AdminProfileController extends Controller
         }
 
         // Socials kaydetme
-        foreach ($formData['socials'] ?? [] as $platform => $link) {
+        foreach ($formData['socials'] as $platform => $link) {
             if (empty($link)) {
                 continue;
             }
@@ -158,8 +164,8 @@ class AdminProfileController extends Controller
 
             Social::create([
                 'user_id' => $userId,
-                'platform' => $platform,
-                'url' => $link,
+                'platform' => key($link)[0],
+                'url' => array_values($link)[0],
             ]);
         }
 
@@ -168,32 +174,23 @@ class AdminProfileController extends Controller
     }
 
 
-    //Asagidaki kodlara baxarsan: #########################################################################################
-    #######################################################################################################################
-
-    public function destroy($id)
+    public function delete($id)
     {
-        $validator = Validator::make(['id' => $id], [
-            'id' => 'required|exists:users,id',
-        ]);
-
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
-
         $user = User::findOrFail($id);
+
+        $user->activestatus = 0;
 
         // Kullanıcının sahip olduğu profili sil
         $user->profile()->delete();
 
-        // Kullanıcının sahip olduğu sosyal medya hesaplarını sil
+        // Kullanıcının sahip olduğu sosyal medya hesabını sil
         $user->social()->delete();
 
         // Kullanıcının sahip olduğu becerileri sil
         $user->skills()->delete();
 
         // Kullanıcının sahip olduğu uzmanlıkları sil
-        $user->expertises()->delete();
+        $user->expertise()->delete();
 
         // Kullanıcının sahip olduğu deneyimleri sil
         $user->experiences()->delete();
@@ -214,12 +211,12 @@ class AdminProfileController extends Controller
             $course->delete();
         }
 
-        // Kullanıcıyı sil
-        $user->delete();
-
-        return redirect()->route('admin.user.index')->with('success', 'Kullanıcı başarıyla silindi.');
+        return redirect()->route('admin.user.index');
     }
 
+
+    //Asagidaki kodlara baxarsan: #########################################################################################
+    #######################################################################################################################
     public function edit($id)
     {
         $validator = Validator::make(['id' => $id], [

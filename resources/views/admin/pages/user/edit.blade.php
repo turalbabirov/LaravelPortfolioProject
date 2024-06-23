@@ -90,7 +90,7 @@
                                     @endif
                                 </div>
                                 <div>
-                                    <input type="submit" class="btn btn-success" value="Update Profile" />
+                                    <input type="submit" class="btn btn-success" value="Update User" />
                                 </div>
                             </form>
                         </div>

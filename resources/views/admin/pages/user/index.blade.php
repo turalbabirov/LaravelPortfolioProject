@@ -95,13 +95,16 @@
                                                     <p>{{$user->email}}</p>
                                                 </td>
                                                 <td class="min-width">
-                                                    <p>
-                                                        <form action="{{ route('admin.profile.create', ['id' => $user->id]) }}" method="get" class="d-inline">
-                                                            @csrf
-                                                            <button class="btn btn-outline-primary me-4">Add Profile</button>
-                                                        </form>
+                                                    @if( empty($user->profile) )
+                                                        <p>
+                                                            <form action="{{ route('admin.profile.create', ['id' => $user->id]) }}" method="get" class="d-inline">
+                                                                @csrf
+                                                                <button class="btn btn-outline-primary me-4">Add Profile</button>
+                                                            </form>
+                                                        </p>
+                                                    @else
                                                         <a href="{{ route('admin.profile.index', ['id' => $user->id]) }}" class="btn-link link-primary">View Projects</a>
-                                                    </p>
+                                                    @endif
                                                 </td>
 
                                                 @if($user->activestatus != 0)

@@ -10,10 +10,11 @@ class FrontPageController extends Controller
 {
     public function index()
     {
-        $users = User::with('profile', 'expertise', 'skills', 'experiences', 'projectCategories', 'projects', 'courses', 'social')
+        $user = User::with('profile', 'expertise', 'skills', 'experiences', 'projectCategories', 'projects', 'courses', 'social')
             ->get()->where('activestatus', 1);
-        $users = $users[0];
+        $user = $user->isEmpty() ? null : $user->first();
+//        dd($user);
 
-        return view('front.pages.index', compact('users'));
+        return view('front.pages.index', compact('user'));
     }
 }

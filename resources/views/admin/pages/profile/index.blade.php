@@ -33,9 +33,7 @@
                                     <button class="btn btn-outline-primary">Edit profile</button>
                                 </form>
                                 <!-- Bura heqiqi data yollayarsan -->
-                                <form action="{{ route('admin.profile.projectcategory.delete', ['id' => 1]) }}">
-                                    <button class="btn btn-danger">Delete profile</button>
-                                </form>
+                                <a href="{{ route('admin.profile.delete', ['id' => $user->id]) }}" class="btn btn-danger">Delete profile</a>
                             </div>
                         </div>
 

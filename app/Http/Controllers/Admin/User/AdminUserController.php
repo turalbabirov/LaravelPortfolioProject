@@ -13,6 +13,8 @@ class AdminUserController extends Controller
 {
     public function index() {
         $users = User::all();
+        $users->load(['profile']);
+
         return view('admin.pages.user.index', compact('users'));
     }
 

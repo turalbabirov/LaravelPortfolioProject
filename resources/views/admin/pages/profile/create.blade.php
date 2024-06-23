@@ -134,9 +134,9 @@
 
                                             <div class="input-style-1">
                                                 <label>Phone:</label>
-                                                <input type="tel" name="phone" required>
+                                                <input type="tel" name="phone" pattern="\(\d{3}\s\d{2}\)\s\d{3}\-\d{2}\-\d{2}" placeholder="0559998877" required>
 
-                                                @if ($errors->has('phone'))
+                                            @if ($errors->has('phone'))
                                                     <div>
                                                         <span class="text-danger">{{ $errors->first('phone') }}</span>
                                                     </div>
@@ -568,27 +568,27 @@
                                             <div class="card-style mb-30">
                                                 <div class="input-style-1">
                                                     <label>Twitter:</label>
-                                                    <input type="text" id="twitter" name="socials[twitter]" placeholder="Add twitter account link here.." />
+                                                    <input type="text" id="twitter" name="socials[][twitter]" placeholder="Add twitter account link here.." />
                                                 </div>
 
                                                 <div class="input-style-1">
                                                     <label>Facebook:</label>
-                                                    <input type="text" id="facebook" name="socials[facebook]" placeholder="Add facebook account link here.." />
+                                                    <input type="text" id="facebook" name="socials[][facebook]" placeholder="Add facebook account link here.." />
                                                 </div>
 
                                                 <div class="input-style-1">
                                                     <label>Linkedin:</label>
-                                                    <input type="text" id="linkedin" name="socials[linkedin]" placeholder="Add linkedin account link here.." />
+                                                    <input type="text" id="linkedin" name="socials[][linkedin]" placeholder="Add linkedin account link here.." />
                                                 </div>
 
                                                 <div class="input-style-1">
                                                     <label>Instagram:</label>
-                                                    <input type="text" id="instagram" name="socials[instagram]" placeholder="Add instagram account link here.." />
+                                                    <input type="text" id="instagram" name="socials[][instagram]" placeholder="Add instagram account link here.." />
                                                 </div>
 
                                                 <div class="input-style-1">
                                                     <label>Youtube:</label>
-                                                    <input type="text" id="youtube" name="socials[youtube]" placeholder="Add youtube account link here.." />
+                                                    <input type="text" id="youtube" name="socials[][youtube]" placeholder="Add youtube account link here.." />
                                                 </div>
                                             </div>
                                         </div>
