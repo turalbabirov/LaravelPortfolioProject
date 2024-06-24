@@ -29,11 +29,11 @@
                                     <label class="form-check-label" for="toggleSwitch2">Active {{ $user->name }}'s profile on front</label>
                                 </div>
                                 <!-- Bura heqiqi data yollayarsan -->
-                                <form action="{{ route('admin.profile.projectcategory.edit', ['id' => 1]) }}">
+                                <form action="{{ route('admin.user.profile.projectcategory.edit', ['id' => 1]) }}">
                                     <button class="btn btn-outline-primary">Edit profile</button>
                                 </form>
                                 <!-- Bura heqiqi data yollayarsan -->
-                                <a href="{{ route('admin.profile.delete', ['id' => $user->id]) }}" class="btn btn-danger">Delete profile</a>
+                                <a href="{{ route('admin.user.profile.delete', ['id' => $user->id]) }}" class="btn btn-danger">Delete profile</a>
                             </div>
                         </div>
 
@@ -115,7 +115,7 @@
                 var userId = {{ $user->id }}; // Kullanıcı ID'si, dinamik olarak PHP tarafından verilmiş bir değişken
 
                 $.ajax({
-                    url: "{{ route('admin.profile.update-activation-status', ['userId' => $user->id]) }}",
+                    url: "{{ route('admin.user.profile.update-activation-status', ['userId' => $user->id]) }}",
                     type: 'POST',
                     data: {
                         active_status: activeStatus,

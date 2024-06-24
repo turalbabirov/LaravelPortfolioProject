@@ -22,7 +22,7 @@
                         <!-- input style start -->
                         <div class="input-style-1">
                             <label>Add project category</label>
-                            <form id="updateprojectcategory" action="{{ route('admin.profile.projectcategory.update', ['id' => $id]) }}" method="post">
+                            <form id="updateprojectcategory" action="{{ route('admin.user.profile.projectcategory.update', ['id' => $id]) }}" method="post">
                                 @csrf
                                 <input type="hidden" name="user_id" value="{{$user_id}}">
                                 <input type="text" name="title" value="{{ $category->title }}"/>

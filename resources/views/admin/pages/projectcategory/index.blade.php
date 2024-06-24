@@ -16,7 +16,7 @@
                 <div class="col">
                     <!-- input style start -->
                     <div class="mt-4 d-flex justify-content-end mb-4">
-                        <form action="{{ route('admin.profile.create', ['id' => $id]) }}" method="post">
+                        <form action="{{ route('admin.user.profile.create', ['id' => $id]) }}" method="post">
                             @csrf
                             <button class="btn btn-secondary">Back to profile page</button>
                         </form>
@@ -24,7 +24,7 @@
 
                     <div class="card-style mb-30">
                         <div class="input-style-1">
-                            <form id="addprojectcategory" action="{{ route('admin.profile.projectcategory.store') }}" method="post">
+                            <form id="addprojectcategory" action="{{ route('admin.user.profile.projectcategory.store') }}" method="post">
                                 @csrf
                                 <label>Add project category</label>
                                 <input type="hidden" name="id" value="{{$id}}">
@@ -65,13 +65,13 @@
                                                     <p>{{ $category->title }}</p>
                                                 </td>
                                                 <td class="d-flex">
-                                                    <form action="{{ route('admin.profile.projectcategory.edit', ['id' => $category->id]) }}" method="post" class="me-2">
+                                                    <form action="{{ route('admin.user.profile.projectcategory.edit', ['id' => $category->id]) }}" method="post" class="me-2">
                                                         @csrf
                                                         <input type="hidden" name="user_id" value="{{$id}}">
                                                         <button class="btn btn-primary">Edit</button>
                                                     </form>
 
-                                                    <a href="{{ route('admin.profile.projectcategory.delete', ['id' => $category->id]) }}" class="btn btn-danger">Delete</a>
+                                                    <a href="{{ route('admin.user.profile.projectcategory.delete', ['id' => $category->id]) }}" class="btn btn-danger">Delete</a>
                                                 </td>
                                             </tr>
                                         @endforeach

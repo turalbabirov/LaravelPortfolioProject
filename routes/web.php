@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AdminPartialsController;
 use App\Http\Controllers\Admin\Profile\AdminProfileController;
 use App\Http\Controllers\Admin\Profile\Status\UserProfileStatusController;
 use App\Http\Controllers\Admin\ProjectCategory\AdminProjectCategoryController;
+use App\Http\Controllers\Admin\SendMail\AdminSendMailIndexController;
 use App\Http\Controllers\Admin\User\AdminUserController;
 use App\Http\Controllers\Front\FrontContactController;
 use App\Http\Controllers\Front\FrontPageController;
@@ -29,36 +30,37 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/delete/{id}', [AdminUserController::class,'delete'])->name('delete');
         Route::get('/edit/{id}', [AdminUserController::class,'edit'])->name('edit');
         Route::post('/update/{id}', [AdminUserController::class,'update'])->name('update');
-    });
 
-    Route::prefix('profile')->name('profile.')->group(function () {
-        Route::get('/{id}', [AdminProfileController::class,'index'])->name('index');
-        Route::post('/{userId}/update-activation-status', [UserProfileStatusController::class, 'updateActivationStatus'])->name('update-activation-status');
-        Route::get('/create/{id}', [AdminProfileController::class, 'create'])->name('create');
+        Route::prefix('profile')->name('profile.')->group(function () {
+            Route::get('/{id}', [AdminProfileController::class,'index'])->name('index');
+            Route::post('/{userId}/update-activation-status', [UserProfileStatusController::class, 'updateActivationStatus'])->name('update-activation-status');
+            Route::get('/create/{id}', [AdminProfileController::class, 'create'])->name('create');
 //        Route::match(['get', 'post'], '/create/{id}', [AdminProfileController::class, 'create'])->name('create');
-        Route::post('/store', [AdminProfileController::class, 'store'])->name('store');
-        Route::get('/delete/{id}', [AdminProfileController::class, 'delete'])->name('delete');
-        Route::get('/edit/{id}', [AdminProfileController::class, 'edit'])->name('edit');
-        Route::post('/update/{id}', [AdminProfileController::class, 'update'])->name('update');
+            Route::post('/store', [AdminProfileController::class, 'store'])->name('store');
+            Route::get('/delete/{id}', [AdminProfileController::class, 'delete'])->name('delete');
+            Route::get('/edit/{id}', [AdminProfileController::class, 'edit'])->name('edit');
+            Route::post('/update/{id}', [AdminProfileController::class, 'update'])->name('update');
 
-        Route::prefix('projectcategory')->name('projectcategory.')->group(function () {
-            Route::get('/{id}', [AdminProjectCategoryController::class,'index'])->name('index');
-            Route::post('/store', [AdminProjectCategoryController::class, 'store'])->name('store');
-            Route::get('/delete/{id}', [AdminProjectCategoryController::class, 'delete'])->name('delete');
-            Route::post('/edit/{id}', [AdminProjectCategoryController::class, 'edit'])->name('edit');
-            Route::post('/update/{id}', [AdminProjectCategoryController::class, 'update'])->name('update');
+            Route::prefix('projectcategory')->name('projectcategory.')->group(function () {
+                Route::get('/{id}', [AdminProjectCategoryController::class,'index'])->name('index');
+                Route::post('/store', [AdminProjectCategoryController::class, 'store'])->name('store');
+                Route::get('/delete/{id}', [AdminProjectCategoryController::class, 'delete'])->name('delete');
+                Route::post('/edit/{id}', [AdminProjectCategoryController::class, 'edit'])->name('edit');
+                Route::post('/update/{id}', [AdminProjectCategoryController::class, 'update'])->name('update');
+            });
         });
     });
 
-//    Route::prefix('slider')->name('slider.')->group(function () {
-//        Route::get('/', [AdminSliderController::class, 'index'])->name('index');
-//        Route::get('/create', [AdminSliderController::class, 'create'])->name('create');
-//        Route::post('/store', [AdminSliderController::class, 'store'])->name('store');
-//        Route::post('/delete', [AdminSliderController::class, 'delete'])->name('delete');
-//        Route::get('/edit/{id}', [AdminSliderController::class, 'edit'])->name('edit');
-//        Route::post('/update/{id}', [AdminSliderController::class, 'update'])->name('update');
-//    });
-//
+    Route::prefix('sendmail')->name('sendmail.')->group(function () {
+//        Route::get('/', [AdminSendMailIndexController::class,'index'])->name('index');
+        Route::get('/create', [AdminSendMailIndexController::class,'create'])->name('create');
+        Route::post('/store', [AdminSendMailIndexController::class,'store'])->name('store');
+//        Route::get('/delete/{id}', [AdminSendMailIndexController::class,'delete'])->name('delete');
+//        Route::get('/edit/{id}', [AdminSendMailIndexController::class,'edit'])->name('edit');
+//        Route::post('/update/{id}', [AdminSendMailIndexController::class,'update'])->name('update');
+    });
+
+
 //    Route::prefix('message')->name('message.')->group(function () {
 //        Route::get('/', [AdminMessageController::class, 'index'])->name('index');
 //        Route::post('/delete', [AdminMessageController::class, 'delete'])->name('delete');

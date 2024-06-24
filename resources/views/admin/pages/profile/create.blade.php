@@ -78,7 +78,7 @@
                         <div class="mt-5"></div>
 
                         <div class="profile-info">
-                            <form id="imageUploadForm" action="{{ route('admin.profile.store', ['id' => $user->id]) }}" method="post" enctype="multipart/form-data">
+                            <form id="imageUploadForm" action="{{ route('admin.user.profile.store', ['id' => $user->id]) }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <!-- USER ID: -->
                                 <input type="hidden" name="user_id" value="{{ $user->id }}">
@@ -439,7 +439,7 @@
                                         <h6>Portfolio:</h6>
                                         <div class="mt-4" id="buttonContainer">
                                             <!-- Button -->
-                                            <a href="{{ route('admin.profile.projectcategory.index', ['id' => $user->id]) }}" type="button" class="btn btn-outline-secondary">Add project category</a>
+                                            <a href="{{ route('admin.user.profile.projectcategory.index', ['id' => $user->id]) }}" type="button" class="btn btn-outline-secondary">Add project category</a>
                                         </div>
                                     </div>
 
