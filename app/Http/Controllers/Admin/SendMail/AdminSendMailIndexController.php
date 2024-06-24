@@ -26,6 +26,11 @@ class AdminSendMailIndexController extends Controller
             'message' => $request->input('message')
         ];
 
+        // Kullanıcıyı oluştur (örneğin, varsayılan kullanıcıyı alabilirsiniz)
+        //$user = User::first(); // Örneğin, ilk kullanıcıyı alabilirsiniz veya kendi kullanıcı modelinize göre ayarlayabilirsiniz
+        // Kullanıcıya notification gönder
+        //$user->notify(new ContactFormNotification($data));
+
         // Bildirim gönderme işlemi
         Notification::route('mail', $data['email'])
             ->notify(new ContactFormNotification($data));
