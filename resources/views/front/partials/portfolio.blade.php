@@ -21,9 +21,9 @@
                     @foreach($user->projects as $project)
                     <div class="col-md-6 mb-4 portfolio-item {{ $project->category_id }}">
                         <div class="position-relative overflow-hidden mb-2">
-                            <img class="img-fluid w-100" src="{{ asset('/storage/project/' . $project->user_id . '/' . $project->img ) }}" alt="">
+                            <img class="img-fluid w-100" src="{{ $project->img ? asset('/storage/project/' . $project->user_id . '/' . $project->img ) : asset('front_files/img/notpicture.jpg') }}" alt="" style="height:400px">
                             <div class="portfolio-btn d-flex align-items-center justify-content-center">
-                                <a href="{{ asset('/storage/project/' . $project->user_id . '/' . $project->img ) }}" data-lightbox="portfolio">
+                                <a href="{{ $project->img ? asset('/storage/project/' . $project->user_id . '/' . $project->img ) : asset('front_files/img/notpicture.jpg') }}" data-lightbox="portfolio">
                                     <i class="fa fa-4x fa-plus text-white"></i>
                                 </a>
                             </div>
@@ -35,20 +35,18 @@
                 <div class="row">
                     <div class="col-12 text-center mb-2">
                         <ul class="list-inline mb-4" id="portfolio-flters">
-                            <li class="btn btn-outline-primary active" data-filter="*"><i class="fa fa-star mr-2"></i>All</li>
-                            <li class="btn btn-outline-primary" data-filter=".1"><i class="fa fa-laptop-code mr-2"></i>Design</li>
-                            <li class="btn btn-outline-primary" data-filter=".2"><i class="fa fa-mobile-alt mr-2"></i>Development</li>
-                            <li class="btn btn-outline-primary" data-filter=".3"><i class="fa fa-mobile-alt mr-2"></i>Xexo</li>
+                            <li class="btn btn-outline-primary active"  data-filter="*"><i class="fa fa-star mr-2"></i>All</li>
+                            <li class="btn btn-outline-primary" data-filter=".first"><i class="fa fa-laptop-code mr-2"></i>Design</li>
+                            <li class="btn btn-outline-primary" data-filter=".second"><i class="fa fa-mobile-alt mr-2"></i>Development</li>
                         </ul>
                     </div>
                 </div>
-
                 <div class="row portfolio-container">
                     <div class="col-md-6 mb-4 portfolio-item first">
                         <div class="position-relative overflow-hidden mb-2">
-                            <img class="img-fluid w-100" src="{{asset('front_files/img/portfolio-1.jpg')}}" alt="">
+                            <img class="img-fluid w-100" src="{{ asset('front_files/img/portfolio-1.jpg') }}" alt="">
                             <div class="portfolio-btn d-flex align-items-center justify-content-center">
-                                <a href="{{asset('front_files/img/portfolio-1.jpg')}}" data-lightbox="portfolio">
+                                <a href="{{ asset('front_files/img/portfolio-1.jpg') }}" data-lightbox="portfolio">
                                     <i class="fa fa-4x fa-plus text-white"></i>
                                 </a>
                             </div>
@@ -56,9 +54,9 @@
                     </div>
                     <div class="col-md-6 mb-4 portfolio-item second">
                         <div class="position-relative overflow-hidden mb-2">
-                            <img class="img-fluid w-100" src="{{asset('front_files/img/portfolio-2.jpg')}}" alt="">
+                            <img class="img-fluid w-100" src="{{ asset('front_files/img/portfolio-2.jpg') }}" alt="">
                             <div class="portfolio-btn d-flex align-items-center justify-content-center">
-                                <a href="{{asset('front_files/img/portfolio-2.jpg')}}" data-lightbox="portfolio">
+                                <a href="{{ asset('front_files/img/portfolio-2.jpg') }}" data-lightbox="portfolio">
                                     <i class="fa fa-4x fa-plus text-white"></i>
                                 </a>
                             </div>
@@ -66,29 +64,19 @@
                     </div>
                     <div class="col-md-6 mb-4 portfolio-item first">
                         <div class="position-relative overflow-hidden mb-2">
-                            <img class="img-fluid w-100" src="{{asset('front_files/img/portfolio-3.jpg')}}" alt="">
+                            <img class="img-fluid w-100" src="{{ asset('front_files/img/portfolio-3.jpg') }}" alt="">
                             <div class="portfolio-btn d-flex align-items-center justify-content-center">
-                                <a href="{{asset('front_files/img/portfolio-3.jpg')}}" data-lightbox="portfolio">
+                                <a href="{{ asset('front_files/img/portfolio-3.jpg') }}" data-lightbox="portfolio">
                                     <i class="fa fa-4x fa-plus text-white"></i>
                                 </a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 mb-4 portfolio-item first">
+                    <div class="col-md-6 mb-4 portfolio-item second">
                         <div class="position-relative overflow-hidden mb-2">
-                            <img class="img-fluid w-100" src="{{asset('front_files/img/portfolio-4.jpg')}}" alt="">
+                            <img class="img-fluid w-100" src="{{ asset('front_files/img/portfolio-4.jpg') }}" alt="">
                             <div class="portfolio-btn d-flex align-items-center justify-content-center">
-                                <a href="{{asset('front_files/img/portfolio-4.jpg')}}" data-lightbox="portfolio">
-                                    <i class="fa fa-4x fa-plus text-white"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-4 portfolio-item third">
-                        <div class="position-relative overflow-hidden mb-2">
-                            <img class="img-fluid w-100" src="{{asset('front_files/img/portfolio-4.jpg')}}" alt="">
-                            <div class="portfolio-btn d-flex align-items-center justify-content-center">
-                                <a href="{{asset('front_files/img/portfolio-4.jpg')}}" data-lightbox="portfolio">
+                                <a href="{{ asset('front_files/img/portfolio-4.jpg') }}" data-lightbox="portfolio">
                                     <i class="fa fa-4x fa-plus text-white"></i>
                                 </a>
                             </div>

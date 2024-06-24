@@ -2,7 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>{{ $user->fullname }} - Personal CV Website Template</title>
+    @if($user)
+        <title>{{ $user->fullname }} - Personal CV Website Template</title>
+    @else
+        <title>Name Surname - Personal CV Website Template</title>
+    @endif
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free Website Template" name="keywords">
     <meta content="Free Website Template" name="description">
