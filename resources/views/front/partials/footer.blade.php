@@ -14,6 +14,8 @@
             <a class="text-white" href="#">FAQs</a>
             <span class="px-3">|</span>
             <a class="text-white" href="#">Help</a>
+            <span class="px-3">|</span>
+            <a class="text-white" href="{{ route('blog.index') }}">Blogs</a>
         </div>
         <p class="m-0">&copy; All Rights Reserved. Designed by <a href="https://htmlcodex.com">HTML Codex</a></p>
     </div>

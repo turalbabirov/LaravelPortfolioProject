@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::group([], function () {
     Route::get('/', [FrontPageController::class, 'index'])->name('index');
     Route::post('/contact', [FrontContactController::class, 'store'])->name('contact.store');
+    Route::get('blog', 'App\Http\Controllers\Front\FrontBlogController@index')->name('blog.index');
+    Route::get('blog/{id}', 'App\Http\Controllers\Front\FrontBlogController@show')->name('blog.show');
 });
 
 
@@ -52,13 +54,43 @@ Route::prefix('admin')->name('admin.')->group(function () {
     });
 
     Route::prefix('sendmail')->name('sendmail.')->group(function () {
-//        Route::get('/', [AdminSendMailIndexController::class,'index'])->name('index');
         Route::get('/create', [AdminSendMailIndexController::class,'create'])->name('create');
         Route::post('/store', [AdminSendMailIndexController::class,'store'])->name('store');
-//        Route::get('/delete/{id}', [AdminSendMailIndexController::class,'delete'])->name('delete');
-//        Route::get('/edit/{id}', [AdminSendMailIndexController::class,'edit'])->name('edit');
-//        Route::post('/update/{id}', [AdminSendMailIndexController::class,'update'])->name('update');
     });
+
+    Route::resource('blog', 'App\Http\Controllers\Admin\Blog\AdminBlogController')->names([
+        'index' => 'blog.index',
+        'create' => 'blog.create',
+        'store' => 'blog.store',
+        'edit' => 'blog.edit',
+        'update' => 'blog.update',
+        'destroy' => 'blog.destroy',
+    ])->except(['show']);
+
+
+//    # Asagidaki kimi de genisletmek olar eger categoriya da elave etseK:
+//    Route::prefix('blog')->group(function () {
+//        // Blog resource
+//        Route::resource('/', 'App\Http\Controllers\Admin\Blog\AdminBlogController')->names([
+//            'index' => 'index',
+//            'create' => 'create',
+//            'store' => 'store',
+//            'edit' => 'edit',
+//            'update' => 'update',
+//            'destroy' => 'destroy',
+//        ])->except(['show']);
+//
+//        // Categories resource under Blog
+//        Route::resource('categories', 'App\Http\Controllers\Admin\Blog\CategoryController')->names([
+//            'index' => 'categories.index',
+//            'create' => 'categories.create',
+//            'store' => 'categories.store',
+//            'edit' => 'categories.edit',
+//            'update' => 'categories.update',
+//            'destroy' => 'categories.destroy',
+//        ]);
+//    });
+
 
 
 //    Route::prefix('message')->name('message.')->group(function () {
